@@ -1,0 +1,187 @@
+DASHBOARD KETERSEDIAAN BED RS PEMPROV JATIM
+================================================
+
+CARA PALING MUDAH
+
+1. Ekstrak folder ZIP.
+2. Pastikan Python sudah terpasang.
+   Gunakan Python 3.12 atau 3.13. Python 3.14 belum didukung.
+3. Klik dua kali file:
+
+   run_dashboard.bat
+
+4. Tunggu pemasangan library selesai.
+5. Browser akan membuka:
+
+   http://localhost:8501
+
+6. Dashboard sekarang memiliki dua halaman, dipilih lewat menu di
+   sidebar sebelah kiri:
+
+   a. "Overview" (halaman pertama yang terbuka)
+      - Ring persentase ketersediaan bed untuk seluruh 14 RS sekaligus,
+        diwarnai hijau/kuning/merah sesuai tingkat kritis.
+      - KPI provinsi: Total Kapasitas, Total Terisi, Total Tersedia,
+        BOR Provinsi.
+      - Grafik "Bed Tersedia per Rumah Sakit" dan "Tingkat Keterisian
+        (BOR) per Rumah Sakit" untuk membandingkan seluruh RS.
+      - Kartu insight: RS dengan bed tersedia terbanyak, RS paling
+        kritis, RS dengan BOR tertinggi, dan RS berkapasitas terbesar.
+      - Tabel ringkasan seluruh RS.
+      - Bila ada RS yang belum punya data, gunakan tombol
+        "Ambil Data Semua RS yang Belum Tersedia" pada halaman ini.
+
+   b. "Ketersediaan Bed" (detail per rumah sakit)
+      - Kontrol scraping sekarang berada di bagian ATAS halaman
+        (bukan lagi di sidebar): pilih rumah sakit, aktifkan
+        "Scraping otomatis", pilih interval (disarankan 5 menit),
+        tombol "Ambil data sekarang", dan tombol "Buka sumber data".
+      - Di bawahnya tampil KPI, tab Ringkasan, Detail Ruang, dan
+        Riwayat seperti sebelumnya.
+
+7. Selama jendela terminal masih terbuka, dashboard masih menyala.
+   Untuk mematikan dashboard, tutup terminal atau tekan Ctrl + C.
+
+
+CARA MELALUI TERMINAL VS CODE
+
+1. Buka folder ini di VS Code.
+2. Buka menu Terminal > New Terminal.
+3. Copy-paste satu per satu:
+
+   python -m venv .venv
+
+   .\.venv\Scripts\Activate.ps1
+
+   pip install -r requirements.txt
+
+   streamlit run app.py
+
+
+JIKA ACTIVATE.PS1 DITOLAK
+
+Tidak perlu mengubah keamanan PowerShell. Jalankan:
+
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
+   .\.venv\Scripts\python.exe -m streamlit run app.py
+
+
+JIKA PERNAH MUNCUL ERROR "TypedDictMeta ... closed"
+
+Versi ZIP ini sudah diperbaiki. Jika masih memakai folder lama,
+hapus folder ".venv", lalu klik dua kali run_dashboard.bat agar
+virtual environment dan library dibuat ulang dengan versi yang sesuai.
+Untuk Python 3.13, dashboard menggunakan Altair 5.3.0 karena versi
+berikutnya memiliki konflik TypedDict pada sebagian instalasi Windows.
+
+
+JIKA PERNAH MUNCUL ERROR "metadata-generation-failed: pandas"
+
+Hapus folder ".venv", kemudian jalankan kembali run_dashboard.bat.
+File BAT akan otomatis memilih Python 3.13 atau Python 3.12 dan tidak
+lagi memakai Python 3.14.
+
+
+JIKA PERNAH MUNCUL "MINIFIED REACT ERROR #185"
+
+Versi ini tidak lagi menggunakan komponen data-grid yang bermasalah.
+Tabel kelas, ruang, dan riwayat ditampilkan menggunakan tabel HTML
+yang stabil saat halaman dimuat ulang.
+
+
+CARA PEMBARUAN DATA
+
+- Tombol "Ambil data sekarang" selalu meminta HTML baru dengan parameter
+  anti-cache.
+- "Update website" menunjukkan waktu terakhir yang diberikan sumber RS.
+- "Terakhir diperiksa" selalu berubah setiap scraper selesai memeriksa,
+  meskipun isi data rumah sakit belum berubah.
+- Data dibandingkan berdasarkan isi kelas, ruang, kapasitas, terisi,
+  dan tersedia; bukan hanya berdasarkan tulisan Last Update.
+- Singkatan KB dari website ditampilkan sebagai "Kamar Bayi (KB)".
+
+
+DETAIL PERUBAHAN BED
+
+Pada tab "Riwayat", bagian "Detail Perubahan Bed per Ruang"
+menampilkan waktu perubahan, kelas, nama ruang, nilai terisi dan
+tersedia sebelum-sesudah, serta keterangan seperti:
+
+- "1 bed baru terisi"
+- "1 bed menjadi tersedia"
+- "Ruang baru terdeteksi"
+- "Ruang tidak lagi ditemukan"
+
+
+CARA KERJA
+
+Website RSUD Dr. Soetomo
+        |
+        v
+Scraper membaca tabel HTML
+        |
+        v
+Data diringkas per kelas dan ruang
+        |
+        v
+Snapshot baru disimpan ke SQLite
+        |
+        v
+Streamlit menampilkan KPI, tabel, dan tren
+
+Untuk RSUD Dr. Saiful Anwar, data diambil langsung dari API JSON
+resmi yang juga digunakan oleh halaman ketersediaan bed. Semua kelas
+dan ruang diterima sekaligus tanpa mengklik card satu per satu.
+
+Untuk RSUD dr. Soedono Madiun, scraper membaca seluruh card kelas,
+lalu mengirim request POST ke endpoint detail setiap kelas. Tombol
+"Lihat Detail" tidak perlu diklik secara manual. Data renovasi dan
+Sisrute disimpan terpisah agar nilai digunakan tidak salah.
+
+Untuk RSUD Haji Provinsi Jawa Timur, seluruh data sudah tersedia
+langsung pada tabel HTML. Scraper mengambil kelompok layanan, nama
+ruang, kelas, jumlah bed, isi, kosong, siap, dan keterangan. Nilai
+"Tersedia" pada dashboard memakai kolom "SIAP". Selisih antara
+"KOSONG" dan "SIAP" ditampilkan sebagai "Kosong Belum Siap", sehingga
+dashboard tidak melebihkan jumlah bed yang benar-benar siap digunakan.
+
+Untuk RS Jiwa Menur Provinsi Jawa Timur, scraper memanggil API JSON
+resmi yang sama dengan tombol "REFRESH" pada website. Seluruh ruang
+dan kelas diterima sekaligus, lalu nilai bed kosong digunakan sebagai
+bed tersedia. Sistem memvalidasi bahwa kapasitas sama dengan jumlah
+bed terisi ditambah bed kosong sebelum data disimpan.
+
+Untuk RSU Mohammad Noer Pamekasan, scraper membaca tujuh kartu rekap
+resmi yang memuat kategori/kelas, waktu update, jumlah tempat tidur,
+dan jumlah kosong. Nilai terisi dihitung dari kapasitas dikurangi
+kosong. Bagian detail nama ruang pada website tidak mencantumkan
+kapasitas, sehingga dashboard memakai rekap kelas agar angka total
+tidak dibuat berdasarkan asumsi.
+
+Untuk RSUD Dungus Madiun, scraper membaca JSON BPJS Aplicare yang
+tertanam pada halaman ketersediaan bed. Data mencakup nama ruang,
+kelas, kapasitas, tersedia, status, dan waktu update. Nilai terisi
+dihitung dari kapasitas dikurangi tersedia dan divalidasi sebelum
+snapshot disimpan.
+
+Untuk RSUD Daha Husada Kediri, scraper membaca tabel HTML yang
+berisi bangsal, kelas, total, terisi, tersedia, dan waktu update.
+Jika total tidak sama dengan terisi ditambah tersedia, selisihnya
+dicatat sebagai "Kosong Belum Siap" agar kapasitas tetap konsisten
+tanpa mengubah angka asli dari website.
+
+Untuk RS Paru Jember, scraper memanggil API JSON yang digunakan
+layar informasi rumah sakit. Data mencakup kelas, nama kamar,
+kapasitas, tersedia, tarif, dan timestamp. Nilai terisi dihitung
+dari kapasitas dikurangi tersedia, lalu divalidasi sebelum disimpan.
+
+
+CATATAN
+
+- Database otomatis dibuat di data\monitoring_bed.db.
+- Update yang waktunya sama tidak disimpan dua kali.
+- Jika website sedang tidak dapat diakses, dashboard tetap menampilkan
+  data terakhir yang sudah tersimpan.
+- Gunakan interval minimal 5 menit untuk pemakaian normal agar tidak
+  membebani server rumah sakit.

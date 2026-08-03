@@ -17,7 +17,18 @@ inject_base_style()
 # Halaman Beranda (Fast Render)
 # ---------------------------------------------------------------------
 
+import base64
 import os
+
+@st.cache_data
+def get_base64_logo(file_path: str) -> str | None:
+    if file_path and os.path.exists(file_path):
+        ext = file_path.split(".")[-1].lower()
+        mime = "image/png" if ext == "png" else "image/jpeg"
+        with open(file_path, "rb") as img_file:
+            b64 = base64.b64encode(img_file.read()).decode("utf-8")
+        return f"data:{mime};base64,{b64}"
+    return None
 
 # ---------------------------------------------------------------------
 # Check 3 Logos (Pemprov Jatim -> Kominfo -> UNAIR)
@@ -38,22 +49,22 @@ with st.container(border=True):
             unsafe_allow_html=True,
         )
     with logo_col:
-        l1, l2, l3 = st.columns(3)
-        with l1:
-            if pemprov_path:
-                st.image(pemprov_path, width=65)
-            else:
-                st.caption("**[ PEMPROV JATIM ]**")
-        with l2:
-            if kominfo_path:
-                st.image(kominfo_path, width=65)
-            else:
-                st.caption("**[ DISKOMINFO ]**")
-        with l3:
-            if unair_path:
-                st.image(unair_path, width=65)
-            else:
-                st.caption("**[ UNAIR ]**")
+        pemprov_b64 = get_base64_logo(pemprov_path)
+        kominfo_b64 = get_base64_logo(kominfo_path)
+        unair_b64 = get_base64_logo(unair_path)
+
+        pemprov_img = f'<img src="{pemprov_b64}" style="height:48px; max-width:65px; object-fit:contain;" alt="Pemprov Jatim" />' if pemprov_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">PEMPROV JATIM</span>'
+        kominfo_img = f'<img src="{kominfo_b64}" style="height:42px; max-width:65px; object-fit:contain;" alt="Kominfo" />' if kominfo_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">DISKOMINFO</span>'
+        unair_img = f'<img src="{unair_b64}" style="height:42px; max-width:65px; object-fit:contain;" alt="UNAIR" />' if unair_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">UNAIR</span>'
+
+        st.markdown(
+            f'<div style="display:flex; justify-content:flex-end; align-items:center; gap:16px;">'
+            f'{pemprov_img}'
+            f'{kominfo_img}'
+            f'{unair_img}'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
 
     st.markdown(
         '<h1 style="margin:14px 0 6px; color:#0f2f6b; font-size:2.1rem; font-weight:800; line-height:1.22; letter-spacing:-0.5px;">'
@@ -111,7 +122,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kota Madiun",
         "alamat": "Jl. dr. Soetomo No. 59, Kartoharjo, Madiun",
         "telepon": "(0351) 464325 / 464326",
-        "url": "https://rsudsoedono.jatimprov.go.id/",
+        "url": "https://rssoedono.jatimprov.go.id/utama/",
     },
     {
         "nama": "RSUD Haji Provinsi Jawa Timur",
@@ -120,7 +131,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kota Surabaya",
         "alamat": "Jl. ITENAS No. 12-14, Sukolilo, Surabaya",
         "telepon": "(031) 5924000 / 5924001",
-        "url": "https://rshaji.jatimprov.go.id/",
+        "url": "https://rsuhaji.jatimprov.go.id/",
     },
     {
         "nama": "RS Jiwa Menur Provinsi Jawa Timur",
@@ -129,7 +140,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kota Surabaya",
         "alamat": "Jl. Menur No. 120, Gubeng, Surabaya",
         "telepon": "(031) 5021635 / 5021637",
-        "url": "https://rsjmenur.jatimprov.go.id/",
+        "url": "https://rsmenur.jatimprov.go.id/",
     },
     {
         "nama": "RSUD Karsa Husada Batu",
@@ -138,7 +149,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kota Batu",
         "alamat": "Jl. Ahmad Yani No. 10-13, Batu",
         "telepon": "(0341) 591076",
-        "url": "https://rsudkarsahusada.jatimprov.go.id/",
+        "url": "https://rsukarsahusadabatu.jatimprov.go.id/",
     },
     {
         "nama": "RSUD Sumberglagah",
@@ -147,7 +158,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kabupaten Mojokerto",
         "alamat": "Jl. Raya Sumberglagah, Pacet, Mojokerto",
         "telepon": "(0321) 690412",
-        "url": "https://rssumberglagah.jatimprov.go.id/web_rs/kamar/",
+        "url": "https://rssumberglagah.jatimprov.go.id/web_rs/",
     },
     {
         "nama": "RS Paru Jember",
@@ -156,7 +167,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kabupaten Jember",
         "alamat": "Jl. Nusa Indah No. 28, Patrang, Jember",
         "telepon": "(0331) 484300",
-        "url": "http://rsparujember.jatimprov.go.id/kamar",
+        "url": "https://www.rspjember.jatimprov.go.id/",
     },
     {
         "nama": "RS Paru Manguharjo Madiun",
@@ -165,7 +176,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kota Madiun",
         "alamat": "Jl. Yos Sudarso No. 108, Manguharjo, Madiun",
         "telepon": "(0351) 462719",
-        "url": "https://rspmanguharjo.jatimprov.go.id/kamar/",
+        "url": "https://rspmanguharjo.jatimprov.go.id/",
     },
     {
         "nama": "RS Mata Masyarakat Jawa Timur",
@@ -174,7 +185,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kota Surabaya",
         "alamat": "Jl. Gayung Kebonsari No. 49, Gayungan, Surabaya",
         "telepon": "(031) 8283508",
-        "url": "https://rsmm.jatimprov.go.id/informasi-ketersediaan-kamar/",
+        "url": "https://rsmm.jatimprov.go.id/",
     },
     {
         "nama": "RSU Mohammad Noer Pamekasan",
@@ -183,7 +194,7 @@ HOSPITAL_PROFILES = [
         "kota": "Kabupaten Pamekasan",
         "alamat": "Jl. Bonorogo No. 17, Pamekasan, Madura",
         "telepon": "(0324) 322432",
-        "url": "https://rsumohnoer.jatimprov.go.id/",
+        "url": "https://rsumohammadnoer.jatimprov.go.id/",
     },
     {
         "nama": "RSUD Daha Husada Kediri",
@@ -223,29 +234,25 @@ for i in range(0, len(HOSPITAL_PROFILES), 3):
             png_path = f"assets/logos/{kode}.png"
             jpg_path = f"assets/logos/{kode}.jpg"
             logo_path = png_path if os.path.exists(png_path) else (jpg_path if os.path.exists(jpg_path) else None)
+            logo_b64 = get_base64_logo(logo_path)
+            
+            logo_html = f'<img src="{logo_b64}" style="height:38px; max-width:90px; object-fit:contain;" alt="{kode}" />' if logo_b64 else f'<span style="background:#eef4ff; color:#1e3a8a; font-weight:700; font-size:0.75rem; padding:4px 10px; border-radius:10px;">{kode}</span>'
 
-            with st.container(border=True):
-                top_l, top_r = st.columns([1.5, 1])
-                with top_l:
-                    if logo_path:
-                        st.image(logo_path, width=75)
-                    else:
-                        st.caption(f"**[{kode}]**")
-                with top_r:
-                    st.markdown(
-                        f'<div style="text-align:right;"><span style="background:#f1f5f9; color:#475569; font-size:0.75rem; font-weight:600; padding:4px 10px; border-radius:10px;">{profile["kota"]}</span></div>',
-                        unsafe_allow_html=True,
-                    )
-
-                st.markdown(
-                    f'<h4 style="margin:6px 0 4px; color:#0f2f6b; font-size:1.05rem; font-weight:800; line-height:1.3;">{profile["nama"]}</h4>'
-                    f'<p style="margin:0 0 8px; color:#2563eb; font-size:0.8rem; font-weight:700;">{profile["tipe"]}</p>'
-                    f'<p style="margin:0 0 4px; color:#475569; font-size:0.8rem; line-height:1.35;">📍 {profile["alamat"]}</p>'
-                    f'<p style="margin:0 0 10px; color:#475569; font-size:0.8rem;">☎️ IGD/Telp: <b>{profile["telepon"]}</b></p>',
-                    unsafe_allow_html=True,
-                )
-                st.link_button(
-                    "🌐 Buka Website Resmi",
-                    profile["url"],
-                    use_container_width=True,
-                )
+            st.markdown(
+                f'<div class="dist-card" style="padding:22px 24px; margin-bottom:20px; display:flex; flex-direction:column; justify-content:space-between; min-height:310px; height:100%;">'
+                f'<div>'
+                f'<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">'
+                f'{logo_html}'
+                f'<span style="background:#f1f5f9; color:#475569; font-size:0.75rem; font-weight:600; padding:4px 10px; border-radius:10px;">{profile["kota"]}</span>'
+                f'</div>'
+                f'<h4 style="margin:8px 0 4px; color:#0f2f6b; font-size:1.08rem; font-weight:800; line-height:1.3;">{profile["nama"]}</h4>'
+                f'<p style="margin:0 0 10px; color:#2563eb; font-size:0.82rem; font-weight:700;">{profile["tipe"]}</p>'
+                f'<p style="margin:0 0 6px; color:#475569; font-size:0.82rem; line-height:1.35;">📍 {profile["alamat"]}</p>'
+                f'<p style="margin:0 0 12px; color:#475569; font-size:0.82rem;">☎️ IGD/Telp: <b>{profile["telepon"]}</b></p>'
+                f'</div>'
+                f'<a href="{profile["url"]}" target="_blank" style="text-decoration:none;">'
+                f'<div style="text-align:center; background:#f8fafc; border:1px solid #dbe7ff; color:#1e40af; font-size:0.82rem; font-weight:700; padding:9px 12px; border-radius:12px; transition:all 0.2s ease;">🌐 Website Resmi</div>'
+                f'</a>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )

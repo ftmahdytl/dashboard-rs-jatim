@@ -198,12 +198,22 @@ div[data-testid="stDataFrame"] {
 }
 
 .dist-card {
-    background: rgba(255,255,255,.97);
+    background: #ffffff;
     border: 1px solid #dbe7ff;
     border-radius: 20px;
-    padding: 22px 26px 8px;
-    margin: 4px 0 18px;
-    box-shadow: 0 8px 24px rgba(30,64,175,.06);
+    padding: 22px 24px;
+    box-shadow: 0 8px 24px rgba(30,64,175,.05);
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.dist-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(30,64,175,.16);
+    border-color: #93c5fd;
 }
 .dist-card-header {
     display: flex;

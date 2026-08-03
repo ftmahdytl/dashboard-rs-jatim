@@ -94,8 +94,8 @@ else:
     caption = "Belum ada data — ambil data pertama menggunakan tombol di bawah."
 
 render_hero(
-    "Overview Ketersediaan Bed",
-    "Perbandingan seluruh Rumah Sakit Pemerintah Provinsi Jawa Timur",
+    "Sistem Monitoring Layanan Rumah Sakit",
+    "Pemerintah Provinsi Jawa Timur Berbasis Automated Web Scraping",
     caption=caption,
 )
 
@@ -220,7 +220,7 @@ with col_left:
         is_cap_only = r.kode_rs in ["RSKH", "RSSG"]
         if is_cap_only:
             status_str = "Hanya Data Kapasitas"
-            pin_url = GREY_PIN
+            color_rgb = [148, 163, 184, 220]
             bor_str = "-"
             terisi_str = "-"
             tersedia_str = "-"
@@ -230,14 +230,14 @@ with col_left:
             terisi_str = f"{int(r.terisi):,}".replace(",", ".")
             tersedia_str = f"{int(r.tersedia):,}".replace(",", ".")
             if r.bor <= 75.0:
-                pin_url = GREEN_PIN
+                color_rgb = [34, 197, 94, 220]
             elif r.bor <= 90.0:
-                pin_url = GOLD_PIN
+                color_rgb = [234, 179, 8, 220]
             else:
-                pin_url = RED_PIN
+                color_rgb = [239, 68, 68, 220]
         else:
             status_str = "Belum Ada Data"
-            pin_url = GREY_PIN
+            color_rgb = [148, 163, 184, 220]
             bor_str = "-"
             terisi_str = "-"
             tersedia_str = "-"
@@ -256,7 +256,7 @@ with col_left:
                 "terisi_text": terisi_str,
                 "tersedia_text": tersedia_str,
                 "bor_text": bor_str,
-                "icon_data": make_icon_data(pin_url),
+                "color": color_rgb,
             }
         )
 
@@ -264,12 +264,13 @@ with col_left:
 
     if not df_map.empty:
         layer = pdk.Layer(
-            "IconLayer",
+            "ScatterplotLayer",
             df_map,
-            get_icon="icon_data",
             get_position=["lon", "lat"],
-            get_size=4,
-            size_scale=10,
+            get_fill_color="color",
+            get_radius=9000,
+            radius_min_pixels=10,
+            radius_max_pixels=25,
             pickable=True,
         )
 

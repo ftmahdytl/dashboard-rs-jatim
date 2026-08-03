@@ -4,6 +4,7 @@ import sqlite3
 from pathlib import Path
 
 import pandas as pd
+import streamlit as st
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -164,6 +165,7 @@ def save_snapshot(data: pd.DataFrame) -> bool:
     return True
 
 
+@st.cache_data(ttl=15)
 def load_latest(kode_rs: str) -> pd.DataFrame:
     initialize_database()
     with connect() as connection:
@@ -191,6 +193,7 @@ def load_latest(kode_rs: str) -> pd.DataFrame:
         ).drop(columns=["id"])
 
 
+@st.cache_data(ttl=15)
 def load_latest_many(kode_list: list[str]) -> dict[str, pd.DataFrame]:
     """Mengambil snapshot terbaru untuk beberapa rumah sakit sekaligus.
 

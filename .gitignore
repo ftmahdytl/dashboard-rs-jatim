@@ -1,3 +1,15 @@
 .venv/
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.streamlit/cache/
+.streamlit/secrets.toml
+node_modules/
+nakes-react-dashboard/
+data/*.db-shm
+data/*.db-wal
+
+# Cache API tenaga kesehatan
+data/nakes_api_cache.csv
+data/nakes_api_status.json

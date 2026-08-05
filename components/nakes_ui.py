@@ -7,7 +7,7 @@ import streamlit as st
 
 
 PROFESSION_COLORS = {
-    "Dokter/Tenaga Medis": "#2563EB",
+    "Dokter": "#2563EB",
     "Perawat": "#10B981",
     "Tenaga Kesehatan Lainnya": "#8B5CF6",
 }
@@ -25,20 +25,20 @@ def fmt_number(value: float | int) -> str:
 
 def short_name(name: str) -> str:
     replacements = {
-        "RSUD Dr. Soetomo": "Dr. Soetomo",
-        "RSUD Dr. Saiful Anwar": "Dr. Saiful Anwar",
-        "RSUD dr. Soedono Madiun": "dr. Soedono",
+        "RSUD Dr. Soetomo": "RSUD Dr. Soetomo",
+        "RSUD Dr. Saiful Anwar": "RSUD Dr. Saiful Anwar",
+        "RSUD dr. Soedono Madiun": "RSUD dr. Soedono",
         "RSUD Haji Provinsi Jawa Timur": "RSUD Haji",
         "RS Jiwa Menur Provinsi Jawa Timur": "RS Jiwa Menur",
-        "RSUD Karsa Husada Batu": "Karsa Husada",
-        "RSUD Sumberglagah": "Sumberglagah",
-        "RSU Mohammad Noer Pamekasan": "Mohammad Noer",
-        "RSUD Dungus Madiun": "Dungus",
-        "RSUD Daha Husada Kediri": "Daha Husada",
-        "RSUD Husada Prima": "Husada Prima",
-        "RS Paru Jember": "Paru Jember",
-        "RS Mata Masyarakat Jawa Timur": "RS Mata",
-        "RS Paru Manguharjo Madiun": "Paru Manguharjo",
+        "RSUD Karsa Husada Batu": "RSUD Karsa Husada",
+        "RSUD Sumberglagah": "RSUD Sumberglagah",
+        "RSU Mohammad Noer Pamekasan": "RSU Mohammad Noer",
+        "RSUD Dungus Madiun": "RSUD Dungus",
+        "RSUD Daha Husada Kediri": "RSUD Daha Husada",
+        "RSUD Husada Prima": "RSUD Husada Prima",
+        "RS Paru Jember": "RS Paru Jember",
+        "RS Mata Masyarakat Jawa Timur": "RS Mata Masyarakat",
+        "RS Paru Manguharjo Madiun": "RS Paru Manguharjo",
     }
 
     return replacements.get(name, name)
@@ -285,11 +285,14 @@ def render_kpi_grid(
     )
 
 
-def render_insights(items: list[str]) -> None:
+def render_insights(
+    items: list[str],
+    title: str = "✦ Ringkasan Eksekutif",
+) -> None:
     html = [
         '<div class="nakes-insights">',
         '<div class="nakes-insight-title">'
-        "✦ Insight otomatis"
+        f"{escape(title)}"
         "</div>",
     ]
 
@@ -314,12 +317,13 @@ def render_insights(items: list[str]) -> None:
 
 def section_heading(
     title: str,
-    subtitle: str,
+    subtitle: str = "",
 ) -> None:
+    sub_html = f"<p>{escape(subtitle)}</p>" if subtitle else ""
     st.markdown(
         '<div class="nakes-section">'
         f"<h3>{escape(title)}</h3>"
-        f"<p>{escape(subtitle)}</p>"
+        f"{sub_html}"
         "</div>",
         unsafe_allow_html=True,
     )

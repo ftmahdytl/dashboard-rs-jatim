@@ -58,7 +58,7 @@ def composition_treemap(
     )
 
     display_names = {
-        "Dokter/Tenaga Medis": "Dokter",
+        "Dokter": "Dokter",
         "Perawat": "Perawat",
         "Tenaga Kesehatan Lainnya": "Nakes Lainnya",
     }
@@ -266,6 +266,19 @@ def gender_pyramid(
     return figure
 
 
+def format_period(period_str: str) -> str:
+    s = str(period_str)
+    if "-S1" in s or "-s1" in s:
+        return s.replace("-S1", " Semester 1").replace("-s1", " Semester 1")
+    elif "-S2" in s or "-s2" in s:
+        return s.replace("-S2", " Semester 2").replace("-s2", " Semester 2")
+    elif "S1" in s:
+        return s.replace("S1", "Semester 1")
+    elif "S2" in s:
+        return s.replace("S2", "Semester 2")
+    return s
+
+
 def trend_chart(
     trend: pd.DataFrame,
     indexed: bool,
@@ -283,6 +296,8 @@ def trend_chart(
 
         if part.empty:
             continue
+
+        part["periode_formatted"] = part["periode"].apply(format_period)
 
         values = part["jumlah"].astype(float)
 
@@ -303,14 +318,12 @@ def trend_chart(
 
         figure.add_trace(
             go.Scatter(
-                x=part["periode"],
+                x=part["periode_formatted"],
                 y=display,
                 customdata=custom,
                 mode="lines+markers",
                 name={
-                    "Dokter/Tenaga Medis": (
-                        "Dokter"
-                    ),
+                    "Dokter": "Dokter",
                     "Tenaga Kesehatan Lainnya": (
                         "Nakes Lainnya"
                     ),
@@ -403,49 +416,6 @@ def hospital_lollipop(
         frame["nama_rs"].map(short_name)
     )
 
-    figure = go.Figure()
-
-    for row in frame.itertuples():
-        figure.add_shape(
-            type="line",
-            x0=0,
-            x1=float(row.jumlah),
-            y0=row.nama_pendek,
-            y1=row.nama_pendek,
-            line={
-                "color": "#DBEAFE",
-                "width": 5,
-            },
-            layer="below",
-        )
-
-    figure.add_trace(
-        go.Scatter(
-            x=frame["jumlah"],
-            y=frame["nama_pendek"],
-            mode="markers+text",
-            text=[
-                f"{value:,.0f}"
-                for value in frame["jumlah"]
-            ],
-            textposition="middle right",
-            marker={
-                "size": 13,
-                "color": "#2563EB",
-                "line": {
-                    "color": "white",
-                    "width": 2,
-                },
-            },
-            customdata=frame["nama_rs"],
-            hovertemplate=(
-                "<b>%{customdata}</b><br>"
-                "%{x:,.0f} orang"
-                "<extra></extra>"
-            ),
-        )
-    )
-
     maximum = max(
         (
             frame["jumlah"].max()
@@ -455,11 +425,49 @@ def hospital_lollipop(
         1,
     )
 
+    figure = go.Figure()
+
+    figure.add_trace(
+        go.Bar(
+            x=frame["jumlah"],
+            y=frame["nama_pendek"],
+            orientation="h",
+            text=[
+                f"  {value:,.0f}"
+                for value in frame["jumlah"]
+            ],
+            textposition="outside",
+            textfont={
+                "size": 12,
+                "color": "#1E3A8A",
+            },
+            marker={
+                "color": frame["jumlah"],
+                "colorscale": [
+                    [0.0, "#93C5FD"],
+                    [0.35, "#3B82F6"],
+                    [0.75, "#2563EB"],
+                    [1.0, "#1D4ED8"],
+                ],
+                "line": {
+                    "color": "#1E40AF",
+                    "width": 1,
+                },
+            },
+            customdata=frame["nama_rs"],
+            hovertemplate=(
+                "<b>%{customdata}</b><br>"
+                "Jumlah: <b>%{x:,.0f} orang</b>"
+                "<extra></extra>"
+            ),
+        )
+    )
+
     figure.update_layout(
         **_base_layout(
             max(
                 380,
-                len(frame) * 31,
+                len(frame) * 34,
             ),
             margin={
                 "l": 12,
@@ -472,9 +480,10 @@ def hospital_lollipop(
                 "title": "Jumlah orang",
                 "range": [
                     0,
-                    maximum * 1.17,
+                    maximum * 1.18,
                 ],
                 "gridcolor": "#F1F5F9",
+                "zeroline": False,
             },
             yaxis={
                 "title": None,
@@ -484,6 +493,9 @@ def hospital_lollipop(
     )
 
     return figure
+
+
+hospital_bar_chart = hospital_lollipop
 
 
 def profession_radar(
@@ -742,6 +754,136 @@ def gender_heatmap(
                 "t": 14,
                 "b": 34,
             },
+            yaxis={
+                "autorange": "reversed",
+                "title": None,
+                "automargin": True,
+            },
+        )
+    )
+
+    return figure
+
+
+def nakes_composition_heatmap(
+    data: pd.DataFrame,
+    color_scale: list[list[object]] | None = None,
+) -> go.Figure:
+    if color_scale is None:
+        color_scale = [
+            [0.0, "#EFF6FF"],
+            [0.2, "#BFDBFE"],
+            [0.5, "#3B82F6"],
+            [0.8, "#1D4ED8"],
+            [1.0, "#1E3A8A"],
+        ]
+
+    grouped = data.groupby(
+        [
+            "nama_rs",
+            "kelompok",
+        ],
+        as_index=False,
+    )["jumlah"].sum()
+
+    rs_totals = grouped.groupby("nama_rs")["jumlah"].transform("sum")
+    grouped["persentase"] = (
+        grouped["jumlah"]
+        .div(rs_totals.where(rs_totals > 0))
+        .mul(100)
+    )
+
+    pivot_pct = (
+        grouped.pivot(
+            index="nama_rs",
+            columns="kelompok",
+            values="persentase",
+        )
+        .reindex(columns=GROUPS)
+    )
+
+    pivot_cnt = (
+        grouped.pivot(
+            index="nama_rs",
+            columns="kelompok",
+            values="jumlah",
+        )
+        .reindex(columns=GROUPS)
+    )
+
+    pivot_pct.index = [
+        short_name(name)
+        for name in pivot_pct.index
+    ]
+    pivot_cnt.index = pivot_pct.index
+
+    labels = [
+        "Dokter",
+        "Perawat",
+        "Nakes Lainnya",
+    ]
+
+    text = pivot_pct.map(
+        lambda value: (
+            "-"
+            if pd.isna(value) or value == 0
+            else f"{value:.0f}%"
+        )
+    )
+
+    cnt_vals = pivot_cnt.fillna(0).values
+    pct_vals = pivot_pct.fillna(0).values
+
+    customdata = [
+        [
+            [cnt_vals[r][c], pct_vals[r][c]]
+            for c in range(len(labels))
+        ]
+        for r in range(len(pivot_pct))
+    ]
+
+    figure = go.Figure(
+        go.Heatmap(
+            z=pivot_pct.values,
+            x=labels,
+            y=pivot_pct.index.tolist(),
+            zmin=0,
+            zmax=100,
+            colorscale=color_scale,
+            text=text.values,
+            texttemplate="%{text}",
+            textfont={
+                "size": 11,
+                "weight": "bold",
+            },
+            colorbar={
+                "title": "%",
+                "thickness": 12,
+                "len": 0.85,
+            },
+            customdata=customdata,
+            hovertemplate=(
+                "<b>%{y}</b><br>"
+                "%{x}: <b>%{customdata[1]:.1f}%</b> (%{customdata[0]:,.0f} orang)"
+                "<extra></extra>"
+            ),
+            xgap=4,
+            ygap=4,
+        )
+    )
+
+    figure.update_layout(
+        **_base_layout(
+            max(
+                380,
+                len(pivot_pct) * 34 + 60,
+            ),
+            margin={
+                "l": 10,
+                "r": 20,
+                "t": 14,
+                "b": 35,
+            },
             xaxis={
                 "side": "bottom",
                 "title": None,
@@ -754,4 +896,129 @@ def gender_heatmap(
         )
     )
 
+    return figure
+
+
+def classify_dokter_kualifikasi(val: str) -> str:
+    s = str(val).upper().strip()
+    if "GIGI SPESIALIS" in s:
+        return "Dokter Gigi Spesialis"
+    elif "GIGI" in s:
+        return "Dokter Gigi"
+    elif "SPES" in s or "SPESIALIS" in s:
+        return "Dokter Spesialis"
+    elif "UMUM" in s or "S1" in s or "S2" in s or "S-1" in s or "S-2" in s:
+        return "Dokter Umum"
+    elif s in ["TIDAK DIRINCI", "NAN", "NONE", ""]:
+        return "Lainnya / Tidak Dirinci"
+    else:
+        return s.title()
+
+
+DOKTER_CAT_COLORS = {
+    "Dokter Spesialis": "#1E40AF",
+    "Dokter Umum": "#38BDF8",
+    "Dokter Gigi": "#10B981",
+    "Dokter Gigi Spesialis": "#F59E0B",
+    "Lainnya / Tidak Dirinci": "#94A3B8",
+}
+
+
+def dokter_kategori_donut(data: pd.DataFrame) -> go.Figure:
+    dokter_data = data[data["kelompok"] == "Dokter"].copy()
+    if dokter_data.empty:
+        return go.Figure()
+
+    dokter_data["kategori_dokter"] = dokter_data["kualifikasi"].apply(classify_dokter_kualifikasi)
+    summary = dokter_data.groupby("kategori_dokter")["jumlah"].sum().reset_index()
+
+    colors = [DOKTER_CAT_COLORS.get(cat, "#64748B") for cat in summary["kategori_dokter"]]
+
+    figure = go.Figure(
+        go.Pie(
+            labels=summary["kategori_dokter"],
+            values=summary["jumlah"],
+            hole=0.55,
+            marker={"colors": colors},
+            textinfo="percent+label",
+            hoverinfo="label+value+percent",
+            hovertemplate="<b>%{label}</b><br>%{value:,.0f} orang (%{percent})<extra></extra>",
+            textposition="outside",
+        )
+    )
+
+    figure.update_layout(
+        **_base_layout(
+            360,
+            margin={"l": 20, "r": 20, "t": 20, "b": 20},
+            showlegend=False,
+        )
+    )
+    return figure
+
+
+def dokter_kategori_bar(data: pd.DataFrame) -> go.Figure:
+    dokter_data = data[data["kelompok"] == "Dokter"].copy()
+    if dokter_data.empty:
+        return go.Figure()
+
+    dokter_data["kategori_dokter"] = dokter_data["kualifikasi"].apply(classify_dokter_kualifikasi)
+    dokter_data["nama_pendek"] = dokter_data["nama_rs"].map(short_name)
+
+    pivot = (
+        dokter_data.groupby(["nama_pendek", "kategori_dokter"])["jumlah"]
+        .sum()
+        .unstack(fill_value=0)
+    )
+
+    h_totals = pivot.sum(axis=1)
+    pivot = pivot.loc[h_totals[h_totals > 0].index]
+
+    # Calculate 100% stacked proportions
+    row_sums = pivot.sum(axis=1)
+    pivot_pct = pivot.div(row_sums, axis=0) * 100
+
+    figure = go.Figure()
+
+    for cat in [
+        "Dokter Spesialis",
+        "Dokter Umum",
+        "Dokter Gigi",
+        "Dokter Gigi Spesialis",
+        "Lainnya / Tidak Dirinci",
+    ]:
+        if cat in pivot_pct.columns:
+            figure.add_trace(
+                go.Bar(
+                    x=pivot_pct[cat],
+                    y=pivot_pct.index,
+                    customdata=pivot[cat],
+                    name=cat,
+                    orientation="h",
+                    marker={"color": DOKTER_CAT_COLORS.get(cat, "#64748B")},
+                    hovertemplate=f"<b>%{{y}}</b><br>{cat}: <b>%{{x:.1f}}%</b> (%{{customdata:,.0f}} orang)<extra></extra>",
+                )
+            )
+
+    figure.update_layout(
+        **_base_layout(
+            max(380, len(pivot_pct) * 34),
+            barmode="stack",
+            margin={"l": 10, "r": 25, "t": 20, "b": 95},
+            legend={
+                "orientation": "h",
+                "x": 0.5,
+                "xanchor": "center",
+                "y": -0.32,
+                "font": {"size": 11},
+            },
+            xaxis={
+                "title": {"text": "Proporsi (% Total Dokter)", "standoff": 10},
+                "range": [0, 100],
+                "ticksuffix": "%",
+                "gridcolor": "#F1F5F9",
+            },
+            yaxis={"title": None, "automargin": True},
+        )
+    )
     return figure

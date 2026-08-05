@@ -33,7 +33,7 @@ HOSPITALS_NAKES = [
 ]
 
 GROUPS = [
-    "Dokter/Tenaga Medis",
+    "Dokter",
     "Perawat",
     "Tenaga Kesehatan Lainnya",
 ]
@@ -466,7 +466,10 @@ def _read_cache() -> pd.DataFrame:
     try:
         df = pd.read_csv(CACHE_FILE)
         if not df.empty and "kelompok" in df.columns:
-            df["kelompok"] = df["kelompok"].replace({"Bidan": "Tenaga Kesehatan Lainnya"})
+            df["kelompok"] = df["kelompok"].replace({
+                "Dokter/Tenaga Medis": "Dokter",
+                "Bidan": "Tenaga Kesehatan Lainnya",
+            })
         return df
     except Exception:
         return pd.DataFrame()
@@ -625,7 +628,10 @@ def load_nakes_data() -> tuple[
             columns=expected_columns
         )
     else:
-        fresh["kelompok"] = fresh["kelompok"].replace({"Bidan": "Tenaga Kesehatan Lainnya"})
+        fresh["kelompok"] = fresh["kelompok"].replace({
+            "Dokter/Tenaga Medis": "Dokter",
+            "Bidan": "Tenaga Kesehatan Lainnya",
+        })
         fresh = (
             fresh
             .drop_duplicates()

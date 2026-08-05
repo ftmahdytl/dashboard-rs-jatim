@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from html import escape
+import io
 
 import pandas as pd
 import streamlit as st
@@ -8,9 +9,13 @@ import streamlit as st
 from components.nakes_charts import (
     PLOT_CONFIG,
     composition_treemap,
+    dokter_kategori_bar,
+    dokter_kategori_donut,
+    format_period,
     gender_heatmap,
     gender_pyramid,
     hospital_lollipop,
+    nakes_composition_heatmap,
     profession_radar,
     trend_chart,
 )
@@ -50,7 +55,7 @@ def _scope(
             result["kelompok"] == selected_group
         ]
 
-    if selected_hospital != "Semua 14 RS":
+    if selected_hospital != "Semua RS":
         result = result[
             result["nama_rs"] == selected_hospital
         ]
@@ -119,7 +124,7 @@ render_hero(
     "Profil Tenaga Kesehatan",
     (
         "Komposisi, pemerataan, dan perkembangan "
-        "tenaga kesehatan pada 14 rumah sakit provinsi"
+        "tenaga kesehatan pada rumah sakit daerah provinsi jawa timur"
     ),
     caption=(
         "Sumber: API Open Data Jawa Timur · "
@@ -170,8 +175,9 @@ with st.container(border=True):
     )
 
     period = f1.selectbox(
-        "Semester",
+        "Periode",
         periods,
+        format_func=format_period,
     )
 
     group = f2.selectbox(
@@ -181,7 +187,7 @@ with st.container(border=True):
 
     hospital = f3.selectbox(
         "Rumah sakit",
-        ["Semua 14 RS"] + HOSPITALS_NAKES,
+        ["Semua RS"] + HOSPITALS_NAKES,
     )
 
     with refresh:
@@ -355,8 +361,8 @@ cards = [
         "label": "Total tenaga kesehatan",
         "value": fmt_number(total),
         "note": (
-            f"{int(base['nama_rs'].nunique())} "
-            "RS memiliki data"
+            f"Data dari {int(base['nama_rs'].nunique())} "
+            "RS Daerah Jawa Timur"
         ),
         "color": "#2563EB",
         "trend": total_history,
@@ -366,7 +372,7 @@ cards = [
 
 for group_name, label in [
     (
-        "Dokter/Tenaga Medis",
+        "Dokter",
         "Dokter",
     ),
     (
@@ -457,7 +463,7 @@ leader = ranking.iloc[0]
 largest_group = group_totals.idxmax()
 
 largest_label = {
-    "Dokter/Tenaga Medis": "dokter",
+    "Dokter": "dokter",
     "Perawat": "perawat",
     "Tenaga Kesehatan Lainnya": (
         "nakes lainnya"
@@ -465,26 +471,20 @@ largest_label = {
 }[largest_group]
 
 
-gender_message = (
-    (
-        "Tenaga perempuan mendominasi "
-        f"{female_pct:.1f}% dari data gender."
-    )
-    if female >= male
-    else (
-        "Tenaga laki-laki mendominasi "
-        f"{male_pct:.1f}% dari data gender."
-    )
+rs_count = base["nama_rs"].nunique()
+rs_message = (
+    f"Data mencakup {rs_count} Rumah Sakit Daerah "
+    "Pemprov Jawa Timur."
 )
 
 growth_message = (
     (
         f"Total tenaga berubah {growth:+.1f}% "
-        f"dibanding {previous_period}."
+        f"dibanding {format_period(previous_period)}."
     )
     if growth is not None
     else (
-        "Belum tersedia semester pembanding "
+        "Belum tersedia periode pembanding "
         "untuk menghitung pertumbuhan."
     )
 )
@@ -500,22 +500,23 @@ render_insights(
         ),
         (
             "Komposisi terbesar adalah "
-            f"{largest_label}: "
+            f"{largest_label.lower()}: "
             f"{fmt_number(float(group_totals.max()))} "
             "orang."
         ),
-        gender_message,
+        rs_message,
         growth_message,
-    ]
+    ],
+    title="✦ Ringkasan Eksekutif",
 )
 
 
-left, right = st.columns(
+tree_col, doc_col = st.columns(
     [1, 1],
     gap="large",
 )
 
-with left:
+with tree_col:
     section_heading(
         "Komposisi Tenaga Kesehatan",
         (
@@ -532,41 +533,19 @@ with left:
         config=PLOT_CONFIG,
     )
 
-
-with right:
+with doc_col:
     section_heading(
-        "Komposisi Gender per Profesi",
-        (
-            "Laki-laki di kiri dan perempuan "
-            "di kanan garis tengah."
-        ),
+        "Distribusi Kategori Dokter",
+        "Sebaran Dokter Spesialis, Dokter Umum, Dokter Gigi, dan Dokter Gigi Spesialis.",
     )
 
     st.plotly_chart(
-        gender_pyramid(base),
+        dokter_kategori_bar(base),
         use_container_width=True,
         config=PLOT_CONFIG,
     )
 
-
-section_heading(
-    "Perkembangan Tenaga Kesehatan",
-    (
-        "Gunakan indeks untuk melihat pola "
-        "perubahan; pilih jumlah aktual "
-        "untuk membaca volumenya."
-    ),
-)
-
-trend_mode = st.radio(
-    "Mode tren",
-    [
-        "Indeks perubahan",
-        "Jumlah aktual",
-    ],
-    horizontal=True,
-    label_visibility="collapsed",
-)
+section_heading("Pertumbuhan Jumlah Tenaga Kesehatan")
 
 trend = (
     all_period_scope.groupby(
@@ -587,35 +566,24 @@ trend["urutan"] = trend[
 st.plotly_chart(
     trend_chart(
         trend,
-        indexed=(
-            trend_mode
-            == "Indeks perubahan"
-        ),
+        indexed=False,
     ),
     use_container_width=True,
     config=PLOT_CONFIG,
 )
 
 
-if trend_mode == "Indeks perubahan":
-    st.caption(
-        "Indeks 100 adalah nilai pada periode "
-        "awal masing-masing profesi. Nilai 110 "
-        "berarti meningkat 10% dari periode awal."
-    )
-
-
-rank_col, radar_col = st.columns(
-    [1.3, 0.8],
+rank_col, heatmap_col = st.columns(
+    [1, 1],
     gap="large",
 )
 
 
 with rank_col:
     section_heading(
-        "Peringkat Rumah Sakit",
+        "Jumlah tenaga kesehatan berdasarkan rumah sakit",
         (
-            "Titik yang lebih ke kanan "
+            "Batang yang lebih panjang "
             "menunjukkan jumlah tenaga "
             "yang lebih besar."
         ),
@@ -628,117 +596,33 @@ with rank_col:
     )
 
 
-with radar_col:
-    radar_hospital = (
-        hospital
-        if hospital != "Semua 14 RS"
-        else str(leader["nama_rs"])
-    )
-
+with heatmap_col:
     section_heading(
-        "Profil Profesi Rumah Sakit",
+        "Komposisi Tenaga Kesehatan",
         (
-            f"Komposisi "
-            f"{short_name(radar_hospital)} "
-            "dibanding rata-rata RS."
+            "Proporsi tiap profesi "
+            "pada masing-masing rumah sakit."
         ),
-    )
-
-    selected_vector = (
-        base[
-            base["nama_rs"]
-            == radar_hospital
-        ]
-        .groupby("kelompok")["jumlah"]
-        .sum()
-    )
-
-    hospital_group = (
-        base.groupby(
-            [
-                "nama_rs",
-                "kelompok",
-            ]
-        )["jumlah"]
-        .sum()
-        .reset_index()
-    )
-
-    benchmark_vector = (
-        hospital_group.groupby(
-            "kelompok"
-        )["jumlah"]
-        .mean()
     )
 
     st.plotly_chart(
-        profession_radar(
-            selected_vector,
-            benchmark_vector,
-            radar_hospital,
-        ),
+        nakes_composition_heatmap(base),
         use_container_width=True,
         config=PLOT_CONFIG,
     )
 
 
-section_heading(
-    "Komposisi Gender Antar-Rumah Sakit",
-    (
-        "Dua matriks menampilkan proporsi "
-        "laki-laki dan perempuan dari "
-        "data gender yang tersedia."
-    ),
-)
-
-male_col, female_col = st.columns(
-    2,
-    gap="large",
-)
+def _to_excel(df: pd.DataFrame) -> bytes:
+    output = io.BytesIO()
+    try:
+        with pd.ExcelWriter(output, engine="openpyxl") as writer:
+            df.to_excel(writer, index=False, sheet_name="Data Nakes")
+        return output.getvalue()
+    except Exception:
+        return df.to_csv(index=False).encode("utf-8-sig")
 
 
-with male_col:
-    st.caption("**Laki-laki (%)**")
-
-    st.plotly_chart(
-        gender_heatmap(
-            base,
-            "Laki-laki",
-            [
-                [0, "#EFF6FF"],
-                [1, "#2563EB"],
-            ],
-        ),
-        use_container_width=True,
-        config=PLOT_CONFIG,
-    )
-
-
-with female_col:
-    st.caption("**Perempuan (%)**")
-
-    st.plotly_chart(
-        gender_heatmap(
-            base,
-            "Perempuan",
-            [
-                [0, "#FDF2F8"],
-                [1, "#EC4899"],
-            ],
-        ),
-        use_container_width=True,
-        config=PLOT_CONFIG,
-    )
-
-
-section_heading(
-    "Data Rinci",
-    (
-        "Gunakan tabel untuk memeriksa "
-        "angka dan mengunduh hasil "
-        "sesuai filter."
-    ),
-)
+section_heading("Unduh Data")
 
 
 table = (
@@ -776,70 +660,34 @@ table = table.rename(
 )
 
 
-download_col, status_col = st.columns(
-    [1, 3]
-)
+with st.container(border=True):
+    col_info, col_action = st.columns([2.5, 1], gap="medium")
 
-
-with download_col:
-    st.download_button(
-        "Unduh CSV sesuai filter",
-        data=table.to_csv(
-            index=False
-        ).encode("utf-8-sig"),
-        file_name=(
-            f"profil_nakes_{period}.csv"
-        ),
-        mime="text/csv",
-        use_container_width=True,
-    )
-
-
-with status_col:
-    st.caption(
-        f"{len(table)} baris · "
-        f"{int(base['nama_rs'].nunique())} "
-        f"rumah sakit · periode {period}"
-    )
-
-
-st.dataframe(
-    table,
-    use_container_width=True,
-    hide_index=True,
-    height=min(
-        520,
-        40 + len(table) * 35,
-    ),
-)
-
-
-with st.expander(
-    "Lihat status ketersediaan API "
-    "14 rumah sakit"
-):
-    status_display = (
-        endpoint_status.copy()
-    )
-
-    status_display["nama_rs"] = (
-        status_display["nama_rs"]
-        .map(short_name)
-    )
-
-    status_display = (
-        status_display.rename(
-            columns={
-                "nama_rs": "Rumah sakit",
-                "kelompok": "Profesi",
-                "status": "Status",
-                "baris": "Baris",
-            }
+    with col_info:
+        st.markdown(
+            "<div style='padding-top:2px;'>"
+            "<b style='font-size:1.02rem; color:#0f2f6b;'>Unduh Data Tenaga Kesehatan</b><br>"
+            "<span style='color:#64748b; font-size:0.88rem;'>"
+            f"Total {len(table)} baris data · {int(base['nama_rs'].nunique())} rumah sakit · periode {format_period(period)}"
+            "</span>"
+            "</div>",
+            unsafe_allow_html=True,
         )
-    )
 
-    st.dataframe(
-        status_display,
-        use_container_width=True,
-        hide_index=True,
-    )
+    with col_action:
+        with st.popover("📥 Unduh Data", use_container_width=True):
+            st.markdown("**Pilih format file:**")
+            st.download_button(
+                "📄 Format CSV (.csv)",
+                data=table.to_csv(index=False).encode("utf-8-sig"),
+                file_name=f"profil_nakes_{period}.csv",
+                mime="text/csv",
+                use_container_width=True,
+            )
+            st.download_button(
+                "📊 Format Excel (.xlsx)",
+                data=_to_excel(table),
+                file_name=f"profil_nakes_{period}.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                use_container_width=True,
+            )

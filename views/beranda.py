@@ -74,7 +74,7 @@ with st.container(border=True):
         'Berbasis Automated Web Scraping Real-Time'
         '</p>'
         '<div style="background:white; border:1px solid #dbe7ff; border-radius:16px; padding:18px 24px; color:#334155; font-size:0.96rem; line-height:1.65; box-shadow:0 4px 12px rgba(0,0,0,0.02); margin-bottom:18px;">'
-        'Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>14 Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.'
+        'Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.'
         '</div>',
         unsafe_allow_html=True,
     )
@@ -88,12 +88,12 @@ with st.container(border=True):
         st.info("🏥 **Informasi Rujukan & Kontak 24 Jam**")
 
 # ---------------------------------------------------------------------
-# Direktori Profil & Biodata 14 RSUD Pemprov Jawa Timur (3 Kartu per Baris)
+# Direktori Profil & Biodata RSUD Pemprov Jawa Timur (3 Kartu per Baris)
 # ---------------------------------------------------------------------
 st.markdown("")
 render_section_heading(
-    "🏥 Direktori Profil & Biodata 14 RSUD Pemprov Jatim",
-    "Informasi lengkap kelas layanan, alamat presisi, kontak IGD 24 jam, dan link website resmi 14 Rumah Sakit Pemerintah Provinsi Jawa Timur.",
+    "🏥 Direktori Profil & Biodata RSUD Pemprov Jatim",
+    "Informasi lengkap kelas layanan, alamat presisi, kontak IGD 24 jam, dan link website resmi Rumah Sakit Pemerintah Provinsi Jawa Timur.",
 )
 
 HOSPITAL_PROFILES = [

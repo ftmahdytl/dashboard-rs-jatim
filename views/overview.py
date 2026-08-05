@@ -166,15 +166,11 @@ with button_col:
         use_container_width=True,
     )
 with caption_col:
-    if not have_data.empty:
-        last_update = pd.to_datetime(
-            have_data["waktu_scraping"], errors="coerce"
-        ).max()
-        last_up_str = last_update.strftime('%d-%m-%Y %H:%M:%S')
-    else:
-        last_up_str = "-"
     st.caption(
-        f"Update terakhir: {last_up_str} WIB · Mengambil data terbaru untuk seluruh 14 rumah sakit sekaligus. Data lama tidak disimpan dobel jika belum berubah."
+        "Mengambil data terbaru untuk seluruh rumah sakit sekaligus — "
+        "baik yang belum punya data maupun yang datanya ingin disegarkan. "
+        "Data lama tidak akan disimpan dobel apabila waktu update di "
+        "website sumber belum berubah."
     )
 
 if fetch_all_clicked:
@@ -681,13 +677,13 @@ if not df_bar.empty:
     st.altair_chart(chart_bar, use_container_width=True)
 
 # ---------------------------------------------------------------------
-# Direktori Profil & Biodata 14 RSUD Pemprov Jawa Timur (Di Bagian Paling Bawah)
+# Direktori Profil & Biodata RSUD Pemprov Jawa Timur (Di Bagian Paling Bawah)
 # ---------------------------------------------------------------------
 st.markdown("")
 st.divider()
 render_section_heading(
-    "🏥 Direktori Profil & Biodata 14 RSUD Pemprov Jatim",
-    "Informasi lengkap kelas layanan, alamat presisi, kontak IGD 24 jam, dan link website resmi 14 Rumah Sakit Pemerintah Provinsi Jawa Timur.",
+    "🏥 Direktori Profil & Biodata RSUD Pemprov Jatim",
+    "Informasi lengkap kelas layanan, alamat presisi, kontak IGD 24 jam, dan link website resmi Rumah Sakit Pemerintah Provinsi Jawa Timur.",
 )
 
 HOSPITAL_PROFILES = [

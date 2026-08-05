@@ -38,54 +38,52 @@ kominfo_path = "assets/logos/logo_kominfo.png" if os.path.exists("assets/logos/l
 unair_path = "assets/logos/logo_unair.png" if os.path.exists("assets/logos/logo_unair.png") else ("assets/logos/logo_unair.jpg" if os.path.exists("assets/logos/logo_unair.jpg") else None)
 
 # Executive Hero Banner Container
-with st.container(border=True):
-    badge_col, logo_col = st.columns([1.2, 2.8])
-    with badge_col:
-        st.markdown(
-            '<div style="display:inline-flex; align-items:center; gap:6px; background:#dcfce7; border:1px solid #86efac; color:#15803d; font-size:0.78rem; font-weight:700; padding:5px 16px; border-radius:999px; margin-top:4px;">'
-            '<span style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%;"></span>'
-            'LIVE SYSTEM STATUS: AKTIF'
-            '</div>',
-            unsafe_allow_html=True,
-        )
-    with logo_col:
-        pemprov_b64 = get_base64_logo(pemprov_path)
-        kominfo_b64 = get_base64_logo(kominfo_path)
-        unair_b64 = get_base64_logo(unair_path)
+pemprov_b64 = get_base64_logo(pemprov_path)
+kominfo_b64 = get_base64_logo(kominfo_path)
+unair_b64 = get_base64_logo(unair_path)
 
-        pemprov_img = f'<img src="{pemprov_b64}" style="height:48px; max-width:65px; object-fit:contain;" alt="Pemprov Jatim" />' if pemprov_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">PEMPROV JATIM</span>'
-        kominfo_img = f'<img src="{kominfo_b64}" style="height:42px; max-width:65px; object-fit:contain;" alt="Kominfo" />' if kominfo_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">DISKOMINFO</span>'
-        unair_img = f'<img src="{unair_b64}" style="height:42px; max-width:65px; object-fit:contain;" alt="UNAIR" />' if unair_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">UNAIR</span>'
+pemprov_img = f'<img src="{pemprov_b64}" style="height:44px; max-width:65px; object-fit:contain;" alt="Pemprov Jatim" />' if pemprov_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">PEMPROV JATIM</span>'
+kominfo_img = f'<img src="{kominfo_b64}" style="height:40px; max-width:65px; object-fit:contain;" alt="Kominfo" />' if kominfo_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">DISKOMINFO</span>'
+unair_img = f'<img src="{unair_b64}" style="height:40px; max-width:65px; object-fit:contain;" alt="UNAIR" />' if unair_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">UNAIR</span>'
 
-        st.markdown(
-            f'<div style="display:flex; justify-content:flex-end; align-items:center; gap:16px;">'
-            f'{pemprov_img}'
-            f'{kominfo_img}'
-            f'{unair_img}'
-            f'</div>',
-            unsafe_allow_html=True,
-        )
-
-    st.markdown(
-        '<h1 style="margin:14px 0 6px; color:#0f2f6b; font-size:2.1rem; font-weight:800; line-height:1.22; letter-spacing:-0.5px;">'
-        'SISTEM MONITORING LAYANAN RUMAH SAKIT PEMPROV JAWA TIMUR'
-        '</h1>'
-        '<p style="margin:0 0 16px; color:#2563eb; font-size:1.05rem; font-weight:700;">'
-        'Berbasis Automated Web Scraping Real-Time'
-        '</p>'
-        '<div style="background:white; border:1px solid #dbe7ff; border-radius:16px; padding:18px 24px; color:#334155; font-size:0.96rem; line-height:1.65; box-shadow:0 4px 12px rgba(0,0,0,0.02); margin-bottom:18px;">'
-        'Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.'
-        '</div>',
-        unsafe_allow_html=True,
-    )
-
-    f1, f2, f3 = st.columns(3)
-    with f1:
-        st.info("⚡ **Automated Scraping Real-Time**")
-    with f2:
-        st.info("🗺️ **GIS Pemetaan Geografis RSUD**")
-    with f3:
-        st.info("🏥 **Informasi Rujukan & Kontak 24 Jam**")
+st.markdown(
+    f'''
+    <div style="background: linear-gradient(125deg, #102a66 0%, #1d4ed8 100%); border-radius: 24px; padding: 28px 32px; color: white; margin-bottom: 24px; box-shadow: 0 16px 36px rgba(15, 47, 107, 0.28); border: 1px solid rgba(255, 255, 255, 0.15);">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; color: #15803d; font-size: 0.78rem; font-weight: 800; padding: 6px 18px; border-radius: 999px; box-shadow: 0 2px 10px rgba(0,0,0,0.12);">
+                <span style="display: inline-block; width: 9px; height: 9px; background: #22c55e; border-radius: 50%;"></span>
+                LIVE SYSTEM STATUS: AKTIF
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; padding: 6px 16px; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
+                {pemprov_img}
+                {kominfo_img}
+                {unair_img}
+            </div>
+        </div>
+        <div style="margin: 16px 0 8px; color: #FFFFFF !important; font-size: 2.1rem; font-weight: 800; line-height: 1.22; letter-spacing: -0.5px;">
+            SISTEM MONITORING LAYANAN RUMAH SAKIT PEMPROV JAWA TIMUR
+        </div>
+        <div style="margin: 0 0 18px; color: #93c5fd !important; font-size: 1.08rem; font-weight: 700;">
+            Berbasis Automated Web Scraping Real-Time
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 16px; padding: 18px 22px; color: #FFFFFF !important; font-size: 0.96rem; line-height: 1.65; margin-bottom: 20px;">
+            Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;">
+            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
+                ⚡ Automated Scraping Real-Time
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
+                🗺️ GIS Pemetaan Geografis RSUD
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
+                🏥 Informasi Rujukan & Kontak 24 Jam
+            </div>
+        </div>
+    </div>
+    ''',
+    unsafe_allow_html=True,
+)
 
 # ---------------------------------------------------------------------
 # Direktori Profil & Biodata RSUD Pemprov Jawa Timur (3 Kartu per Baris)

@@ -41,54 +41,52 @@ kominfo_path = "assets/logos/logo_kominfo.png" if os.path.exists("assets/logos/l
 unair_path = "assets/logos/logo_unair.png" if os.path.exists("assets/logos/logo_unair.png") else ("assets/logos/logo_unair.jpg" if os.path.exists("assets/logos/logo_unair.jpg") else None)
 
 # Executive Hero Banner Container (dari Beranda)
-with st.container(border=True):
-    badge_col, logo_col = st.columns([1.2, 2.8])
-    with badge_col:
-        st.markdown(
-            '<div style="display:inline-flex; align-items:center; gap:6px; background:#dcfce7; border:1px solid #86efac; color:#15803d; font-size:0.78rem; font-weight:700; padding:5px 16px; border-radius:999px; margin-top:4px;">'
-            '<span style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%;"></span>'
-            'LIVE SYSTEM STATUS: AKTIF'
-            '</div>',
-            unsafe_allow_html=True,
-        )
-    with logo_col:
-        pemprov_b64 = get_base64_logo(pemprov_path)
-        kominfo_b64 = get_base64_logo(kominfo_path)
-        unair_b64 = get_base64_logo(unair_path)
+pemprov_b64 = get_base64_logo(pemprov_path)
+kominfo_b64 = get_base64_logo(kominfo_path)
+unair_b64 = get_base64_logo(unair_path)
 
-        pemprov_img = f'<img src="{pemprov_b64}" style="height:48px; max-width:65px; object-fit:contain;" alt="Pemprov Jatim" />' if pemprov_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">PEMPROV JATIM</span>'
-        kominfo_img = f'<img src="{kominfo_b64}" style="height:42px; max-width:65px; object-fit:contain;" alt="Kominfo" />' if kominfo_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">DISKOMINFO</span>'
-        unair_img = f'<img src="{unair_b64}" style="height:42px; max-width:65px; object-fit:contain;" alt="UNAIR" />' if unair_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">UNAIR</span>'
+pemprov_img = f'<img src="{pemprov_b64}" style="height:44px; max-width:65px; object-fit:contain;" alt="Pemprov Jatim" />' if pemprov_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">PEMPROV JATIM</span>'
+kominfo_img = f'<img src="{kominfo_b64}" style="height:40px; max-width:65px; object-fit:contain;" alt="Kominfo" />' if kominfo_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">DISKOMINFO</span>'
+unair_img = f'<img src="{unair_b64}" style="height:40px; max-width:65px; object-fit:contain;" alt="UNAIR" />' if unair_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">UNAIR</span>'
 
-        st.markdown(
-            f'<div style="display:flex; justify-content:flex-end; align-items:center; gap:16px;">'
-            f'{pemprov_img}'
-            f'{kominfo_img}'
-            f'{unair_img}'
-            f'</div>',
-            unsafe_allow_html=True,
-        )
-
-    st.markdown(
-        '<h1 style="margin:14px 0 6px; color:#0f2f6b; font-size:2.1rem; font-weight:800; line-height:1.22; letter-spacing:-0.5px;">'
-        'SISTEM MONITORING LAYANAN RUMAH SAKIT PEMPROV JAWA TIMUR'
-        '</h1>'
-        '<p style="margin:0 0 16px; color:#2563eb; font-size:1.05rem; font-weight:700;">'
-        'Berbasis Automated Web Scraping Real-Time'
-        '</p>'
-        '<div style="background:white; border:1px solid #dbe7ff; border-radius:16px; padding:18px 24px; color:#334155; font-size:0.96rem; line-height:1.65; box-shadow:0 4px 12px rgba(0,0,0,0.02); margin-bottom:18px;">'
-        'Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>14 Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.'
-        '</div>',
-        unsafe_allow_html=True,
-    )
-
-    f1, f2, f3 = st.columns(3)
-    with f1:
-        st.info("⚡ **Automated Scraping Real-Time**")
-    with f2:
-        st.info("🗺️ **GIS Pemetaan Geografis RSUD**")
-    with f3:
-        st.info("🏥 **Informasi Rujukan & Kontak 24 Jam**")
+st.markdown(
+    f'''
+    <div style="background: linear-gradient(125deg, #102a66 0%, #1d4ed8 100%); border-radius: 24px; padding: 28px 32px; color: white; margin-bottom: 24px; box-shadow: 0 16px 36px rgba(15, 47, 107, 0.28); border: 1px solid rgba(255, 255, 255, 0.15);">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; color: #15803d; font-size: 0.78rem; font-weight: 800; padding: 6px 18px; border-radius: 999px; box-shadow: 0 2px 10px rgba(0,0,0,0.12);">
+                <span style="display: inline-block; width: 9px; height: 9px; background: #22c55e; border-radius: 50%;"></span>
+                LIVE SYSTEM STATUS: AKTIF
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; padding: 6px 16px; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
+                {pemprov_img}
+                {kominfo_img}
+                {unair_img}
+            </div>
+        </div>
+        <div style="margin: 16px 0 8px; color: #FFFFFF !important; font-size: 2.1rem; font-weight: 800; line-height: 1.22; letter-spacing: -0.5px;">
+            SISTEM MONITORING LAYANAN RUMAH SAKIT PEMPROV JAWA TIMUR
+        </div>
+        <div style="margin: 0 0 18px; color: #93c5fd !important; font-size: 1.08rem; font-weight: 700;">
+            Berbasis Automated Web Scraping Real-Time
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 16px; padding: 18px 22px; color: #FFFFFF !important; font-size: 0.96rem; line-height: 1.65; margin-bottom: 20px;">
+            Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>14 Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;">
+            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
+                ⚡ Automated Scraping Real-Time
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
+                🗺️ GIS Pemetaan Geografis RSUD
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
+                🏥 Informasi Rujukan & Kontak 24 Jam
+            </div>
+        </div>
+    </div>
+    ''',
+    unsafe_allow_html=True,
+)
 
 # ---------------------------------------------------------------------
 # Ringkas snapshot terbaru tiap RS
@@ -221,11 +219,48 @@ provincial_bor = (
     total_occupied / total_capacity * 100 if total_capacity else 0.0
 )
 
-kpi1, kpi2, kpi3, kpi4 = st.columns(4)
-kpi1.metric("Total Kapasitas Bed", f"{total_capacity:,}".replace(",", "."))
-kpi2.metric("Total Terisi", f"{total_occupied:,}".replace(",", "."))
-kpi3.metric("Total Tersedia", f"{total_available:,}".replace(",", "."))
-kpi4.metric("BOR Provinsi", f"{provincial_bor:.1f}%")
+cap_fmt = f"{total_capacity:,}".replace(",", ".")
+occ_fmt = f"{total_occupied:,}".replace(",", ".")
+avail_fmt = f"{total_available:,}".replace(",", ".")
+
+kpi_html = (
+    '<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 10px 0 20px;">'
+    f'<div style="position: relative; overflow: hidden; background: linear-gradient(135deg, #FFFFFF 0%, #EFF6FF 100%); border: 1px solid #BFDBFE; border-radius: 18px; padding: 18px 20px; box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);">'
+    f'<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">'
+    f'<span style="font-size: 0.72rem; font-weight: 800; color: #1E40AF; text-transform: uppercase; letter-spacing: 0.04em;">Total Kapasitas Bed</span>'
+    f'<span style="background: #DBEAFE; color: #1E40AF; font-size: 1rem; padding: 6px 10px; border-radius: 10px; border: 1px solid #93C5FD;">🛏️</span>'
+    f'</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #0F2F6B; line-height: 1.1; margin-bottom: 6px;">{cap_fmt}</div>'
+    f'<div style="font-size: 0.76rem; color: #64748B; font-weight: 500;">14 RSUD & RS Khusus Pemprov</div>'
+    f'</div>'
+    f'<div style="position: relative; overflow: hidden; background: linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 100%); border: 1px solid #FDE68A; border-radius: 18px; padding: 18px 20px; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.08);">'
+    f'<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">'
+    f'<span style="font-size: 0.72rem; font-weight: 800; color: #D97706; text-transform: uppercase; letter-spacing: 0.04em;">Total Terisi</span>'
+    f'<span style="background: #FEF3C7; color: #D97706; font-size: 1rem; padding: 6px 10px; border-radius: 10px; border: 1px solid #FCD34D;">🛌</span>'
+    f'</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #92400E; line-height: 1.1; margin-bottom: 6px;">{occ_fmt}</div>'
+    f'<div style="font-size: 0.76rem; color: #64748B; font-weight: 500;">Tempat tidur terokupasi saat ini</div>'
+    f'</div>'
+    f'<div style="position: relative; overflow: hidden; background: linear-gradient(135deg, #FFFFFF 0%, #ECFDF5 100%); border: 1px solid #A7F3D0; border-radius: 18px; padding: 18px 20px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08);">'
+    f'<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">'
+    f'<span style="font-size: 0.72rem; font-weight: 800; color: #059669; text-transform: uppercase; letter-spacing: 0.04em;">Total Tersedia</span>'
+    f'<span style="background: #D1FAE5; color: #059669; font-size: 1rem; padding: 6px 10px; border-radius: 10px; border: 1px solid #6EE7B7;">🟢</span>'
+    f'</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #065F46; line-height: 1.1; margin-bottom: 6px;">{avail_fmt}</div>'
+    f'<div style="font-size: 0.76rem; color: #64748B; font-weight: 500;">Siap menerima pasien rujukan</div>'
+    f'</div>'
+    f'<div style="position: relative; overflow: hidden; background: linear-gradient(135deg, #FFFFFF 0%, #F5F3FF 100%); border: 1px solid #DDD6FE; border-radius: 18px; padding: 18px 20px; box-shadow: 0 8px 24px rgba(139, 92, 246, 0.08);">'
+    f'<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">'
+    f'<span style="font-size: 0.72rem; font-weight: 800; color: #7C3AED; text-transform: uppercase; letter-spacing: 0.04em;">BOR Provinsi</span>'
+    f'<span style="background: #EDE9FE; color: #7C3AED; font-size: 1rem; padding: 6px 10px; border-radius: 10px; border: 1px solid #C4B5FD;">📊</span>'
+    f'</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #5B21B6; line-height: 1.1; margin-bottom: 6px;">{provincial_bor:.1f}%</div>'
+    f'<div style="font-size: 0.76rem; color: #64748B; font-weight: 500;">Rata-rata okupasi tempat tidur</div>'
+    f'</div>'
+    '</div>'
+)
+
+st.markdown(kpi_html, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------
 # Penataan 2 Kolom Interaktif (Peta Lokasi & Status BOR Ringkas)

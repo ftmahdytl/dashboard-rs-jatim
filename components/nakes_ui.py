@@ -9,7 +9,6 @@ import streamlit as st
 PROFESSION_COLORS = {
     "Dokter/Tenaga Medis": "#2563EB",
     "Perawat": "#10B981",
-    "Bidan": "#F59E0B",
     "Tenaga Kesehatan Lainnya": "#8B5CF6",
 }
 
@@ -66,7 +65,7 @@ def inject_nakes_style() -> None:
 
         .nakes-kpi-grid {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 10px;
             margin: 8px 0 14px;
         }

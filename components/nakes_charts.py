@@ -60,7 +60,6 @@ def composition_treemap(
     display_names = {
         "Dokter/Tenaga Medis": "Dokter",
         "Perawat": "Perawat",
-        "Bidan": "Bidan",
         "Tenaga Kesehatan Lainnya": "Nakes Lainnya",
     }
 
@@ -168,7 +167,6 @@ def gender_pyramid(
     labels = [
         "Dokter",
         "Perawat",
-        "Bidan",
         "Nakes Lainnya",
     ]
 
@@ -496,7 +494,6 @@ def profession_radar(
     labels = [
         "Dokter",
         "Perawat",
-        "Bidan",
         "Nakes Lainnya",
     ]
 
@@ -696,7 +693,6 @@ def gender_heatmap(
     labels = [
         "Dokter",
         "Perawat",
-        "Bidan",
         "Nakes Lainnya",
     ]
 

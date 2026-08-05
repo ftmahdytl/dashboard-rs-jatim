@@ -374,10 +374,6 @@ for group_name, label in [
         "Perawat",
     ),
     (
-        "Bidan",
-        "Bidan",
-    ),
-    (
         "Tenaga Kesehatan Lainnya",
         "Nakes lainnya",
     ),
@@ -416,39 +412,7 @@ for group_name, label in [
 cards.extend(
     [
         {
-            "label": "Laki-laki",
-            "value": f"{male_pct:.1f}%",
-            "note": (
-                f"{fmt_number(male)} orang"
-            ),
-            "color": (
-                GENDER_COLORS["Laki-laki"]
-            ),
-            "trend": _series(
-                all_period_scope,
-                history_periods,
-                gender_name="Laki-laki",
-                percentage=True,
-            ),
-        },
-        {
-            "label": "Perempuan",
-            "value": f"{female_pct:.1f}%",
-            "note": (
-                f"{fmt_number(female)} orang"
-            ),
-            "color": (
-                GENDER_COLORS["Perempuan"]
-            ),
-            "trend": _series(
-                all_period_scope,
-                history_periods,
-                gender_name="Perempuan",
-                percentage=True,
-            ),
-        },
-        {
-            "label": "Pertumbuhan semester",
+            "label": "Pertumbuhan jumlah nakes",
             "value": (
                 f"{growth:+.1f}%"
                 if growth is not None
@@ -495,7 +459,6 @@ largest_group = group_totals.idxmax()
 largest_label = {
     "Dokter/Tenaga Medis": "dokter",
     "Perawat": "perawat",
-    "Bidan": "bidan",
     "Tenaga Kesehatan Lainnya": (
         "nakes lainnya"
     ),

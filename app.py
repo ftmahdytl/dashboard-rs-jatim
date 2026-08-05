@@ -14,22 +14,16 @@ st.set_page_config(
 initialize_database()
 
 
-beranda_page = st.Page(
-    "views/beranda.py",
-    title="Beranda",
-    icon="🏠",
-    default=True,
-)
-
 overview_page = st.Page(
     "views/overview.py",
     title="Overview",
     icon="📊",
+    default=True,
 )
 
 bed_page = st.Page(
     "views/ketersediaan_bed.py",
-    title="Ketersediaan Bed",
+    title="Ketersediaan Bed Rumah Sakit",
     icon="🛏️",
 )
 
@@ -42,7 +36,6 @@ nakes_page = st.Page(
 
 navigation = st.navigation(
     [
-        beranda_page,
         overview_page,
         bed_page,
         nakes_page,

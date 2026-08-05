@@ -29,9 +29,12 @@ from scraper_manguharjo import URL_MANGUHARJO_SOURCE, scrape_manguharjo
 from scraper_karsa_husada import URL_KARSA_HUSADA, scrape_karsa_husada
 
 
+from scraper_husada_prima import URL_HUSADA_PRIMA, scrape_husada_prima
+
+
 JAKARTA = ZoneInfo("Asia/Jakarta")
 
-# Registry tunggal seluruh 13 rumah sakit yang dipantau Pemprov Jatim beserta koordinat lokasinya.
+# Registry tunggal seluruh 14 rumah sakit yang dipantau Pemprov Jatim beserta koordinat lokasinya.
 HOSPITALS: dict[str, dict[str, object]] = {
     "RSUD Dr. Soetomo": {
         "kode_rs": "RSDS",
@@ -69,8 +72,8 @@ HOSPITALS: dict[str, dict[str, object]] = {
         "kode_rs": "RSMN",
         "url": URL_MENUR,
         "scraper": scrape_menur,
-        "lat": -7.2844,
-        "lon": 112.7661,
+        "lat": -7.2853,
+        "lon": 112.7626,
         "kota": "Kota Surabaya",
     },
     "RSU Mohammad Noer Pamekasan": {
@@ -136,5 +139,13 @@ HOSPITALS: dict[str, dict[str, object]] = {
         "lat": -7.8683,
         "lon": 112.5261,
         "kota": "Kota Batu",
+    },
+    "RSUD Husada Prima": {
+        "kode_rs": "RSHP",
+        "url": URL_HUSADA_PRIMA,
+        "scraper": scrape_husada_prima,
+        "lat": -7.2345,
+        "lon": 112.7489,
+        "kota": "Kota Surabaya",
     },
 }

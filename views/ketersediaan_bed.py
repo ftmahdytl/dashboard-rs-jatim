@@ -172,46 +172,56 @@ if data.empty:
     st.stop()
 
 is_capacity_only = selected_code in ["RSKH", "RSSG"]
+is_no_data = selected_code in ["RSHP"]
+is_soedono = selected_code == "RSSM"
 
 total_capacity = int(data["kapasitas"].sum())
 total_occupied = int(data["terisi"].sum())
 total_available = int(data["tersedia"].sum())
 total_not_ready = int(data["tidak_siap"].sum()) if "tidak_siap" in data else 0
-total_renovation = int(data["renovasi"].sum()) if "renovasi" in data else 0
-total_sisrute = int(data["sisrute"].sum()) if "sisrute" in data else 0
+total_renovation = int(data["renovasi"].sum()) if ("renovasi" in data and is_soedono) else 0
+total_sisrute = int(data["sisrute"].sum()) if ("sisrute" in data and is_soedono) else 0
 total_rooms = int(
     data[["kelas", "nama_ruang"]]
     .drop_duplicates()
     .shape[0]
 )
 
-if is_capacity_only:
+if is_no_data:
+    cap_str = "-"
+    occ_str = "-"
+    avail_str = "-"
+    occupancy_str = "-"
+    total_rooms_str = "-"
+elif is_capacity_only:
     cap_str = f"{total_capacity:,}".replace(",", ".")
     occ_str = "-"
     avail_str = "-"
     occupancy_str = "-"
+    total_rooms_str = f"{total_rooms:,}".replace(",", ".")
 else:
     cap_str = f"{total_capacity:,}".replace(",", ".")
     occ_str = f"{total_occupied:,}".replace(",", ".")
     avail_str = f"{total_available:,}".replace(",", ".")
     occupancy = (total_occupied / total_capacity * 100) if total_capacity else 0.0
     occupancy_str = f"{occupancy:.1f}%"
+    total_rooms_str = f"{total_rooms:,}".replace(",", ".")
 
 col1, col2, col3, col4, col5 = st.columns(5)
 col1.metric("Total kapasitas", cap_str)
 col2.metric("Bed terisi", occ_str)
 col3.metric("Bed tersedia", avail_str)
 col4.metric("Tingkat keterisian", occupancy_str)
-col5.metric("Ruang–kelas tercatat", total_rooms)
+col5.metric("Ruang–kelas tercatat", total_rooms_str)
 
-if total_not_ready or total_renovation or total_sisrute:
+if total_not_ready or (is_soedono and (total_renovation or total_sisrute)):
     status_parts = []
     if total_not_ready:
         not_ready_label = "siap" if selected_code == "RSHJ" else "kosong belum siap"
         status_parts.append(f"{not_ready_label} **{total_not_ready}**")
-    if total_renovation:
+    if is_soedono and total_renovation:
         status_parts.append(f"renovasi **{total_renovation}**")
-    if total_sisrute:
+    if is_soedono and total_sisrute:
         status_parts.append(f"Sisrute **{total_sisrute}**")
     st.info(
         "Status bed lain pada sumber: "
@@ -238,6 +248,15 @@ st.caption(
     f"Terakhir diperiksa: {last_check_text} WIB"
 )
 
+if is_no_data:
+    st.info(
+        "ℹ️ **Informasi:** Data ketersediaan tempat tidur belum dipublikasikan "
+        "pada portal resmi RSUD Husada Prima. Dashboard memantau secara "
+        "otomatis dan akan menyajikan tabel serta grafik setelah portal RSUD "
+        "memperbarui data ruangannya."
+    )
+    st.stop()
+
 tab_overview, tab_rooms, tab_history = st.tabs(
     ["Ringkasan", "Detail Ruang", "Riwayat"]
 )
@@ -257,6 +276,19 @@ with tab_overview:
     class_summary["_sort_key"] = class_summary["kelas"].map(get_kelas_sort_key)
     class_summary = class_summary.sort_values("_sort_key").drop(columns=["_sort_key"])
 
+    tooltip_list = [
+        alt.Tooltip("kelas:N", title="Kelas"),
+        alt.Tooltip("kapasitas:Q", title="Kapasitas"),
+        alt.Tooltip("terisi:Q", title="Terisi"),
+        alt.Tooltip("tersedia:Q", title="Tersedia"),
+        alt.Tooltip("tidak_siap:Q", title="Kosong belum siap"),
+    ]
+    if is_soedono:
+        tooltip_list.extend([
+            alt.Tooltip("renovasi:Q", title="Renovasi"),
+            alt.Tooltip("sisrute:Q", title="Sisrute"),
+        ])
+
     chart = (
         alt.Chart(class_summary)
         .mark_bar(cornerRadiusTopRight=7, cornerRadiusBottomRight=7)
@@ -267,22 +299,14 @@ with tab_overview:
                 title=None,
                 axis=alt.Axis(labelLimit=190),
             ),
-            x=alt.X("kapasitas:Q" if is_capacity_only else "tersedia:Q", title="Kapasitas bed" if is_capacity_only else "Bed tersedia"),
+            x=alt.X("kapasitas:Q" if (is_capacity_only or is_no_data) else "tersedia:Q", title="Kapasitas bed" if (is_capacity_only or is_no_data) else "Bed tersedia"),
             color=alt.value("#2563EB"),
-            tooltip=[
-                alt.Tooltip("kelas:N", title="Kelas"),
-                alt.Tooltip("kapasitas:Q", title="Kapasitas"),
-                alt.Tooltip("terisi:Q", title="Terisi"),
-                alt.Tooltip("tersedia:Q", title="Tersedia"),
-                alt.Tooltip("tidak_siap:Q", title="Kosong belum siap"),
-                alt.Tooltip("renovasi:Q", title="Renovasi"),
-                alt.Tooltip("sisrute:Q", title="Sisrute"),
-            ],
+            tooltip=tooltip_list,
         )
         .properties(height=max(340, len(class_summary) * 30))
     )
 
-    st.subheader("Ketersediaan Bed per Kelas" if not is_capacity_only else "Kapasitas Bed per Kelas")
+    st.subheader("Ketersediaan Bed per Kelas" if not (is_capacity_only or is_no_data) else "Kapasitas Bed per Kelas")
     st.altair_chart(chart, use_container_width=True)
     class_table_view = class_summary.copy()
     class_table_labels = {
@@ -290,9 +314,15 @@ with tab_overview:
         "kapasitas": "Kapasitas",
         "terisi": "Terisi",
         "tersedia": "Tersedia",
-        "renovasi": "Renovasi",
-        "sisrute": "Sisrute",
     }
+    if is_soedono:
+        class_table_labels["renovasi"] = "Renovasi"
+        class_table_labels["sisrute"] = "Sisrute"
+    else:
+        for col in ["renovasi", "sisrute"]:
+            if col in class_table_view.columns:
+                class_table_view = class_table_view.drop(columns=[col])
+
     if selected_code == "RSHJ":
         class_table_labels["tidak_siap"] = "Siap"
     elif "tidak_siap" in class_table_view.columns:
@@ -300,7 +330,9 @@ with tab_overview:
 
     for num_col in ["kapasitas", "terisi", "tersedia"]:
         if num_col in class_table_view.columns:
-            if is_capacity_only and num_col in ["terisi", "tersedia"]:
+            if is_no_data:
+                class_table_view[num_col] = "-"
+            elif is_capacity_only and num_col in ["terisi", "tersedia"]:
                 class_table_view[num_col] = "-"
             else:
                 class_table_view[num_col] = class_table_view[num_col].map(
@@ -341,17 +373,18 @@ with tab_rooms:
         "kapasitas": "Kapasitas",
         "terisi": "Terisi",
         "tersedia": "Tersedia",
-        "renovasi": "Renovasi",
-        "sisrute": "Sisrute",
         "keterangan": "Keterangan Sumber",
         "persentase_keterisian": "Keterisian",
     }
+    if is_soedono:
+        room_table_labels["renovasi"] = "Renovasi"
+        room_table_labels["sisrute"] = "Sisrute"
+        room_columns.extend(["renovasi", "sisrute"])
+
     if selected_code == "RSHJ" and data["tidak_siap"].sum():
         room_columns.append("tidak_siap")
         room_table_labels["tidak_siap"] = "Siap"
 
-    if data["renovasi"].sum() or data["sisrute"].sum():
-        room_columns.extend(["renovasi", "sisrute"])
     if data["keterangan"].fillna("").str.strip().ne("").any():
         room_columns.append("keterangan")
     room_columns.append("persentase_keterisian")
@@ -371,7 +404,12 @@ with tab_rooms:
             ascending=[True],
         ).drop(columns=["_kelas_sort"])
 
-    if is_capacity_only:
+    if is_no_data:
+        room_view["kapasitas"] = "-"
+        room_view["terisi"] = "-"
+        room_view["tersedia"] = "-"
+        room_view["persentase_keterisian"] = "-"
+    elif is_capacity_only:
         room_view["kapasitas"] = room_view["kapasitas"].map(
             lambda val: f"{int(val):,}".replace(",", ".") if pd.notna(val) else "0"
         )
@@ -479,9 +517,15 @@ with tab_history:
             "kapasitas": "Kapasitas",
             "terisi": "Terisi",
             "tersedia": "Tersedia",
-            "renovasi": "Renovasi",
-            "sisrute": "Sisrute",
         }
+        if is_soedono:
+            history_labels["renovasi"] = "Renovasi"
+            history_labels["sisrute"] = "Sisrute"
+        else:
+            for col in ["renovasi", "sisrute"]:
+                if col in history_display.columns:
+                    history_display = history_display.drop(columns=[col])
+
         if selected_code == "RSHJ":
             history_labels["tidak_siap"] = "Siap"
         elif "tidak_siap" in history_display.columns:

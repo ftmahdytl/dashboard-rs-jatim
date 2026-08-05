@@ -466,7 +466,7 @@ def render_gauge_ring(
         is_missing = percentage is None or pd.isna(percentage)
         if is_missing:
             fill = "#e2e8f0"
-            value_text = "N/A"
+            value_text = "-"
         else:
             clamped = max(0.0, min(100.0, percentage))
             fill = (

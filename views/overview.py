@@ -1,27 +1,98 @@
 from __future__ import annotations
 
+import base64
+import json
+import os
+import urllib.parse
 import altair as alt
 import pandas as pd
-import pydeck as pdk
 import streamlit as st
+import streamlit.components.v1 as components
 
 from database import load_latest_many, save_snapshot
 from hospitals import HOSPITALS
 from theme import (
-    KELAS_FILTER_OPTIONS,
     canonicalize_kelas,
     get_availability_status,
     get_occupancy_status,
     inject_base_style,
     render_bed_class_distribution,
     render_gauge_ring,
-    render_hero,
     render_section_heading,
-    render_stable_table,
 )
 
 inject_base_style()
 
+@st.cache_data
+def get_base64_logo(file_path: str) -> str | None:
+    if file_path and os.path.exists(file_path):
+        ext = file_path.split(".")[-1].lower()
+        mime = "image/png" if ext == "png" else "image/jpeg"
+        with open(file_path, "rb") as img_file:
+            b64 = base64.b64encode(img_file.read()).decode("utf-8")
+        return f"data:{mime};base64,{b64}"
+    return None
+
+# ---------------------------------------------------------------------
+# Check 3 Logos (Pemprov Jatim -> Kominfo -> UNAIR)
+# ---------------------------------------------------------------------
+pemprov_path = "assets/logos/logo_pemprov.png" if os.path.exists("assets/logos/logo_pemprov.png") else ("assets/logos/logo_pemprov.jpg" if os.path.exists("assets/logos/logo_pemprov.jpg") else None)
+kominfo_path = "assets/logos/logo_kominfo.png" if os.path.exists("assets/logos/logo_kominfo.png") else ("assets/logos/logo_kominfo.jpg" if os.path.exists("assets/logos/logo_kominfo.jpg") else None)
+unair_path = "assets/logos/logo_unair.png" if os.path.exists("assets/logos/logo_unair.png") else ("assets/logos/logo_unair.jpg" if os.path.exists("assets/logos/logo_unair.jpg") else None)
+
+# Executive Hero Banner Container (dari Beranda)
+with st.container(border=True):
+    badge_col, logo_col = st.columns([1.2, 2.8])
+    with badge_col:
+        st.markdown(
+            '<div style="display:inline-flex; align-items:center; gap:6px; background:#dcfce7; border:1px solid #86efac; color:#15803d; font-size:0.78rem; font-weight:700; padding:5px 16px; border-radius:999px; margin-top:4px;">'
+            '<span style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%;"></span>'
+            'LIVE SYSTEM STATUS: AKTIF'
+            '</div>',
+            unsafe_allow_html=True,
+        )
+    with logo_col:
+        pemprov_b64 = get_base64_logo(pemprov_path)
+        kominfo_b64 = get_base64_logo(kominfo_path)
+        unair_b64 = get_base64_logo(unair_path)
+
+        pemprov_img = f'<img src="{pemprov_b64}" style="height:48px; max-width:65px; object-fit:contain;" alt="Pemprov Jatim" />' if pemprov_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">PEMPROV JATIM</span>'
+        kominfo_img = f'<img src="{kominfo_b64}" style="height:42px; max-width:65px; object-fit:contain;" alt="Kominfo" />' if kominfo_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">DISKOMINFO</span>'
+        unair_img = f'<img src="{unair_b64}" style="height:42px; max-width:65px; object-fit:contain;" alt="UNAIR" />' if unair_b64 else '<span style="font-size:0.72rem; font-weight:700; color:#1e40af;">UNAIR</span>'
+
+        st.markdown(
+            f'<div style="display:flex; justify-content:flex-end; align-items:center; gap:16px;">'
+            f'{pemprov_img}'
+            f'{kominfo_img}'
+            f'{unair_img}'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        '<h1 style="margin:14px 0 6px; color:#0f2f6b; font-size:2.1rem; font-weight:800; line-height:1.22; letter-spacing:-0.5px;">'
+        'SISTEM MONITORING LAYANAN RUMAH SAKIT PEMPROV JAWA TIMUR'
+        '</h1>'
+        '<p style="margin:0 0 16px; color:#2563eb; font-size:1.05rem; font-weight:700;">'
+        'Berbasis Automated Web Scraping Real-Time'
+        '</p>'
+        '<div style="background:white; border:1px solid #dbe7ff; border-radius:16px; padding:18px 24px; color:#334155; font-size:0.96rem; line-height:1.65; box-shadow:0 4px 12px rgba(0,0,0,0.02); margin-bottom:18px;">'
+        'Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>14 Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.'
+        '</div>',
+        unsafe_allow_html=True,
+    )
+
+    f1, f2, f3 = st.columns(3)
+    with f1:
+        st.info("⚡ **Automated Scraping Real-Time**")
+    with f2:
+        st.info("🗺️ **GIS Pemetaan Geografis RSUD**")
+    with f3:
+        st.info("🏥 **Informasi Rujukan & Kontak 24 Jam**")
+
+# ---------------------------------------------------------------------
+# Ringkas snapshot terbaru tiap RS
+# ---------------------------------------------------------------------
 hospital_codes = {
     name: str(info["kode_rs"]) for name, info in HOSPITALS.items()
 }
@@ -29,9 +100,6 @@ code_to_name = {code: name for name, code in hospital_codes.items()}
 
 latest_by_code = load_latest_many(list(hospital_codes.values()))
 
-# ---------------------------------------------------------------------
-# Ringkas snapshot terbaru tiap RS menjadi satu baris per rumah sakit.
-# ---------------------------------------------------------------------
 rows: list[dict[str, object]] = []
 for hospital_name, kode_rs in hospital_codes.items():
     snapshot = latest_by_code.get(kode_rs, pd.DataFrame())
@@ -80,30 +148,9 @@ have_data = summary[summary["ada_data"]].copy()
 missing = summary[~summary["ada_data"]].copy()
 
 # ---------------------------------------------------------------------
-# Header
+# Tombol Ambil / Perbarui Data
 # ---------------------------------------------------------------------
-if not have_data.empty:
-    last_update = pd.to_datetime(
-        have_data["waktu_scraping"], errors="coerce"
-    ).max()
-    caption = (
-        f"Update terakhir: {last_update.strftime('%d-%m-%Y %H:%M:%S')} WIB "
-        f"· {len(have_data)}/{len(summary)} rumah sakit sudah memiliki data"
-    )
-else:
-    caption = "Belum ada data — ambil data pertama menggunakan tombol di bawah."
-
-render_hero(
-    "Sistem Monitoring Layanan Rumah Sakit",
-    "Pemerintah Provinsi Jawa Timur Berbasis Automated Web Scraping",
-    caption=caption,
-)
-
-# ---------------------------------------------------------------------
-# Ambil / perbarui data seluruh RS — satu tombol untuk semua kasus:
-# mengisi RS yang belum punya snapshot sama sekali sekaligus
-# menyegarkan RS yang datanya sudah ada.
-# ---------------------------------------------------------------------
+st.markdown("")
 if not missing.empty:
     st.warning(
         "Belum ada data untuk: "
@@ -119,11 +166,15 @@ with button_col:
         use_container_width=True,
     )
 with caption_col:
+    if not have_data.empty:
+        last_update = pd.to_datetime(
+            have_data["waktu_scraping"], errors="coerce"
+        ).max()
+        last_up_str = last_update.strftime('%d-%m-%Y %H:%M:%S')
+    else:
+        last_up_str = "-"
     st.caption(
-        "Mengambil data terbaru untuk seluruh 13 rumah sakit sekaligus — "
-        "baik yang belum punya data maupun yang datanya ingin disegarkan. "
-        "Data lama tidak akan disimpan dobel apabila waktu update di "
-        "website sumber belum berubah."
+        f"Update terakhir: {last_up_str} WIB · Mengambil data terbaru untuk seluruh 14 rumah sakit sekaligus. Data lama tidak disimpan dobel jika belum berubah."
     )
 
 if fetch_all_clicked:
@@ -165,7 +216,7 @@ if have_data.empty:
     st.stop()
 
 # ---------------------------------------------------------------------
-# KPI provinsi
+# KPI Provinsi
 # ---------------------------------------------------------------------
 total_capacity = int(have_data["kapasitas"].sum())
 total_occupied = int(have_data["terisi"].sum())
@@ -186,25 +237,10 @@ kpi4.metric("BOR Provinsi", f"{provincial_bor:.1f}%")
 st.markdown("")
 col_left, col_right = st.columns([1.18, 0.82], gap="large")
 
-GREEN_PIN = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png"
-GOLD_PIN = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png"
-RED_PIN = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png"
-GREY_PIN = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-grey.png"
-
-
-def make_icon_data(pin_url: str) -> dict[str, object]:
-    return {
-        "url": pin_url,
-        "width": 25,
-        "height": 41,
-        "anchorY": 41,
-    }
-
-
 with col_left:
     render_section_heading(
         "🗺️ Peta Persebaran Geografis RSUD Jatim",
-        "Titik lokasi 13 RSUD Pemprov Jatim beserta status BOR.",
+        "Titik lokasi RSUD Pemprov Jatim (Klik lingkaran untuk langsung buka Google Maps).",
     )
 
     map_rows = []
@@ -218,29 +254,44 @@ with col_left:
             continue
 
         is_cap_only = r.kode_rs in ["RSKH", "RSSG"]
-        if is_cap_only:
+        is_no_data = r.kode_rs in ["RSHP"]
+
+        if is_no_data:
+            status_str = "Data Belum Tersedia"
+            color_hex = "#94A3B8"
+            kapasitas_str = "-"
+            bor_str = "-"
+            terisi_str = "-"
+            tersedia_str = "-"
+        elif is_cap_only:
             status_str = "Hanya Data Kapasitas"
-            color_rgb = [148, 163, 184, 220]
+            color_hex = "#94A3B8"
+            kapasitas_str = f"{int(r.kapasitas):,}".replace(",", ".") if r.ada_data else "-"
             bor_str = "-"
             terisi_str = "-"
             tersedia_str = "-"
         elif r.ada_data:
             status_str, _ = get_occupancy_status(r.bor)
+            kapasitas_str = f"{int(r.kapasitas):,}".replace(",", ".")
             bor_str = f"{r.bor:.1f}%"
             terisi_str = f"{int(r.terisi):,}".replace(",", ".")
             tersedia_str = f"{int(r.tersedia):,}".replace(",", ".")
             if r.bor <= 75.0:
-                color_rgb = [34, 197, 94, 220]
+                color_hex = "#22C55E"
             elif r.bor <= 90.0:
-                color_rgb = [234, 179, 8, 220]
+                color_hex = "#EAB308"
             else:
-                color_rgb = [239, 68, 68, 220]
+                color_hex = "#EF4444"
         else:
-            status_str = "Belum Ada Data"
-            color_rgb = [148, 163, 184, 220]
+            status_str = "Data Belum Tersedia"
+            color_hex = "#94A3B8"
+            kapasitas_str = "-"
             bor_str = "-"
             terisi_str = "-"
             tersedia_str = "-"
+
+        query_q = urllib.parse.quote(str(r.nama_rs))
+        gmaps_url = f"https://www.google.com/maps/search/?api=1&query={query_q}"
 
         map_rows.append(
             {
@@ -250,71 +301,78 @@ with col_left:
                 "lat": lat,
                 "lon": lon,
                 "status": status_str,
-                "kapasitas_text": f"{int(r.kapasitas):,}".replace(",", ".")
-                if r.ada_data
-                else "-",
+                "kapasitas_text": kapasitas_str,
                 "terisi_text": terisi_str,
                 "tersedia_text": tersedia_str,
                 "bor_text": bor_str,
-                "color": color_rgb,
+                "color_hex": color_hex,
+                "gmaps_url": gmaps_url,
             }
         )
 
-    df_map = pd.DataFrame(map_rows)
+    if map_rows:
+        map_json = json.dumps(map_rows)
+        leaflet_html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8" />
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+            <style>
+                html, body, #map {{ width: 100%; height: 100%; margin: 0; padding: 0; background: #f8fafc; border-radius: 12px; }}
+                .leaflet-tooltip {{ font-family: system-ui, -apple-system, sans-serif; font-size: 12px; border-radius: 8px; padding: 8px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: none; }}
+            </style>
+        </head>
+        <body>
+            <div id="map"></div>
+            <script>
+                var map = L.map('map', {{ zoomControl: true }}).setView([-7.6, 112.5], 7);
+                L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png', {{
+                    maxZoom: 18,
+                    attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
+                }}).addTo(map);
 
-    if not df_map.empty:
-        layer = pdk.Layer(
-            "ScatterplotLayer",
-            df_map,
-            get_position=["lon", "lat"],
-            get_fill_color="color",
-            get_radius=9000,
-            radius_min_pixels=10,
-            radius_max_pixels=25,
-            pickable=True,
-        )
+                var data = {map_json};
+                data.forEach(function(h) {{
+                    var marker = L.circleMarker([h.lat, h.lon], {{
+                        color: '#ffffff',
+                        fillColor: h.color_hex,
+                        fillOpacity: 0.92,
+                        radius: 9,
+                        weight: 2
+                    }}).addTo(map);
 
-        view_state = pdk.ViewState(
-            latitude=-7.65,
-            longitude=112.55,
-            zoom=7.3,
-            pitch=0,
-        )
+                    var tooltipHtml = "<b>" + h.nama_rs + " (" + h.kode_rs + ")</b><br/>" +
+                        "📍 " + h.kota + "<br/>" +
+                        "🌐 Lat " + h.lat + ", Lon " + h.lon + "<br/>" +
+                        "Status: <b>" + h.status + "</b><br/>" +
+                        "Kapasitas: <b>" + h.kapasitas_text + "</b> | Terisi: <b>" + h.terisi_text + "</b> | Tersedia: <b>" + h.tersedia_text + "</b><br/>" +
+                        "BOR: <b>" + h.bor_text + "</b><br/>" +
+                        "<span style='color:#2563EB; font-weight:bold; margin-top:4px; display:inline-block;'>👉 Klik lingkaran untuk buka Google Maps</span>";
 
-        deck_map = pdk.Deck(
-            layers=[layer],
-            initial_view_state=view_state,
-            tooltip={
-                "html": "<b>{nama_rs}</b> ({kota})<br/>"
-                "Status: <b>{status}</b><br/>"
-                "Kapasitas: {kapasitas_text} bed<br/>"
-                "Terisi: {terisi_text} bed<br/>"
-                "Tersedia: {tersedia_text} bed<br/>"
-                "BOR: <b>{bor_text}</b>",
-                "style": {
-                    "backgroundColor": "#0f2f6b",
-                    "color": "white",
-                    "borderRadius": "10px",
-                    "padding": "10px 14px",
-                    "fontSize": "13px",
-                    "boxShadow": "0 4px 12px rgba(0,0,0,0.3)",
-                },
-            },
-            map_style="light",
-        )
-        st.pydeck_chart(deck_map, use_container_width=True)
+                    marker.bindTooltip(tooltipHtml, {{ sticky: true }});
+
+                    marker.on('click', function() {{
+                        window.open(h.gmaps_url, '_blank');
+                    }});
+                }});
+            </script>
+        </body>
+        </html>
+        """
+        components.html(leaflet_html, height=430)
 
 with col_right:
     render_section_heading(
-        "🛏️ Status BOR per Rumah Sakit",
-        "Warna ring menandai keterisian RS.",
+        "📊 Status Keterisian Tempat Tidur (BOR)",
+        "Ringkasan persentase keterisian kamar tiap rumah sakit.",
     )
 
-    # Move capacity-only hospitals (RSKH and RSSG) to the very end
-    regular_rs = summary[~summary["kode_rs"].isin(["RSKH", "RSSG"])].sort_values(
+    regular_rs = summary[~summary["kode_rs"].isin(["RSKH", "RSSG", "RSHP"])].sort_values(
         ["ada_data", "bor"], ascending=[False, False]
     )
-    cap_only_rs = summary[summary["kode_rs"].isin(["RSKH", "RSSG"])].sort_values(
+    cap_only_rs = summary[summary["kode_rs"].isin(["RSKH", "RSSG", "RSHP"])].sort_values(
         ["ada_data"], ascending=[False]
     )
     gauge_summary = pd.concat([regular_rs, cap_only_rs], ignore_index=True)
@@ -322,7 +380,11 @@ with col_right:
     gauge_html = ['<div class="gauge-grid">']
     for row in gauge_summary.itertuples():
         is_cap_only = row.kode_rs in ["RSKH", "RSSG"]
-        if is_cap_only:
+        is_rshp = row.kode_rs == "RSHP"
+        if is_rshp:
+            pct = None
+            sub_label = "Data Belum Tersedia"
+        elif is_cap_only:
             pct = None
             sub_label = (
                 f"{int(row.kapasitas):,} bed (Kapasitas)".replace(",", ".")
@@ -344,7 +406,7 @@ with col_right:
                 percentage=pct,
                 sub_label=sub_label,
                 status_fn=get_occupancy_status,
-                is_capacity_only=is_cap_only,
+                is_capacity_only=(is_cap_only or is_rshp),
             )
         )
     gauge_html.append("</div>")
@@ -359,18 +421,15 @@ with col_right:
         '<span><span class="legend-dot" style="background:#dc2626;"></span>'
         "Kritis (&gt;90%)</span>"
         '<span><span class="legend-dot" style="background:#94a3b8;"></span>'
-        "Hanya Kapasitas</span>"
+        "Kapasitas / Belum Ada Data</span>"
         "</div>"
     )
     st.markdown(legend_html, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------
-# Ketersediaan Tempat Tidur menurut Kelas — kartu peringkat dengan
-# filter kelas dinamis (pill) + toggle Tersedia/Terisi.
+# Ketersediaan Tempat Tidur menurut Kelas (Pills & Distribution)
 # ---------------------------------------------------------------------
-from theme import get_kelas_sort_key
-
-# Extract unique classes that actually exist in current active snapshots
+st.markdown("")
 available_classes_set = set()
 for hospital_name, kode_rs in hospital_codes.items():
     snapshot = latest_by_code.get(kode_rs, pd.DataFrame())
@@ -378,6 +437,8 @@ for hospital_name, kode_rs in hospital_codes.items():
         mapped_list = snapshot["kelas"].map(canonicalize_kelas).dropna().unique()
         for k in mapped_list:
             available_classes_set.add(k)
+
+from theme import get_kelas_sort_key
 
 sorted_available_classes = sorted(
     list(available_classes_set),
@@ -399,8 +460,7 @@ if METRIC_FILTER_KEY not in st.session_state:
 
 render_section_heading(
     "🏷️ Filter Kelas Tempat Tidur",
-    "Pilih kelas untuk membandingkan jumlah bed di tiap RS pada kartu "
-    "di bawah.",
+    "Pilih kelas untuk membandingkan jumlah bed di tiap RS pada kartu di bawah.",
 )
 
 filter_left, filter_divider, filter_right = st.columns([5, 0.25, 1.7])
@@ -449,26 +509,29 @@ with filter_left:
                 ):
                     st.session_state[KELAS_FILTER_KEY] = option
                     st.rerun()
-with filter_divider:
-    st.markdown('<div class="filter-vdivider"></div>', unsafe_allow_html=True)
+
 with filter_right:
-    st.markdown(
-        '<p class="metric-toggle-label">Tampilkan</p>',
-        unsafe_allow_html=True,
-    )
-    with st.container(border=True):
-        metric_cols = st.columns(2)
-        for col, option in zip(metric_cols, ["Tersedia", "Terisi"]):
-            with col:
-                is_active = st.session_state[METRIC_FILTER_KEY] == option
-                if st.button(
-                    option,
-                    key=f"metricfilter_{option}",
-                    type="primary" if is_active else "secondary",
-                    use_container_width=True,
-                ):
-                    st.session_state[METRIC_FILTER_KEY] = option
-                    st.rerun()
+    m_cols = st.columns(2)
+    with m_cols[0]:
+        t_active = st.session_state[METRIC_FILTER_KEY] == "Tersedia"
+        if st.button(
+            "Tersedia",
+            key="metric_tersedia",
+            type="primary" if t_active else "secondary",
+            use_container_width=True,
+        ):
+            st.session_state[METRIC_FILTER_KEY] = "Tersedia"
+            st.rerun()
+    with m_cols[1]:
+        i_active = st.session_state[METRIC_FILTER_KEY] == "Terisi"
+        if st.button(
+            "Terisi",
+            key="metric_terisi",
+            type="primary" if i_active else "secondary",
+            use_container_width=True,
+        ):
+            st.session_state[METRIC_FILTER_KEY] = "Terisi"
+            st.rerun()
 
 selected_kelas = st.session_state[KELAS_FILTER_KEY]
 selected_metric = st.session_state[METRIC_FILTER_KEY]
@@ -477,17 +540,27 @@ metric_column = "tersedia" if selected_metric == "Tersedia" else "terisi"
 distribution_rows: list[dict[str, object]] = []
 for hospital_name, kode_rs in hospital_codes.items():
     snapshot = latest_by_code.get(kode_rs, pd.DataFrame())
+
+    if kode_rs in ["RSKH", "RSSG"]:
+        metric_column = "kapasitas"
+
     if snapshot.empty:
+        distribution_rows.append(
+            {
+                "nama_rs": hospital_name,
+                "value": 0,
+            }
+        )
         continue
-    if selected_kelas == "Semua Kelas":
-        subset = snapshot
+
+    working = snapshot.copy()
+    working["kelas_clean"] = working["kelas"].map(canonicalize_kelas)
+
+    if selected_kelas != "Semua Kelas":
+        subset = working[working["kelas_clean"] == selected_kelas]
     else:
-        mapped_kelas = snapshot["kelas"].map(canonicalize_kelas)
-        subset = snapshot[mapped_kelas == selected_kelas]
-    if subset.empty:
-        # RS ini memang tidak punya kelas tersebut sama sekali —
-        # sengaja dilewati, bukan ditampilkan dengan angka 0.
-        continue
+        subset = working
+
     distribution_rows.append(
         {
             "nama_rs": hospital_name,
@@ -504,72 +577,276 @@ render_bed_class_distribution(
 )
 
 # ---------------------------------------------------------------------
-# Tabel ringkasan seluruh RS
+# Bar Chart Berdiri: Perbandingan Kapasitas, Terisi, dan Tersedia per RSUD
 # ---------------------------------------------------------------------
+st.markdown("")
 render_section_heading(
-    "📋 Tabel Ringkasan Seluruh Rumah Sakit",
-    "Rincian angka lengkap ke-13 rumah sakit, diurutkan dari bed "
-    "tersedia terbanyak.",
+    "📊 Perbandingan Kapasitas, Bed Terisi, dan Bed Tersedia per RSUD",
 )
 
-table_view = summary.copy()
-table_view["status"] = table_view["pct_tersedia"].map(
-    lambda value: get_availability_status(value)[0]
-)
-table_view["pct_tersedia_text"] = table_view["pct_tersedia"].map(
-    lambda value: f"{value:.1f}%" if pd.notna(value) else "-"
-)
-table_view["bor_text"] = table_view["bor"].map(
-    lambda value: f"{value:.1f}%" if pd.notna(value) else "-"
-)
-table_view["waktu_update_text"] = pd.to_datetime(
-    table_view["waktu_update_sumber"], errors="coerce"
-).dt.strftime("%d-%m-%Y %H:%M:%S")
-table_view["waktu_update_text"] = table_view["waktu_update_text"].fillna(
-    "Belum ada data"
-)
-table_view["kapasitas"] = table_view["kapasitas"].fillna(0).astype(int)
+barchart_data: list[dict[str, object]] = []
+for row in summary.itertuples():
+    rs_name = str(row.nama_rs)
+    code = str(row.kode_rs)
+    
+    if code == "RSHP":
+        continue
+    elif code in ["RSKH", "RSSG"]:
+        if pd.notna(row.kapasitas) and row.ada_data:
+            barchart_data.append({
+                "nama_rs": rs_name,
+                "kode_rs": code,
+                "Kategori": "Total Kapasitas",
+                "Jumlah": int(row.kapasitas),
+            })
+    else:
+        if pd.notna(row.kapasitas) and row.ada_data:
+            barchart_data.append({
+                "nama_rs": rs_name,
+                "kode_rs": code,
+                "Kategori": "Total Kapasitas",
+                "Jumlah": int(row.kapasitas),
+            })
+            barchart_data.append({
+                "nama_rs": rs_name,
+                "kode_rs": code,
+                "Kategori": "Bed Terisi",
+                "Jumlah": int(row.terisi),
+            })
+            barchart_data.append({
+                "nama_rs": rs_name,
+                "kode_rs": code,
+                "Kategori": "Bed Tersedia",
+                "Jumlah": int(row.tersedia),
+            })
 
-# Set '-' for capacity-only hospitals in table_view
-for r_idx in table_view.index:
-    if table_view.loc[r_idx, "kode_rs"] in ["RSKH", "RSSG"]:
-        table_view.loc[r_idx, "terisi"] = "-"
-        table_view.loc[r_idx, "tersedia"] = "-"
-        table_view.loc[r_idx, "pct_tersedia_text"] = "-"
-        table_view.loc[r_idx, "bor_text"] = "-"
-        table_view.loc[r_idx, "status"] = "-"
+df_bar = pd.DataFrame(barchart_data)
 
-table_view = table_view.sort_values(
-    ["ada_data"], ascending=[False]
+if not df_bar.empty:
+    bars = (
+        alt.Chart(df_bar)
+        .mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4)
+        .encode(
+            x=alt.X(
+                "nama_rs:N",
+                title=None,
+                axis=alt.Axis(
+                    labelAngle=-48,
+                    labelAlign="right",
+                    labelFontSize=10,
+                    labelFontWeight="bold",
+                    labelLimit=300,
+                    labelOverlap=False,
+                ),
+            ),
+            xOffset=alt.XOffset(
+                "Kategori:N",
+                sort=["Total Kapasitas", "Bed Terisi", "Bed Tersedia"],
+            ),
+            y=alt.Y(
+                "Jumlah:Q",
+                title="Jumlah Tempat Tidur",
+                axis=alt.Axis(
+                    grid=True,
+                    values=list(range(0, 1150, 100)),
+                ),
+            ),
+            color=alt.Color(
+                "Kategori:N",
+                scale=alt.Scale(
+                    domain=["Total Kapasitas", "Bed Terisi", "Bed Tersedia"],
+                    range=["#2563EB", "#F59E0B", "#10B981"],
+                ),
+                legend=alt.Legend(title=None, orient="top", padding=10),
+            ),
+            tooltip=[
+                alt.Tooltip("nama_rs:N", title="Rumah Sakit"),
+                alt.Tooltip("Kategori:N", title="Kategori"),
+                alt.Tooltip("Jumlah:Q", title="Jumlah Bed", format=","),
+            ],
+        )
+    )
+
+    text = bars.mark_text(
+        align="center",
+        baseline="bottom",
+        dy=-3,
+        fontSize=8.5,
+        fontWeight="bold",
+    ).encode(
+        text=alt.Text("Jumlah:Q", format="d")
+    )
+
+    chart_bar = (bars + text).properties(height=480)
+    st.altair_chart(chart_bar, use_container_width=True)
+
+# ---------------------------------------------------------------------
+# Direktori Profil & Biodata 14 RSUD Pemprov Jawa Timur (Di Bagian Paling Bawah)
+# ---------------------------------------------------------------------
+st.markdown("")
+st.divider()
+render_section_heading(
+    "🏥 Direktori Profil & Biodata 14 RSUD Pemprov Jatim",
+    "Informasi lengkap kelas layanan, alamat presisi, kontak IGD 24 jam, dan link website resmi 14 Rumah Sakit Pemerintah Provinsi Jawa Timur.",
 )
 
-display_columns = [
-    "nama_rs",
-    "kapasitas",
-    "terisi",
-    "tersedia",
-    "pct_tersedia_text",
-    "bor_text",
-    "status",
-    "waktu_update_text",
+HOSPITAL_PROFILES = [
+    {
+        "nama": "RSUD Dr. Soetomo",
+        "kode": "RSDS",
+        "tipe": "Kelas A (Rujukan Utama Jatim)",
+        "kota": "Kota Surabaya",
+        "alamat": "Jl. Mayjen Prof. Dr. Moestopo No. 6-8, Gubeng, Surabaya",
+        "telepon": "(031) 5501078 / 5501234",
+        "url": "https://rsudrsoetomo.jatimprov.go.id/",
+    },
+    {
+        "nama": "RSUD Dr. Saiful Anwar",
+        "kode": "RSSA",
+        "tipe": "Kelas A (Rujukan Utama Malang Raya)",
+        "kota": "Kota Malang",
+        "alamat": "Jl. Jaksa Agung Suprapto No. 2, Klojen, Malang",
+        "telepon": "(0341) 362101 / 362102",
+        "url": "https://rsusaifulanwar.jatimprov.go.id/",
+    },
+    {
+        "nama": "RSUD dr. Soedono Madiun",
+        "kode": "RSSM",
+        "tipe": "Kelas B (Rujukan Madiun Raya)",
+        "kota": "Kota Madiun",
+        "alamat": "Jl. dr. Soetomo No. 59, Kartoharjo, Madiun",
+        "telepon": "(0351) 464325 / 464326",
+        "url": "https://rssoedono.jatimprov.go.id/utama/",
+    },
+    {
+        "nama": "RSUD Haji Provinsi Jawa Timur",
+        "kode": "RSHJ",
+        "tipe": "Kelas B (Rujukan Umum & Haji)",
+        "kota": "Kota Surabaya",
+        "alamat": "Jl. ITENAS No. 12-14, Sukolilo, Surabaya",
+        "telepon": "(031) 5924000 / 5924001",
+        "url": "https://rsuhaji.jatimprov.go.id/",
+    },
+    {
+        "nama": "RS Jiwa Menur Provinsi Jawa Timur",
+        "kode": "RSMN",
+        "tipe": "Khusus Kesehatan Jiwa & NAPZA",
+        "kota": "Kota Surabaya",
+        "alamat": "Jl. Menur No. 120, Gubeng, Surabaya",
+        "telepon": "(031) 5021635 / 5021637",
+        "url": "https://rsmenur.jatimprov.go.id/",
+    },
+    {
+        "nama": "RSUD Karsa Husada Batu",
+        "kode": "RSKH",
+        "tipe": "Kelas B (Rujukan Kota Batu & Malang)",
+        "kota": "Kota Batu",
+        "alamat": "Jl. Ahmad Yani No. 10-13, Batu",
+        "telepon": "(0341) 591076",
+        "url": "https://rsukarsahusadabatu.jatimprov.go.id/",
+    },
+    {
+        "nama": "RSUD Sumberglagah",
+        "kode": "RSSG",
+        "tipe": "Kelas C (Rujukan Mojokerto)",
+        "kota": "Kabupaten Mojokerto",
+        "alamat": "Jl. Raya Sumberglagah, Pacet, Mojokerto",
+        "telepon": "(0321) 690412",
+        "url": "https://rssumberglagah.jatimprov.go.id/web_rs/",
+    },
+    {
+        "nama": "RS Paru Jember",
+        "kode": "RSPJ",
+        "tipe": "Khusus Paru & Respiratori",
+        "kota": "Kabupaten Jember",
+        "alamat": "Jl. Nusa Indah No. 28, Patrang, Jember",
+        "telepon": "(0331) 484300",
+        "url": "https://www.rspjember.jatimprov.go.id/",
+    },
+    {
+        "nama": "RS Paru Manguharjo Madiun",
+        "kode": "RSPM",
+        "tipe": "Khusus Paru & Respiratori",
+        "kota": "Kota Madiun",
+        "alamat": "Jl. Yos Sudarso No. 108, Manguharjo, Madiun",
+        "telepon": "(0351) 462719",
+        "url": "https://rspmanguharjo.jatimprov.go.id/",
+    },
+    {
+        "nama": "RS Mata Masyarakat Jawa Timur",
+        "kode": "RSMM",
+        "tipe": "Khusus Kesehatan Mata",
+        "kota": "Kota Surabaya",
+        "alamat": "Jl. Gayung Kebonsari No. 49, Gayungan, Surabaya",
+        "telepon": "(031) 8283508",
+        "url": "https://rsmm.jatimprov.go.id/",
+    },
+    {
+        "nama": "RSU Mohammad Noer Pamekasan",
+        "kode": "RSMNO",
+        "tipe": "Kelas C (Rujukan Madura)",
+        "kota": "Kabupaten Pamekasan",
+        "alamat": "Jl. Bonorogo No. 17, Pamekasan, Madura",
+        "telepon": "(0324) 322432",
+        "url": "https://rsumohammadnoer.jatimprov.go.id/",
+    },
+    {
+        "nama": "RSUD Daha Husada Kediri",
+        "kode": "RSDH",
+        "tipe": "Kelas C (Rujukan Kediri)",
+        "kota": "Kota Kediri",
+        "alamat": "Jl. Veteran No. 48, Mojoroto, Kediri",
+        "telepon": "(0354) 771034",
+        "url": "https://rsuddahahusada.jatimprov.go.id/",
+    },
+    {
+        "nama": "RSUD Dungus Madiun",
+        "kode": "RSDG",
+        "tipe": "Kelas C (Rujukan Kabupaten Madiun)",
+        "kota": "Kabupaten Madiun",
+        "alamat": "Jl. Raya Dungus, Wungu, Madiun",
+        "telepon": "(0351) 457008",
+        "url": "https://rsuddungus.jatimprov.go.id/",
+    },
+    {
+        "nama": "RSUD Husada Prima",
+        "kode": "RSHP",
+        "tipe": "Kelas C (Umum & Paru)",
+        "kota": "Kota Surabaya",
+        "alamat": "Jl. Karang Tembok No. 39, Semampir, Surabaya",
+        "telepon": "(031) 3713337",
+        "url": "https://rsudhusadaprima.jatimprov.go.id/",
+    },
 ]
 
-render_stable_table(
-    table_view[display_columns],
-    {
-        "nama_rs": "Rumah Sakit",
-        "kapasitas": "Kapasitas",
-        "terisi": "Terisi",
-        "tersedia": "Tersedia",
-        "pct_tersedia_text": "% Tersedia",
-        "bor_text": "BOR",
-        "status": "Status",
-        "waktu_update_text": "Update Website",
-    },
-)
+for i in range(0, len(HOSPITAL_PROFILES), 3):
+    cols = st.columns(3)
+    chunk = HOSPITAL_PROFILES[i : i + 3]
+    for col, profile in zip(cols, chunk):
+        with col:
+            kode = profile["kode"]
+            png_path = f"assets/logos/{kode}.png"
+            jpg_path = f"assets/logos/{kode}.jpg"
+            logo_path = png_path if os.path.exists(png_path) else (jpg_path if os.path.exists(jpg_path) else None)
+            logo_b64 = get_base64_logo(logo_path)
+            
+            logo_html = f'<img src="{logo_b64}" style="height:38px; max-width:90px; object-fit:contain;" alt="{kode}" />' if logo_b64 else f'<span style="background:#eef4ff; color:#1e3a8a; font-weight:700; font-size:0.75rem; padding:4px 10px; border-radius:10px;">{kode}</span>'
 
-st.caption(
-    "Buka halaman **Ketersediaan Bed** pada menu di sebelah kiri untuk "
-    "melihat detail ruang per kelas, tren historis, dan mengatur "
-    "scraping otomatis per rumah sakit."
-)
+            st.markdown(
+                f'<div class="dist-card" style="padding:22px 24px; margin-bottom:20px; display:flex; flex-direction:column; justify-content:space-between; min-height:310px; height:100%;">'
+                f'<div>'
+                f'<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">'
+                f'{logo_html}'
+                f'<span style="background:#f1f5f9; color:#475569; font-size:0.75rem; font-weight:600; padding:4px 10px; border-radius:10px;">{profile["kota"]}</span>'
+                f'</div>'
+                f'<h4 style="margin:8px 0 4px; color:#0f2f6b; font-size:1.08rem; font-weight:800; line-height:1.3;">{profile["nama"]}</h4>'
+                f'<p style="margin:0 0 10px; color:#2563eb; font-size:0.82rem; font-weight:700;">{profile["tipe"]}</p>'
+                f'<p style="margin:0 0 6px; color:#475569; font-size:0.82rem; line-height:1.35;">📍 {profile["alamat"]}</p>'
+                f'<p style="margin:0 0 12px; color:#475569; font-size:0.82rem;">☎️ IGD/Telp: <b>{profile["telepon"]}</b></p>'
+                f'</div>'
+                f'<a href="{profile["url"]}" target="_blank" style="text-decoration:none;">'
+                f'<div style="text-align:center; background:#f8fafc; border:1px solid #dbe7ff; color:#1e40af; font-size:0.82rem; font-weight:700; padding:9px 12px; border-radius:12px; transition:all 0.2s ease;">🌐 Website Resmi</div>'
+                f'</a>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )

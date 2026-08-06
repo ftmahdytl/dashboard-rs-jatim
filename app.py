@@ -17,20 +17,17 @@ initialize_database()
 overview_page = st.Page(
     "views/overview.py",
     title="Overview",
-    icon="📊",
     default=True,
 )
 
 bed_page = st.Page(
     "views/ketersediaan_bed.py",
     title="Ketersediaan Bed Rumah Sakit",
-    icon="🛏️",
 )
 
 nakes_page = st.Page(
     "views/profil_nakes.py",
     title="Profil Tenaga Kesehatan",
-    icon="🩺",
 )
 
 

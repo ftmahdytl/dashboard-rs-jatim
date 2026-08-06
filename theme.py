@@ -7,6 +7,134 @@ BASE_CSS = """
 <style>
 .stApp {background: linear-gradient(180deg, #eef4ff 0, #f8fafc 340px);}
 .block-container {max-width: 1280px; padding-top: 3.5rem !important; padding-bottom: 2.5rem;}
+
+/* Sidebar overall styling - Rich Deep Royal Navy Blue */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0F2F6B 0%, #102A66 60%, #1D4ED8 100%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Sidebar Top Header Container - Transparent (No white box) */
+section[data-testid="stSidebar"] [data-testid="stSidebarHeader"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 12px 16px !important;
+}
+
+/* Sidebar Collapse Toggle Button (<) at Top Header */
+section[data-testid="stSidebar"] [data-testid="stSidebarHeader"] button,
+section[data-testid="stSidebar"] button[data-testid="stSidebarCollapseButton"],
+section[data-testid="stSidebar"] button[kind="header"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 12px !important;
+    padding: 6px 12px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+    transition: all 0.2s ease !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarHeader"] button:hover,
+section[data-testid="stSidebar"] button[data-testid="stSidebarCollapseButton"]:hover,
+section[data-testid="stSidebar"] button[kind="header"]:hover {
+    background: #FFFFFF !important;
+    color: #0F2F6B !important;
+    transform: scale(1.05) !important;
+}
+
+[data-testid="collapsedControl"] {
+    display: flex !important;
+    visibility: visible !important;
+    z-index: 999999 !important;
+}
+
+[data-testid="collapsedControl"] button {
+    background: #FFFFFF !important;
+    color: #0F2F6B !important;
+    border: 1px solid #BFDBFE !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(30, 64, 175, 0.18) !important;
+}
+
+/* Sidebar Nav Wrapper - Transparent Container */
+div[data-testid="stSidebarNav"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-top: 14px !important;
+}
+
+/* INACTIVE Navigation Items as Glassmorphic Soft Pills */
+ul[data-testid="stSidebarNavItems"] li a,
+div[data-testid="stSidebarNav"] a {
+    border-radius: 14px !important;
+    padding: 13px 20px !important;
+    margin-bottom: 12px !important;
+    font-size: 0.95rem !important;
+    font-weight: 650 !important;
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    opacity: 0.88 !important;
+}
+
+ul[data-testid="stSidebarNavItems"] li a span,
+div[data-testid="stSidebarNav"] a span,
+ul[data-testid="stSidebarNavItems"] li a p,
+div[data-testid="stSidebarNav"] a p {
+    color: #FFFFFF !important;
+}
+
+/* Hover state on navigation card */
+ul[data-testid="stSidebarNavItems"] li a:hover,
+div[data-testid="stSidebarNav"] a:hover {
+    background: rgba(255, 255, 255, 0.26) !important;
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    transform: translateX(6px) !important;
+    opacity: 1 !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ACTIVE Navigation Card - CRISP WHITE CARD WITH ELECTRIC BLUE ACCENT (HALAMAN AKTIFF) */
+div[data-testid="stSidebarNav"] a[aria-current="page"],
+ul[data-testid="stSidebarNavItems"] li a[aria-current="page"],
+div[data-testid="stSidebarNav"] a[data-selected="true"],
+ul[data-testid="stSidebarNavItems"] li a[data-selected="true"],
+ul[data-testid="stSidebarNavItems"] li[aria-current="page"] a,
+ul[data-testid="stSidebarNavItems"] li[data-selected="true"] a,
+ul[data-testid="stSidebarNavItems"] li:has(a[aria-current="page"]) a {
+    background: #FFFFFF !important;
+    color: #0F2F6B !important;
+    font-weight: 850 !important;
+    border-left: 6px solid #2563EB !important;
+    border-top: 1px solid #FFFFFF !important;
+    border-right: 1px solid #FFFFFF !important;
+    border-bottom: 1px solid #FFFFFF !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.38) !important;
+    opacity: 1 !important;
+    transform: translateX(4px) !important;
+}
+
+div[data-testid="stSidebarNav"] a[aria-current="page"] span,
+ul[data-testid="stSidebarNavItems"] li a[aria-current="page"] span,
+div[data-testid="stSidebarNav"] a[aria-current="page"] p,
+ul[data-testid="stSidebarNavItems"] li a[aria-current="page"] p,
+div[data-testid="stSidebarNav"] a[data-selected="true"] span,
+ul[data-testid="stSidebarNavItems"] li a[data-selected="true"] span,
+div[data-testid="stSidebarNav"] a[data-selected="true"] p,
+ul[data-testid="stSidebarNavItems"] li a[data-selected="true"] p {
+    color: #0F2F6B !important;
+    font-weight: 850 !important;
+}
+
 [data-testid="stMetric"] {
     background: rgba(255,255,255,.96);
     border: 1px solid #dbe7ff;

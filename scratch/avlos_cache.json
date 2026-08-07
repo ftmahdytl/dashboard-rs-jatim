@@ -1,0 +1,3900 @@
+{
+  "RSPJ": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.8,
+      "periode_update": "2024-01",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 2,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.69,
+      "periode_update": "2024-02",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 3,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.68,
+      "periode_update": "2024-03",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 4,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.47,
+      "periode_update": "2024-04",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 5,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.94,
+      "periode_update": "2024-05",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 6,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.39,
+      "periode_update": "2024-06",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 7,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.2,
+      "periode_update": "2024-07",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 8,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.27,
+      "periode_update": "2024-08",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 9,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.56,
+      "periode_update": "2024-09",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 10,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.84,
+      "periode_update": "2024-10",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 11,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.64,
+      "periode_update": "2024-11",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 12,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 5.04,
+      "periode_update": "2024-12",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 13,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.91,
+      "periode_update": "2025-01",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 14,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.76,
+      "periode_update": "2025-02",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 15,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.49,
+      "periode_update": "2025-03",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 16,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.83,
+      "periode_update": "2025-04",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 17,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.16,
+      "periode_update": "2025-05",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 18,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.86,
+      "periode_update": "2025-06",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 19,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.94,
+      "periode_update": "2025-07",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 20,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 5.15,
+      "periode_update": "2025-08",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 21,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.19,
+      "periode_update": "2025-09",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 22,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.61,
+      "periode_update": "2025-10",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 23,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.71,
+      "periode_update": "2025-11",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 24,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.98,
+      "periode_update": "2025-12",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 25,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.55,
+      "periode_update": "2026-01",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 26,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.63,
+      "periode_update": "2026-02",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 27,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.63,
+      "periode_update": "2026-03",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 28,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.52,
+      "periode_update": "2026-06",
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ],
+  "RSMNO": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.11,
+      "periode_update": "2024-05",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 2,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.12,
+      "periode_update": "2024-01",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 3,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.19,
+      "periode_update": "2024-02",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 4,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.24,
+      "periode_update": "2024-03",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 5,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.15,
+      "periode_update": "2024-04",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 6,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.94,
+      "periode_update": "2024-06",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 7,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.12,
+      "periode_update": "2023-01",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 8,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.12,
+      "periode_update": "2023-02",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 9,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.23,
+      "periode_update": "2023-03",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 10,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.06,
+      "periode_update": "2023-04",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 11,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2023-05",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 12,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.9,
+      "periode_update": "2023-06",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 13,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.79,
+      "periode_update": "2023-07",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 14,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.04,
+      "periode_update": "2023-08",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 15,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.0,
+      "periode_update": "2023-09",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 16,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.91,
+      "periode_update": "2023-10",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 17,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.9,
+      "periode_update": "2023-11",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 18,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.69,
+      "periode_update": "2023-12",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 19,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.23,
+      "periode_update": "2021-01",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 20,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.63,
+      "periode_update": "2021-02",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 21,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.61,
+      "periode_update": "2021-03",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 22,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2021-04",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 23,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.58,
+      "periode_update": "2021-05",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 24,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.59,
+      "periode_update": "2021-06",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 25,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 5.11,
+      "periode_update": "2021-07",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 26,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.75,
+      "periode_update": "2021-08",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 27,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2021-09",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 28,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.7,
+      "periode_update": "2021-10",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 29,
+      "id_index": 29,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.41,
+      "periode_update": "2021-11",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 30,
+      "id_index": 30,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.02,
+      "periode_update": "2021-12",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 31,
+      "id_index": 31,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.91,
+      "periode_update": "2024-07",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 32,
+      "id_index": 32,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.18,
+      "periode_update": "2022-01",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 33,
+      "id_index": 33,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.15,
+      "periode_update": "2022-02",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 34,
+      "id_index": 34,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.14,
+      "periode_update": "2022-03",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 35,
+      "id_index": 35,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.03,
+      "periode_update": "2022-04",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 36,
+      "id_index": 36,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.09,
+      "periode_update": "2022-05",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 37,
+      "id_index": 37,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.15,
+      "periode_update": "2022-06",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 38,
+      "id_index": 38,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.09,
+      "periode_update": "2022-07",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 39,
+      "id_index": 39,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.69,
+      "periode_update": "2022-08",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 40,
+      "id_index": 40,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.15,
+      "periode_update": "2022-09",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 41,
+      "id_index": 41,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.13,
+      "periode_update": "2022-10",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 42,
+      "id_index": 42,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.22,
+      "periode_update": "2022-11",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 43,
+      "id_index": 43,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.23,
+      "periode_update": "2022-12",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 44,
+      "id_index": 44,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.99,
+      "periode_update": "2024-08",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 45,
+      "id_index": 45,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.99,
+      "periode_update": "2024-09",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 46,
+      "id_index": 46,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.9,
+      "periode_update": "2024-10",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 47,
+      "id_index": 47,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.96,
+      "periode_update": "2024-11",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 48,
+      "id_index": 48,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.8,
+      "periode_update": "2024-12",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 49,
+      "id_index": 49,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.24,
+      "periode_update": "2025-01",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 50,
+      "id_index": 50,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.01,
+      "periode_update": "2025-02",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 51,
+      "id_index": 51,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.97,
+      "periode_update": "2025-03",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 52,
+      "id_index": 52,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.0,
+      "periode_update": "2025-04",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 53,
+      "id_index": 53,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.27,
+      "periode_update": "2025-05",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 54,
+      "id_index": 54,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.35,
+      "periode_update": "2025-06",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 55,
+      "id_index": 55,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.18,
+      "periode_update": "2025-07",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 56,
+      "id_index": 56,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.24,
+      "periode_update": "2025-08",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 57,
+      "id_index": 57,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.21,
+      "periode_update": "2025-09",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 58,
+      "id_index": 58,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.31,
+      "periode_update": "2025-10",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 59,
+      "id_index": 59,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.31,
+      "periode_update": "2025-11",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 60,
+      "id_index": 60,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.33,
+      "periode_update": "2025-12",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 61,
+      "id_index": 61,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.33,
+      "periode_update": "2026-01",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 62,
+      "id_index": 63,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.34,
+      "periode_update": "2026-02",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 63,
+      "id_index": 62,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.32,
+      "periode_update": "2026-03",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 64,
+      "id_index": 65,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.37,
+      "periode_update": "2026-04",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 65,
+      "id_index": 64,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.37,
+      "periode_update": "2026-05",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 66,
+      "id_index": 66,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.42,
+      "periode_update": "2026-06",
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ],
+  "RSMM": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-01",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 2,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-02",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 3,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-03",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 4,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-04",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 5,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-05",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 6,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-06",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 7,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-07",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 8,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-08",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 9,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-09",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 10,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-10",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 11,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-11",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 12,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2024-12",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 13,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-01",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 14,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-02",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 15,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-03",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 16,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-04",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 17,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-05",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 18,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-06",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 19,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-07",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 20,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-08",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 21,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-09",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 22,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-10",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 24,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-11",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 25,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2025-12",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 26,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2026-01",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 27,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2026-02",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 28,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2026-03",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 29,
+      "id_index": 29,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2026-04",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 30,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2,
+      "periode_update": "2026-05",
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ],
+  "RSSM": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-01",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 2,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-02",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 3,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-03",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 4,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-04",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 5,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-05",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 6,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-06",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 7,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-07",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 8,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-08",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 9,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-09",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 10,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-10",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 11,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-11",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 12,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2024-12",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 13,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-01",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 14,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-02",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 15,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-03",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 16,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-04",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 17,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-05",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 18,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-06",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 19,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-07",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 20,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-08",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 21,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-09",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 22,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-10",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 23,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-11",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 24,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2025-12",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 25,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2026-01",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 26,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2026-02",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 27,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2026-03",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 28,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2026-04",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 29,
+      "id_index": 29,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2026-05",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 30,
+      "id_index": 30,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4,
+      "periode_update": "2026-06",
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ],
+  "RSDH": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.82,
+      "periode_update": "2022-12",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 2,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.84,
+      "periode_update": "2023-01",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 3,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.58,
+      "periode_update": "2023-02",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 4,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.8,
+      "periode_update": "2023-03",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 5,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.91,
+      "periode_update": "2023-04",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 6,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.71,
+      "periode_update": "2023-05",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 7,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.55,
+      "periode_update": "2023-06",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 8,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.73,
+      "periode_update": "2023-07",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 9,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.64,
+      "periode_update": "2023-08",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 10,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.78,
+      "periode_update": "2023-09",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 11,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.67,
+      "periode_update": "2023-10",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 12,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.7,
+      "periode_update": "2023-11",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 13,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.52,
+      "periode_update": "2023-12",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 14,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.0,
+      "periode_update": "2024-01",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 15,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.83,
+      "periode_update": "2024-02",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 16,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.91,
+      "periode_update": "2024-03",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 17,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.83,
+      "periode_update": "2024-04",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 18,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.89,
+      "periode_update": "2024-05",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 19,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.76,
+      "periode_update": "2024-06",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 20,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.65,
+      "periode_update": "2024-07",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 21,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.85,
+      "periode_update": "2024-08",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 22,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.92,
+      "periode_update": "2024-09",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 23,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.92,
+      "periode_update": "2024-10",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 24,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.77,
+      "periode_update": "2024-11",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 25,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.29,
+      "periode_update": "2024-12",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 26,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.99,
+      "periode_update": "2025-01",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 27,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.07,
+      "periode_update": "2025-02",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 28,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.11,
+      "periode_update": "2025-03",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 29,
+      "id_index": 29,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.21,
+      "periode_update": "2025-04",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 30,
+      "id_index": 30,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.23,
+      "periode_update": "2025-05",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 31,
+      "id_index": 31,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.13,
+      "periode_update": "2025-06",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 32,
+      "id_index": 32,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.09,
+      "periode_update": "2025-07",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 33,
+      "id_index": 33,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.8,
+      "periode_update": "2025-08",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 34,
+      "id_index": 34,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.29,
+      "periode_update": "2025-09",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 35,
+      "id_index": 35,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.19,
+      "periode_update": "2025-10",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 36,
+      "id_index": 36,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.22,
+      "periode_update": "2025-11",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 37,
+      "id_index": 37,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.37,
+      "periode_update": "2025-12",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 38,
+      "id_index": 38,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.39,
+      "periode_update": "2026-01",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 39,
+      "id_index": 39,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.12,
+      "periode_update": "2026-02",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 40,
+      "id_index": 40,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.13,
+      "periode_update": "2026-03",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 41,
+      "id_index": 41,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.25,
+      "periode_update": "2026-04",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 42,
+      "id_index": 42,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.62,
+      "periode_update": "2026-05",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 43,
+      "id_index": 43,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.58,
+      "periode_update": "2026-06",
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ],
+  "RSDS": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-01",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 2,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-02",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 3,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-03",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 4,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-04",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 5,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-05",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 6,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-06",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 7,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-07",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 8,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-08",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 9,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-09",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 10,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-10",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 11,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-11",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 12,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2024-12",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 13,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2025-01",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 14,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2025-02",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 15,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 6,
+      "periode_update": "2025-03",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 16,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 6,
+      "periode_update": "2025-04",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 17,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 6,
+      "periode_update": "2025-05",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 18,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2025-06",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 19,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2025-07",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 20,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 6,
+      "periode_update": "2025-08",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 21,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2025-09",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 22,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2025-10",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 23,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 6,
+      "periode_update": "2025-11",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 24,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2025-12",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 25,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2026-01",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 26,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2026-02",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 27,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2026-03",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 28,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 6,
+      "periode_update": "2026-04",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 29,
+      "id_index": 29,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2026-05",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 30,
+      "id_index": 30,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 7,
+      "periode_update": "2026-06",
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ],
+  "RSSA": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-01",
+      "kategori": "AVLOS",
+      "jumlah": 5.01,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 1,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-01",
+      "kategori": "TOTAL",
+      "jumlah": 5.01,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 2,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-02",
+      "kategori": "AVLOS",
+      "jumlah": 5.19,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 2,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-02",
+      "kategori": "TOTAL",
+      "jumlah": 5.19,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 3,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-03",
+      "kategori": "AVLOS",
+      "jumlah": 5.16,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 3,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-03",
+      "kategori": "TOTAL",
+      "jumlah": 5.16,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 4,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-04",
+      "kategori": "AVLOS",
+      "jumlah": 5.06,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 4,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-04",
+      "kategori": "TOTAL",
+      "jumlah": 5.06,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 5,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-05",
+      "kategori": "AVLOS",
+      "jumlah": 5.06,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 5,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-05",
+      "kategori": "TOTAL",
+      "jumlah": 5.06,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 6,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-06",
+      "kategori": "AVLOS",
+      "jumlah": 4.92,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 6,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-06",
+      "kategori": "TOTAL",
+      "jumlah": 4.92,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 7,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-07",
+      "kategori": "AVLOS",
+      "jumlah": 4.89,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 7,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-07",
+      "kategori": "TOTAL",
+      "jumlah": 4.89,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 8,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-08",
+      "kategori": "AVLOS",
+      "jumlah": 4.89,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 8,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-08",
+      "kategori": "TOTAL",
+      "jumlah": 4.89,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 9,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-09",
+      "kategori": "AVLOS",
+      "jumlah": 4.89,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 9,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-09",
+      "kategori": "TOTAL",
+      "jumlah": 4.89,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 10,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-10",
+      "kategori": "AVLOS",
+      "jumlah": 5.02,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 10,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-10",
+      "kategori": "TOTAL",
+      "jumlah": 5.02,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 11,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-11",
+      "kategori": "AVLOS",
+      "jumlah": 5.04,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 11,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-11",
+      "kategori": "TOTAL",
+      "jumlah": 5.04,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 12,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-12",
+      "kategori": "AVLOS",
+      "jumlah": 5.14,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 12,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2024-12",
+      "kategori": "TOTAL",
+      "jumlah": 5.14,
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 13,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-01",
+      "kategori": "AVLOS",
+      "jumlah": 5.21,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 13,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-01",
+      "kategori": "TOTAL",
+      "jumlah": 5.21,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 14,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-02",
+      "kategori": "AVLOS",
+      "jumlah": 5.13,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 14,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-02",
+      "kategori": "TOTAL",
+      "jumlah": 5.13,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 15,
+      "id_index": 29,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-03",
+      "kategori": "AVLOS",
+      "jumlah": 5.09,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 15,
+      "id_index": 30,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-03",
+      "kategori": "TOTAL",
+      "jumlah": 5.09,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 16,
+      "id_index": 31,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-04",
+      "kategori": "AVLOS",
+      "jumlah": 5.34,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 16,
+      "id_index": 32,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-04",
+      "kategori": "TOTAL",
+      "jumlah": 5.34,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 17,
+      "id_index": 33,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-05",
+      "kategori": "AVLOS",
+      "jumlah": 5.36,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 17,
+      "id_index": 34,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-05",
+      "kategori": "TOTAL",
+      "jumlah": 5.36,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 18,
+      "id_index": 35,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-06",
+      "kategori": "AVLOS",
+      "jumlah": 5.23,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 18,
+      "id_index": 36,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-06",
+      "kategori": "TOTAL",
+      "jumlah": 5.23,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 19,
+      "id_index": 37,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-07",
+      "kategori": "AVLOS",
+      "jumlah": 5.16,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 19,
+      "id_index": 38,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-07",
+      "kategori": "TOTAL",
+      "jumlah": 5.16,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 20,
+      "id_index": 39,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-08",
+      "kategori": "AVLOS",
+      "jumlah": 5.24,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 20,
+      "id_index": 40,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-08",
+      "kategori": "TOTAL",
+      "jumlah": 5.24,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 21,
+      "id_index": 41,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-09",
+      "kategori": "AVLOS",
+      "jumlah": 5.41,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 21,
+      "id_index": 42,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-09",
+      "kategori": "TOTAL",
+      "jumlah": 5.41,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 22,
+      "id_index": 43,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-10",
+      "kategori": "AVLOS",
+      "jumlah": 5.17,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 22,
+      "id_index": 44,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-10",
+      "kategori": "TOTAL",
+      "jumlah": 5.14,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 23,
+      "id_index": 45,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-11",
+      "kategori": "AVLOS",
+      "jumlah": 5.74,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 23,
+      "id_index": 46,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-11",
+      "kategori": "TOTAL",
+      "jumlah": 5.74,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 24,
+      "id_index": 47,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-12",
+      "kategori": "AVLOS",
+      "jumlah": 5.72,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 24,
+      "id_index": 48,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2025-12",
+      "kategori": "TOTAL",
+      "jumlah": 5.72,
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 25,
+      "id_index": 49,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-01",
+      "kategori": "AVLOS",
+      "jumlah": 5.75,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 25,
+      "id_index": 50,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-01",
+      "kategori": "TOTAL",
+      "jumlah": 5.75,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 26,
+      "id_index": 51,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-02",
+      "kategori": "AVLOS",
+      "jumlah": 5.46,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 26,
+      "id_index": 52,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-02",
+      "kategori": "TOTAL",
+      "jumlah": 5.46,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 27,
+      "id_index": 53,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-03",
+      "kategori": "AVLOS",
+      "jumlah": 5.71,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 27,
+      "id_index": 54,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-03",
+      "kategori": "TOTAL",
+      "jumlah": 5.71,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 28,
+      "id_index": 55,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-04",
+      "kategori": "AVLOS",
+      "jumlah": 5.61,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 28,
+      "id_index": 56,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-04",
+      "kategori": "TOTAL",
+      "jumlah": 5.61,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 29,
+      "id_index": 57,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-05",
+      "kategori": "AVLOS",
+      "jumlah": 5.58,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 29,
+      "id_index": 58,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-05",
+      "kategori": "TOTAL",
+      "jumlah": 5.58,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 30,
+      "id_index": 59,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-06",
+      "kategori": "AVLOS",
+      "jumlah": 5.86,
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 30,
+      "id_index": 60,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "periode_update": "2026-06",
+      "kategori": "TOTAL",
+      "jumlah": 5.86,
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ],
+  "RSHJ": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2023-01",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 2,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.0,
+      "periode_update": "2023-02",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 3,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2023-03",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 4,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.0,
+      "periode_update": "2023-04",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 5,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2023-05",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 6,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2023-06",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 7,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.7,
+      "periode_update": "2023-07",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 8,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2022-01",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 9,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2022-02",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 10,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2022-03",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 11,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2022-04",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 12,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2022-05",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 13,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2022-06",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 14,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2022-07",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 15,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2022-08",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 16,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.2,
+      "periode_update": "2022-09",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 17,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2022-10",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 18,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2022-11",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 19,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2022-12",
+      "satuan": "HARI",
+      "tahun": 2022
+    },
+    {
+      "id": 20,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.9,
+      "periode_update": "2021-01",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 21,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 5.1,
+      "periode_update": "2021-02",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 22,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.2,
+      "periode_update": "2021-03",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 23,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.0,
+      "periode_update": "2021-04",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 24,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.3,
+      "periode_update": "2021-05",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 25,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.5,
+      "periode_update": "2021-06",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 26,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.3,
+      "periode_update": "2021-07",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 27,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 4.2,
+      "periode_update": "2021-08",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 28,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2021-09",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 29,
+      "id_index": 29,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.7,
+      "periode_update": "2021-10",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 30,
+      "id_index": 30,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2021-11",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 31,
+      "id_index": 31,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2021-12",
+      "satuan": "HARI",
+      "tahun": 2021
+    },
+    {
+      "id": 32,
+      "id_index": 32,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2023-08",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 33,
+      "id_index": 33,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2023-09",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 34,
+      "id_index": 34,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.8,
+      "periode_update": "2023-10",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 35,
+      "id_index": 35,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2023-11",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 36,
+      "id_index": 36,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2023-12",
+      "satuan": "HARI",
+      "tahun": 2023
+    },
+    {
+      "id": 37,
+      "id_index": 37,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2024-01",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 38,
+      "id_index": 38,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.2,
+      "periode_update": "2024-02",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 39,
+      "id_index": 39,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2024-03",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 40,
+      "id_index": 40,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2024-04",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 41,
+      "id_index": 41,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2024-05",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 42,
+      "id_index": 42,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2024-06",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 43,
+      "id_index": 43,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2024-07",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 44,
+      "id_index": 44,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2024-08",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 45,
+      "id_index": 45,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2024-09",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 46,
+      "id_index": 46,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2024-10",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 47,
+      "id_index": 47,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2024-11",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 48,
+      "id_index": 48,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.8,
+      "periode_update": "2024-12",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 49,
+      "id_index": 49,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2025-01",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 50,
+      "id_index": 50,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.11,
+      "periode_update": "2025-02",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 51,
+      "id_index": 51,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.45,
+      "periode_update": "2025-03",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 52,
+      "id_index": 52,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2025-04",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 53,
+      "id_index": 53,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.7,
+      "periode_update": "2025-05",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 54,
+      "id_index": 54,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.7,
+      "periode_update": "2025-06",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 55,
+      "id_index": 55,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2025-07",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 56,
+      "id_index": 56,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2025-08",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 57,
+      "id_index": 57,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2025-09",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 58,
+      "id_index": 58,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2025-10",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 59,
+      "id_index": 59,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.6,
+      "periode_update": "2025-11",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 60,
+      "id_index": 60,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.5,
+      "periode_update": "2025-12",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 61,
+      "id_index": 61,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2026-01",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 62,
+      "id_index": 62,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.2,
+      "periode_update": "2026-02",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 63,
+      "id_index": 63,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.2,
+      "periode_update": "2026-03",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 64,
+      "id_index": 64,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.2,
+      "periode_update": "2026-04",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 65,
+      "id_index": 65,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2026-05",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 66,
+      "id_index": 66,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.2,
+      "periode_update": "2026-06",
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ],
+  "RSPM": [
+    {
+      "id": 1,
+      "id_index": 1,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.7,
+      "periode_update": "2024-01",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 2,
+      "id_index": 2,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.9,
+      "periode_update": "2024-02",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 3,
+      "id_index": 3,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.7,
+      "periode_update": "2024-03",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 4,
+      "id_index": 4,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.6,
+      "periode_update": "2024-04",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 5,
+      "id_index": 5,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.5,
+      "periode_update": "2024-05",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 6,
+      "id_index": 6,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.4,
+      "periode_update": "2024-06",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 7,
+      "id_index": 7,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.4,
+      "periode_update": "2024-07",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 8,
+      "id_index": 8,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.6,
+      "periode_update": "2024-08",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 9,
+      "id_index": 9,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.5,
+      "periode_update": "2024-09",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 10,
+      "id_index": 10,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.7,
+      "periode_update": "2024-10",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 11,
+      "id_index": 11,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.8,
+      "periode_update": "2024-11",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 12,
+      "id_index": 12,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.8,
+      "periode_update": "2024-12",
+      "satuan": "HARI",
+      "tahun": 2024
+    },
+    {
+      "id": 13,
+      "id_index": 13,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 1.6,
+      "periode_update": "2025-01",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 14,
+      "id_index": 14,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.9,
+      "periode_update": "2025-02",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 15,
+      "id_index": 15,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.9,
+      "periode_update": "2025-03",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 16,
+      "id_index": 16,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.3,
+      "periode_update": "2025-04",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 17,
+      "id_index": 17,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.16,
+      "periode_update": "2025-05",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 18,
+      "id_index": 18,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.3,
+      "periode_update": "2025-06",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 19,
+      "id_index": 19,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.0,
+      "periode_update": "2025-07",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 20,
+      "id_index": 20,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.5,
+      "periode_update": "2025-08",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 21,
+      "id_index": 21,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2025-09",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 22,
+      "id_index": 22,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.0,
+      "periode_update": "2025-10",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 23,
+      "id_index": 23,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2025-11",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 24,
+      "id_index": 24,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 2.8,
+      "periode_update": "2025-12",
+      "satuan": "HARI",
+      "tahun": 2025
+    },
+    {
+      "id": 25,
+      "id_index": 25,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2026-01",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 26,
+      "id_index": 26,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2026-02",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 27,
+      "id_index": 27,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 1.2,
+      "periode_update": "2026-03",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 28,
+      "id_index": 28,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.4,
+      "periode_update": "2026-04",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 29,
+      "id_index": 29,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.1,
+      "periode_update": "2026-05",
+      "satuan": "HARI",
+      "tahun": 2026
+    },
+    {
+      "id": 30,
+      "id_index": 30,
+      "kode_provinsi": 35,
+      "nama_provinsi": "JAWA TIMUR",
+      "avlos": 3.0,
+      "periode_update": "2026-06",
+      "satuan": "HARI",
+      "tahun": 2026
+    }
+  ]
+}

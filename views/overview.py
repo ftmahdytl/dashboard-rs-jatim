@@ -713,6 +713,178 @@ if not df_bar.empty:
 
 # ---------------------------------------------------------------------
 # Direktori Profil & Biodata RSUD Pemprov Jawa Timur (Di Bagian Paling Bawah)
+# Seksi Visualisasi AVLOS (Average Length of Stay)
+# ---------------------------------------------------------------------
+st.markdown("")
+st.divider()
+render_section_heading(
+    "📈 Indikator Efisiensi Pelayanan: AVLOS (Average Length of Stay)"
+)
+
+st.info(
+    "ℹ️ **AVLOS (Average Length of Stay)** mengukur rata-rata lama rawat inap pasien. "
+    "Berdasarkan standar Kemenkes RI, nilai AVLOS ideal berkisar antara **3 s.d. 9 hari**. "
+    "Nilai yang terlalu tinggi dapat mengindikasikan efisiensi pelayanan rendah atau perawatan kasus berat, "
+    "sedangkan nilai terlalu rendah dapat mengindikasikan perawatan belum tuntas."
+)
+
+from avlos_api import fetch_avlos_data
+
+df_avlos = fetch_avlos_data()
+
+if not df_avlos.empty:
+    available_hospitals = df_avlos["nama_rs"].unique().tolist()
+    available_years = sorted(df_avlos["tahun"].dropna().unique().astype(int).tolist())
+
+    # State & Callback untuk Filter RSUD agar 'Semua RSUD' tidak muncul bersamaan dengan RS individu
+    if "avlos_rs_select" not in st.session_state:
+        st.session_state["avlos_rs_select"] = ["Semua RSUD"]
+
+    def on_avlos_rs_change():
+        sel = st.session_state.get("avlos_rs_select", [])
+        if not sel:
+            st.session_state["avlos_rs_select"] = ["Semua RSUD"]
+        elif "Semua RSUD" in sel:
+            if sel[-1] == "Semua RSUD":
+                st.session_state["avlos_rs_select"] = ["Semua RSUD"]
+            elif len(sel) > 1:
+                st.session_state["avlos_rs_select"] = [x for x in sel if x != "Semua RSUD"]
+
+    # State & Callback untuk Filter Tahun agar 'Semua Tahun' tidak muncul bersamaan dengan Tahun individu
+    if "avlos_year_select" not in st.session_state:
+        st.session_state["avlos_year_select"] = ["Semua Tahun"]
+
+    def on_avlos_year_change():
+        sel = st.session_state.get("avlos_year_select", [])
+        if not sel:
+            st.session_state["avlos_year_select"] = ["Semua Tahun"]
+        elif "Semua Tahun" in sel:
+            if sel[-1] == "Semua Tahun":
+                st.session_state["avlos_year_select"] = ["Semua Tahun"]
+            elif len(sel) > 1:
+                st.session_state["avlos_year_select"] = [x for x in sel if x != "Semua Tahun"]
+
+    col_av1, col_av2 = st.columns([2.2, 1])
+    with col_av1:
+        st.multiselect(
+            "🏥 Filter Rumah Sakit:",
+            options=["Semua RSUD"] + available_hospitals,
+            key="avlos_rs_select",
+            on_change=on_avlos_rs_change,
+        )
+        selected_rs_raw = st.session_state.get("avlos_rs_select", ["Semua RSUD"])
+        if "Semua RSUD" in selected_rs_raw or not selected_rs_raw:
+            selected_avlos_rs = available_hospitals
+        else:
+            selected_avlos_rs = selected_rs_raw
+
+    with col_av2:
+        st.multiselect(
+            "📅 Filter Tahun Periode:",
+            options=["Semua Tahun"] + [str(y) for y in available_years],
+            key="avlos_year_select",
+            on_change=on_avlos_year_change,
+        )
+        selected_year_raw = st.session_state.get("avlos_year_select", ["Semua Tahun"])
+        if "Semua Tahun" in selected_year_raw or not selected_year_raw:
+            selected_avlos_years = available_years
+        else:
+            selected_avlos_years = [int(y) for y in selected_year_raw if str(y).isdigit()]
+
+    filtered_avlos = df_avlos[
+        (df_avlos["nama_rs"].isin(selected_avlos_rs))
+        & (df_avlos["tahun"].isin(selected_avlos_years))
+    ].copy()
+
+    if not filtered_avlos.empty:
+        avg_v = filtered_avlos["avlos"].mean()
+        max_row = filtered_avlos.loc[filtered_avlos["avlos"].idxmax()]
+        min_row = filtered_avlos.loc[filtered_avlos["avlos"].idxmin()]
+
+        # 3 Kartu Metrik Ukuran Presisi Sama (Equal Height Cards)
+        k_av1, k_av2, k_av3 = st.columns(3)
+        with k_av1:
+            st.markdown(
+                f"""<div style="background:#FFFFFF; border:1px solid #EAE5DD; border-radius:18px; padding:18px 22px; box-shadow:0 4px 18px -2px rgba(15,23,42,0.04); min-height:124px; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                <div style="font-size:0.78rem; font-weight:700; color:#64748B; text-transform:uppercase; letter-spacing:0.05em;">Rata-Rata AVLOS (Terpilih)</div>
+                <div style="font-size:1.95rem; font-weight:800; color:#0F172A; margin:4px 0 6px; letter-spacing:-0.02em;">{avg_v:.2f} Hari</div>
+                </div>
+                <div style="font-size:0.78rem; font-weight:600; color:#2563EB;">📊 Total {len(filtered_avlos)} Data Sampel Terfilter</div>
+                </div>""",
+                unsafe_allow_html=True,
+            )
+        with k_av2:
+            st.markdown(
+                f"""<div style="background:#FFFFFF; border:1px solid #EAE5DD; border-radius:18px; padding:18px 22px; box-shadow:0 4px 18px -2px rgba(15,23,42,0.04); min-height:124px; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                <div style="font-size:0.78rem; font-weight:700; color:#64748B; text-transform:uppercase; letter-spacing:0.05em;">AVLOS Tertinggi</div>
+                <div style="font-size:1.95rem; font-weight:800; color:#0F172A; margin:4px 0 6px; letter-spacing:-0.02em;">{max_row['avlos']} Hari</div>
+                </div>
+                <div style="font-size:0.78rem; font-weight:600; color:#DC2626;">{max_row['nama_rs']} ({max_row['periode_update']})</div>
+                </div>""",
+                unsafe_allow_html=True,
+            )
+        with k_av3:
+            st.markdown(
+                f"""<div style="background:#FFFFFF; border:1px solid #EAE5DD; border-radius:18px; padding:18px 22px; box-shadow:0 4px 18px -2px rgba(15,23,42,0.04); min-height:124px; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                <div style="font-size:0.78rem; font-weight:700; color:#64748B; text-transform:uppercase; letter-spacing:0.05em;">AVLOS Terendah / Efisien</div>
+                <div style="font-size:1.95rem; font-weight:800; color:#0F172A; margin:4px 0 6px; letter-spacing:-0.02em;">{min_row['avlos']} Hari</div>
+                </div>
+                <div style="font-size:0.78rem; font-weight:600; color:#16A34A;">{min_row['nama_rs']} ({min_row['periode_update']})</div>
+                </div>""",
+                unsafe_allow_html=True,
+            )
+
+        line_chart = (
+            alt.Chart(filtered_avlos)
+            .mark_line(
+                point=alt.OverlayMarkDef(size=60, filled=True),
+                strokeWidth=2.8,
+            )
+            .encode(
+                x=alt.X(
+                    "periode_update:N",
+                    title="Periode Update (Bulan)",
+                    axis=alt.Axis(
+                        labelAngle=-45,
+                        labelFontSize=10,
+                        labelFontWeight="bold",
+                    ),
+                ),
+                y=alt.Y(
+                    "avlos:Q",
+                    title="AVLOS (Hari)",
+                    scale=alt.Scale(zero=False),
+                ),
+                color=alt.Color(
+                    "nama_rs:N",
+                    title="Rumah Sakit",
+                    legend=alt.Legend(orient="top", columns=3),
+                ),
+                tooltip=[
+                    alt.Tooltip("nama_rs:N", title="🏥 Rumah Sakit"),
+                    alt.Tooltip("periode_update:N", title="📅 Periode Update"),
+                    alt.Tooltip("avlos:Q", title="⏱️ Rata-Rata Lama Rawat (AVLOS)", format=".2f"),
+                    alt.Tooltip("satuan:N", title="📏 Satuan"),
+                    alt.Tooltip("tahun:N", title="📆 Tahun"),
+                ],
+            )
+            .properties(height=560)
+            .interactive()
+        )
+
+        st.altair_chart(line_chart, use_container_width=True)
+    else:
+        st.warning(
+            "Tidak ada data AVLOS untuk kombinasi Rumah Sakit dan Tahun yang dipilih."
+        )
+else:
+    st.warning("Data AVLOS belum dapat dimuat dari Open Data Jatim.")
+
+# ---------------------------------------------------------------------
+# Direktori Profil & Biodata 14 RSUD Pemprov Jawa Timur (Di Bagian Paling Bawah)
 # ---------------------------------------------------------------------
 st.markdown("")
 st.divider()

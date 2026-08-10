@@ -263,199 +263,320 @@ kpi_html = (
 st.markdown(kpi_html, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------
-# Penataan 2 Kolom Interaktif (Peta Lokasi & Status BOR Ringkas)
+# Seksi 1: Peta Persebaran Geografis (Full Width Layout)
 # ---------------------------------------------------------------------
 st.markdown("")
-col_left, col_right = st.columns([1.18, 0.82], gap="large")
+render_section_heading(
+    "🗺️ Peta Persebaran Geografis RSUD Pemprov Jatim",
+    "Titik lokasi presisi 14 RSUD Pemprov Jatim (Klik lingkaran untuk langsung membuka lokasi resmi Google Maps).",
+)
 
-with col_left:
-    render_section_heading(
-        "🗺️ Peta Persebaran Geografis RSUD Jatim",
-        "Titik lokasi RSUD Pemprov Jatim (Klik lingkaran untuk langsung buka Google Maps).",
+map_rows = []
+for r in summary.itertuples():
+    h_info = HOSPITALS.get(r.nama_rs, {})
+    lat = h_info.get("lat")
+    lon = h_info.get("lon")
+    kota = h_info.get("kota", "Jawa Timur")
+
+    if lat is None or lon is None:
+        continue
+
+    is_cap_only = r.kode_rs in ["RSKH", "RSSG"]
+    is_no_data = r.kode_rs in ["RSHP"]
+
+    if is_no_data:
+        status_str = "Data Belum Tersedia"
+        color_hex = "#94A3B8"
+        kapasitas_str = "-"
+        bor_str = "-"
+        terisi_str = "-"
+        tersedia_str = "-"
+    elif is_cap_only:
+        status_str = "Hanya Data Kapasitas"
+        color_hex = "#94A3B8"
+        kapasitas_str = f"{int(r.kapasitas):,}".replace(",", ".") if r.ada_data else "-"
+        bor_str = "-"
+        terisi_str = "-"
+        tersedia_str = "-"
+    elif r.ada_data:
+        status_str, _ = get_occupancy_status(r.bor)
+        kapasitas_str = f"{int(r.kapasitas):,}".replace(",", ".")
+        bor_str = f"{r.bor:.1f}%"
+        terisi_str = f"{int(r.terisi):,}".replace(",", ".")
+        tersedia_str = f"{int(r.tersedia):,}".replace(",", ".")
+        if r.bor <= 75.0:
+            color_hex = "#22C55E"
+        elif r.bor <= 90.0:
+            color_hex = "#EAB308"
+        else:
+            color_hex = "#EF4444"
+    else:
+        status_str = "Data Belum Tersedia"
+        color_hex = "#94A3B8"
+        kapasitas_str = "-"
+        bor_str = "-"
+        terisi_str = "-"
+        tersedia_str = "-"
+
+    query_q = urllib.parse.quote(str(r.nama_rs))
+    gmaps_url = f"https://www.google.com/maps/search/?api=1&query={query_q}"
+
+    map_rows.append(
+        {
+            "nama_rs": r.nama_rs,
+            "kode_rs": r.kode_rs,
+            "kota": kota,
+            "lat": lat,
+            "lon": lon,
+            "status": status_str,
+            "kapasitas_text": kapasitas_str,
+            "terisi_text": terisi_str,
+            "tersedia_text": tersedia_str,
+            "bor_text": bor_str,
+            "color_hex": color_hex,
+            "gmaps_url": gmaps_url,
+        }
     )
 
-    map_rows = []
-    for r in summary.itertuples():
-        h_info = HOSPITALS.get(r.nama_rs, {})
-        lat = h_info.get("lat")
-        lon = h_info.get("lon")
-        kota = h_info.get("kota", "Jawa Timur")
+if map_rows:
+    map_json = json.dumps(map_rows)
+    leaflet_html = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <style>
+            html, body, #map {{ width: 100%; height: 100%; margin: 0; padding: 0; background: #f8fafc; border-radius: 16px; }}
+            .leaflet-tooltip {{ font-family: system-ui, -apple-system, sans-serif; font-size: 12px; border-radius: 8px; padding: 8px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: none; }}
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            var map = L.map('map', {{ zoomControl: true }}).setView([-7.6, 112.5], 8);
+            L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png', {{
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
+            }}).addTo(map);
 
-        if lat is None or lon is None:
-            continue
-
-        is_cap_only = r.kode_rs in ["RSKH", "RSSG"]
-        is_no_data = r.kode_rs in ["RSHP"]
-
-        if is_no_data:
-            status_str = "Data Belum Tersedia"
-            color_hex = "#94A3B8"
-            kapasitas_str = "-"
-            bor_str = "-"
-            terisi_str = "-"
-            tersedia_str = "-"
-        elif is_cap_only:
-            status_str = "Hanya Data Kapasitas"
-            color_hex = "#94A3B8"
-            kapasitas_str = f"{int(r.kapasitas):,}".replace(",", ".") if r.ada_data else "-"
-            bor_str = "-"
-            terisi_str = "-"
-            tersedia_str = "-"
-        elif r.ada_data:
-            status_str, _ = get_occupancy_status(r.bor)
-            kapasitas_str = f"{int(r.kapasitas):,}".replace(",", ".")
-            bor_str = f"{r.bor:.1f}%"
-            terisi_str = f"{int(r.terisi):,}".replace(",", ".")
-            tersedia_str = f"{int(r.tersedia):,}".replace(",", ".")
-            if r.bor <= 75.0:
-                color_hex = "#22C55E"
-            elif r.bor <= 90.0:
-                color_hex = "#EAB308"
-            else:
-                color_hex = "#EF4444"
-        else:
-            status_str = "Data Belum Tersedia"
-            color_hex = "#94A3B8"
-            kapasitas_str = "-"
-            bor_str = "-"
-            terisi_str = "-"
-            tersedia_str = "-"
-
-        query_q = urllib.parse.quote(str(r.nama_rs))
-        gmaps_url = f"https://www.google.com/maps/search/?api=1&query={query_q}"
-
-        map_rows.append(
-            {
-                "nama_rs": r.nama_rs,
-                "kode_rs": r.kode_rs,
-                "kota": kota,
-                "lat": lat,
-                "lon": lon,
-                "status": status_str,
-                "kapasitas_text": kapasitas_str,
-                "terisi_text": terisi_str,
-                "tersedia_text": tersedia_str,
-                "bor_text": bor_str,
-                "color_hex": color_hex,
-                "gmaps_url": gmaps_url,
-            }
-        )
-
-    if map_rows:
-        map_json = json.dumps(map_rows)
-        leaflet_html = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8" />
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-            <style>
-                html, body, #map {{ width: 100%; height: 100%; margin: 0; padding: 0; background: #f8fafc; border-radius: 12px; }}
-                .leaflet-tooltip {{ font-family: system-ui, -apple-system, sans-serif; font-size: 12px; border-radius: 8px; padding: 8px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: none; }}
-            </style>
-        </head>
-        <body>
-            <div id="map"></div>
-            <script>
-                var map = L.map('map', {{ zoomControl: true }}).setView([-7.6, 112.5], 7);
-                L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png', {{
-                    maxZoom: 18,
-                    attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
+            var data = {map_json};
+            data.forEach(function(h) {{
+                var marker = L.circleMarker([h.lat, h.lon], {{
+                    color: '#ffffff',
+                    fillColor: h.color_hex,
+                    fillOpacity: 0.92,
+                    radius: 10,
+                    weight: 2
                 }}).addTo(map);
 
-                var data = {map_json};
-                data.forEach(function(h) {{
-                    var marker = L.circleMarker([h.lat, h.lon], {{
-                        color: '#ffffff',
-                        fillColor: h.color_hex,
-                        fillOpacity: 0.92,
-                        radius: 9,
-                        weight: 2
-                    }}).addTo(map);
+                var tooltipHtml = "<b>" + h.nama_rs + " (" + h.kode_rs + ")</b><br/>" +
+                    "📍 " + h.kota + "<br/>" +
+                    "🌐 Lat " + h.lat + ", Lon " + h.lon + "<br/>" +
+                    "Status: <b>" + h.status + "</b><br/>" +
+                    "Kapasitas: <b>" + h.kapasitas_text + "</b> | Terisi: <b>" + h.terisi_text + "</b> | Tersedia: <b>" + h.tersedia_text + "</b><br/>" +
+                    "BOR: <b>" + h.bor_text + "</b><br/>" +
+                    "<span style='color:#2563EB; font-weight:bold; margin-top:4px; display:inline-block;'>👉 Klik lingkaran untuk buka Google Maps</span>";
 
-                    var tooltipHtml = "<b>" + h.nama_rs + " (" + h.kode_rs + ")</b><br/>" +
-                        "📍 " + h.kota + "<br/>" +
-                        "🌐 Lat " + h.lat + ", Lon " + h.lon + "<br/>" +
-                        "Status: <b>" + h.status + "</b><br/>" +
-                        "Kapasitas: <b>" + h.kapasitas_text + "</b> | Terisi: <b>" + h.terisi_text + "</b> | Tersedia: <b>" + h.tersedia_text + "</b><br/>" +
-                        "BOR: <b>" + h.bor_text + "</b><br/>" +
-                        "<span style='color:#2563EB; font-weight:bold; margin-top:4px; display:inline-block;'>👉 Klik lingkaran untuk buka Google Maps</span>";
+                marker.bindTooltip(tooltipHtml, {{ sticky: true }});
 
-                    marker.bindTooltip(tooltipHtml, {{ sticky: true }});
-
-                    marker.on('click', function() {{
-                        window.open(h.gmaps_url, '_blank');
-                    }});
+                marker.on('click', function() {{
+                    window.open(h.gmaps_url, '_blank');
                 }});
-            </script>
-        </body>
-        </html>
-        """
-        components.html(leaflet_html, height=430)
+            }});
+        </script>
+    </body>
+    </html>
+    """
+    components.html(leaflet_html, height=450)
 
-with col_right:
-    render_section_heading(
-        "📊 Status Keterisian Tempat Tidur (BOR)",
-        "Ringkasan persentase keterisian kamar tiap rumah sakit.",
-    )
+# ---------------------------------------------------------------------
+# Seksi 2: Status BOR 1 Baris Horizontal Carousel dengan Panah ❮ ❯
+# ---------------------------------------------------------------------
+st.markdown("")
+st.divider()
+render_section_heading(
+    "📊 Status Keterisian Tempat Tidur (BOR) 14 RSUD Pemprov Jatim",
+    "Ringkasan persentase keterisian kamar (Klik / Geser tombol panah ❮ ❯ untuk melihat RSUD lainnya).",
+)
 
-    regular_rs = summary[~summary["kode_rs"].isin(["RSKH", "RSSG", "RSHP"])].sort_values(
-        ["ada_data", "bor"], ascending=[False, False]
-    )
-    cap_only_rs = summary[summary["kode_rs"].isin(["RSKH", "RSSG", "RSHP"])].sort_values(
-        ["ada_data"], ascending=[False]
-    )
-    gauge_summary = pd.concat([regular_rs, cap_only_rs], ignore_index=True)
+regular_rs = summary[~summary["kode_rs"].isin(["RSKH", "RSSG", "RSHP"])].sort_values(
+    ["ada_data", "bor"], ascending=[False, False]
+)
+cap_only_rs = summary[summary["kode_rs"].isin(["RSKH", "RSSG", "RSHP"])].sort_values(
+    ["ada_data"], ascending=[False]
+)
+gauge_summary = pd.concat([regular_rs, cap_only_rs], ignore_index=True)
 
-    gauge_html = ['<div class="gauge-grid">']
-    for row in gauge_summary.itertuples():
-        is_cap_only = row.kode_rs in ["RSKH", "RSSG"]
-        is_rshp = row.kode_rs == "RSHP"
-        if is_rshp:
-            pct = None
-            sub_label = "Data Belum Tersedia"
-        elif is_cap_only:
-            pct = None
-            sub_label = (
-                f"{int(row.kapasitas):,} bed (Kapasitas)".replace(",", ".")
-                if row.ada_data
-                else "Belum ada data"
-            )
-        else:
-            pct = row.bor
-            sub_label = (
-                f"{int(row.terisi)}/{int(row.kapasitas)} bed terisi"
-                if row.ada_data
-                else "Belum ada data"
-            )
-
-        gauge_html.append(
-            render_gauge_ring(
-                code=row.kode_rs,
-                name=str(row.nama_rs),
-                percentage=pct,
-                sub_label=sub_label,
-                status_fn=get_occupancy_status,
-                is_capacity_only=(is_cap_only or is_rshp),
-            )
+gauge_cards_html = []
+for row in gauge_summary.itertuples():
+    is_cap_only = row.kode_rs in ["RSKH", "RSSG"]
+    is_rshp = row.kode_rs == "RSHP"
+    if is_rshp:
+        pct = None
+        sub_label = "Data Belum Tersedia"
+    elif is_cap_only:
+        pct = None
+        sub_label = (
+            f"{int(row.kapasitas):,} bed (Kapasitas)".replace(",", ".")
+            if row.ada_data
+            else "Belum ada data"
         )
-    gauge_html.append("</div>")
-    st.markdown("".join(gauge_html), unsafe_allow_html=True)
+    else:
+        pct = row.bor
+        sub_label = (
+            f"{int(row.terisi)}/{int(row.kapasitas)} bed terisi"
+            if row.ada_data
+            else "Belum ada data"
+        )
 
-    legend_html = (
-        '<div class="legend-row" style="margin-top:6px;">'
-        '<span><span class="legend-dot" style="background:#16a34a;"></span>'
-        "Aman (&le;75%)</span>"
-        '<span><span class="legend-dot" style="background:#f59e0b;"></span>'
-        "Waspada (75-90%)</span>"
-        '<span><span class="legend-dot" style="background:#dc2626;"></span>'
-        "Kritis (&gt;90%)</span>"
-        '<span><span class="legend-dot" style="background:#94a3b8;"></span>'
-        "Kapasitas / Belum Ada Data</span>"
-        "</div>"
+    ring_markup = render_gauge_ring(
+        code=row.kode_rs,
+        name=str(row.nama_rs),
+        percentage=pct,
+        sub_label=sub_label,
+        status_fn=get_occupancy_status,
+        is_capacity_only=(is_cap_only or is_rshp),
     )
-    st.markdown(legend_html, unsafe_allow_html=True)
+    gauge_cards_html.append(f'<div class="gauge-row-card">{ring_markup}</div>')
+
+all_rings = "".join(gauge_cards_html)
+
+carousel_html = f"""
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+    body {{ margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; background: transparent; overflow: hidden; }}
+    .gauge-row-container {{
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        background: rgba(255,255,255,.96);
+        border: 1px solid #dbe7ff;
+        border-radius: 20px;
+        padding: 16px 20px;
+        box-shadow: 0 8px 24px rgba(30,64,175,.06);
+        scrollbar-width: thin;
+        scrollbar-color: #93b4f5 #eef2fb;
+        -webkit-overflow-scrolling: touch;
+    }}
+    .gauge-row-container::-webkit-scrollbar {{ height: 7px; }}
+    .gauge-row-container::-webkit-scrollbar-track {{ background: #eef2fb; border-radius: 999px; }}
+    .gauge-row-container::-webkit-scrollbar-thumb {{ background: #93b4f5; border-radius: 999px; }}
+
+    .gauge-row-card {{
+        flex: 0 0 210px;
+        min-width: 210px;
+        text-align: center;
+        scroll-snap-align: start;
+        background: #ffffff;
+        border: 1px solid #eef2f6;
+        border-radius: 16px;
+        padding: 14px 10px;
+        box-shadow: 0 2px 8px rgba(15,23,42,0.03);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }}
+    .gauge-row-card:hover {{
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(30,64,175,0.08);
+    }}
+    .gauge-card {{
+        text-align: center;
+    }}
+    .gauge {{
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        position: relative;
+    }}
+    .gauge::before {{
+        content: "";
+        position: absolute;
+        inset: 10px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px #eef2f7;
+    }}
+    .gauge-value {{
+        position: relative;
+        z-index: 1;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #0f172a;
+    }}
+    .gauge-name {{
+        font-size: 0.85rem;
+        font-weight: 750;
+        color: #1e293b;
+        margin: 0 0 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }}
+    .gauge-sub {{
+        font-size: 0.76rem;
+        color: #64748b;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }}
+    .nav-btn {{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 50;
+        background: #FFFFFF;
+        border: 1px solid #CBD5E1;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 6px 18px rgba(15,23,42,0.16);
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #1E293B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }}
+    .nav-btn:hover {{
+        background: #F8FAFC;
+        border-color: #94A3B8;
+        transform: translateY(-50%) scale(1.06);
+    }}
+</style>
+</head>
+<body>
+<div style="position: relative; width: 100%; padding: 4px 6px;">
+    <button class="nav-btn" style="left: 2px;" onclick="document.getElementById('bor-gauge-scroll').scrollBy({{left: -400, behavior: 'smooth'}})">❮</button>
+    <div id="bor-gauge-scroll" class="gauge-row-container">
+        {all_rings}
+    </div>
+    <button class="nav-btn" style="right: 2px;" onclick="document.getElementById('bor-gauge-scroll').scrollBy({{left: 400, behavior: 'smooth'}})">❯</button>
+</div>
+</body>
+</html>
+"""
+components.html(carousel_html, height=265)
+
+legend_html = (
+    '<div class="legend-row" style="margin-top:6px; justify-content: flex-end;">'
+    '<span><span class="legend-dot" style="background:#16a34a;"></span>Aman (&le;75%)</span>'
+    '<span><span class="legend-dot" style="background:#f59e0b;"></span>Waspada (75-90%)</span>'
+    '<span><span class="legend-dot" style="background:#dc2626;"></span>Kritis (&gt;90%)</span>'
+    '<span><span class="legend-dot" style="background:#94a3b8;"></span>Kapasitas / Belum Ada Data</span>'
+    "</div>"
+)
+st.markdown(legend_html, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------
 # Ketersediaan Tempat Tidur menurut Kelas (Pills & Distribution)
@@ -733,6 +854,8 @@ from avlos_api import fetch_avlos_data
 df_avlos = fetch_avlos_data()
 
 if not df_avlos.empty:
+    # Filter interval mulai dari tahun 2024 ke atas (di mana data dari seluruh 9 RSUD sudah lengkap)
+    df_avlos = df_avlos[df_avlos["tahun"] >= 2024].copy()
     available_hospitals = df_avlos["nama_rs"].unique().tolist()
     available_years = sorted(df_avlos["tahun"].dropna().unique().astype(int).tolist())
 

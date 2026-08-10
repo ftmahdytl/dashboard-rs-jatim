@@ -225,6 +225,42 @@ div[data-testid="stDataFrame"] {
     border-radius: 999px;
 }
 .gauge-grid::-webkit-scrollbar-thumb:hover {background: #6d99ee;}
+
+.gauge-row-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    background: rgba(255,255,255,.96);
+    border: 1px solid #dbe7ff;
+    border-radius: 20px;
+    padding: 18px 20px;
+    box-shadow: 0 8px 24px rgba(30,64,175,.06);
+    margin-bottom: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: #93b4f5 #eef2fb;
+    -webkit-overflow-scrolling: touch;
+}
+.gauge-row-container::-webkit-scrollbar { height: 7px; }
+.gauge-row-container::-webkit-scrollbar-track { background: #eef2fb; border-radius: 999px; }
+.gauge-row-container::-webkit-scrollbar-thumb { background: #93b4f5; border-radius: 999px; }
+
+.gauge-row-card {
+    flex: 0 0 210px;
+    min-width: 210px;
+    text-align: center;
+    scroll-snap-align: start;
+    background: #ffffff;
+    border: 1px solid #eef2f6;
+    border-radius: 16px;
+    padding: 16px 10px;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.gauge-row-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(30,64,175,0.08);
+}
 .gauge-card {
     scroll-snap-align: start;
     text-align: center;

@@ -90,7 +90,7 @@ st.markdown(
 # ---------------------------------------------------------------------
 st.markdown("")
 render_section_heading(
-    "🏥 Direktori Profil & Biodata RSUD Pemprov Jatim",
+    "Direktori Profil & Biodata RSUD Pemprov Jatim",
     "Informasi lengkap kelas layanan, alamat presisi, kontak IGD 24 jam, dan link website resmi Rumah Sakit Pemerintah Provinsi Jawa Timur.",
 )
 

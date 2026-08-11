@@ -49,6 +49,7 @@ with st.container(border=True):
     selected_scraper = hospital["scraper"]
 
     with toggle_col:
+        st.markdown("<div style='height: 1.65rem;'></div>", unsafe_allow_html=True)
         auto_scrape = st.toggle(
             "Scraping otomatis",
             value=True,
@@ -57,7 +58,7 @@ with st.container(border=True):
 
     with interval_col:
         interval_minutes = st.selectbox(
-            "Interval",
+            "Interval update",
             options=[1, 5, 10, 15, 30],
             index=1,
             format_func=lambda value: f"{value} menit",
@@ -65,7 +66,7 @@ with st.container(border=True):
         )
 
     with refresh_col:
-        st.markdown("<div style='height:1.8rem'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='height: 1.8rem;'></div>", unsafe_allow_html=True)
         manual_refresh = st.button(
             "Ambil data sekarang",
             type="primary",
@@ -73,7 +74,7 @@ with st.container(border=True):
         )
 
     with link_col:
-        st.markdown("<div style='height:1.8rem'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='height: 1.8rem;'></div>", unsafe_allow_html=True)
         st.link_button(
             "Sumber data",
             selected_url,
@@ -207,12 +208,36 @@ else:
     occupancy_str = f"{occupancy:.1f}%"
     total_rooms_str = f"{total_rooms:,}".replace(",", ".")
 
-col1, col2, col3, col4, col5 = st.columns(5)
-col1.metric("Total kapasitas", cap_str)
-col2.metric("Bed terisi", occ_str)
-col3.metric("Bed tersedia", avail_str)
-col4.metric("Tingkat keterisian", occupancy_str)
-col5.metric("Ruang–kelas tercatat", total_rooms_str)
+kpi_cards_html = (
+    '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px;">'
+    '<div style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); border: 1px solid #BFDBFE; border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(30, 64, 175, 0.08); transition: transform 0.2s ease;">'
+    '<div style="font-size: 0.8rem; font-weight: 750; color: #1E40AF; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Total Kapasitas</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #0F2F6B; line-height: 1.1;">{cap_str}</div>'
+    '<div style="margin-top: 8px; font-size: 0.75rem; font-weight: 650; color: #3B82F6;">Tempat Tidur RS</div>'
+    '</div>'
+    '<div style="background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); border: 1px solid #FDE68A; border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(180, 83, 9, 0.08); transition: transform 0.2s ease;">'
+    '<div style="font-size: 0.8rem; font-weight: 750; color: #92400E; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Bed Terisi</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #78350F; line-height: 1.1;">{occ_str}</div>'
+    '<div style="margin-top: 8px; font-size: 0.75rem; font-weight: 650; color: #D97706;">Sedang Digunakan</div>'
+    '</div>'
+    '<div style="background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); border: 1px solid #A7F3D0; border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.08); transition: transform 0.2s ease;">'
+    '<div style="font-size: 0.8rem; font-weight: 750; color: #065F46; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Bed Tersedia</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #047857; line-height: 1.1;">{avail_str}</div>'
+    '<div style="margin-top: 8px; font-size: 0.75rem; font-weight: 650; color: #059669;">Siap Pakai Pasien</div>'
+    '</div>'
+    '<div style="background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%); border: 1px solid #DDD6FE; border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(109, 40, 217, 0.08); transition: transform 0.2s ease;">'
+    '<div style="font-size: 0.8rem; font-weight: 750; color: #5B21B6; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Tingkat Keterisian</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #4C1D95; line-height: 1.1;">{occupancy_str}</div>'
+    '<div style="margin-top: 8px; font-size: 0.75rem; font-weight: 650; color: #7C3AED;">Bed Occupancy Rate</div>'
+    '</div>'
+    '<div style="background: linear-gradient(135deg, #ECFEFF 0%, #CFFAFE 100%); border: 1px solid #A5F3FC; border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(14, 116, 144, 0.08); transition: transform 0.2s ease;">'
+    '<div style="font-size: 0.8rem; font-weight: 750; color: #0E7490; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Ruang–Kelas</div>'
+    f'<div style="font-size: 1.95rem; font-weight: 850; color: #083344; line-height: 1.1;">{total_rooms_str}</div>'
+    '<div style="margin-top: 8px; font-size: 0.75rem; font-weight: 650; color: #0891B2;">Unit Kamar Tercatat</div>'
+    '</div>'
+    '</div>'
+)
+st.markdown(kpi_cards_html, unsafe_allow_html=True)
 
 if total_not_ready or (is_soedono and (total_renovation or total_sisrute)):
     status_parts = []

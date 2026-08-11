@@ -779,7 +779,7 @@ def render_bed_class_distribution(
     if rows:
         top = rows[0]
         header += (
-            '<div class="dist-trophy">🏆 Terbanyak: '
+            '<div class="dist-trophy">Terbanyak: '
             f'<b>{top["nama_rs"]}</b> · {top["value"]} bed</div>'
         )
     header += "</div>"

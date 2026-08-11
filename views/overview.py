@@ -267,7 +267,7 @@ st.markdown(kpi_html, unsafe_allow_html=True)
 # ---------------------------------------------------------------------
 st.markdown("")
 render_section_heading(
-    "🗺️ Peta Persebaran Geografis RSUD Pemprov Jatim",
+    "Peta Persebaran Geografis RSUD Pemprov Jatim",
     "Titik lokasi presisi 14 RSUD Pemprov Jatim (Klik lingkaran untuk langsung membuka lokasi resmi Google Maps).",
 )
 
@@ -397,7 +397,7 @@ if map_rows:
 st.markdown("")
 st.divider()
 render_section_heading(
-    "📊 Status Keterisian Tempat Tidur (BOR) 14 RSUD Pemprov Jatim",
+    "Status Keterisian Tempat Tidur (BOR) 14 RSUD Pemprov Jatim",
     "Ringkasan persentase keterisian kamar (Klik / Geser tombol panah ❮ ❯ untuk melihat RSUD lainnya).",
 )
 
@@ -611,7 +611,7 @@ if METRIC_FILTER_KEY not in st.session_state:
     st.session_state[METRIC_FILTER_KEY] = "Tersedia"
 
 render_section_heading(
-    "🏷️ Filter Kelas Tempat Tidur",
+    "Filter Kelas Tempat Tidur",
     "Pilih kelas untuk membandingkan jumlah bed di tiap RS pada kartu di bawah.",
 )
 
@@ -733,7 +733,7 @@ render_bed_class_distribution(
 # ---------------------------------------------------------------------
 st.markdown("")
 render_section_heading(
-    "📊 Perbandingan Kapasitas, Bed Terisi, dan Bed Tersedia per RSUD",
+    "Perbandingan Kapasitas, Bed Terisi, dan Bed Tersedia per RSUD",
 )
 
 barchart_data: list[dict[str, object]] = []
@@ -839,15 +839,46 @@ if not df_bar.empty:
 st.markdown("")
 st.divider()
 render_section_heading(
-    "📈 Indikator Efisiensi Pelayanan: AVLOS (Average Length of Stay)"
+    "Indikator Efisiensi Pelayanan: AVLOS (Average Length of Stay)"
 )
 
 st.info(
-    "ℹ️ **AVLOS (Average Length of Stay)** mengukur rata-rata lama rawat inap pasien. "
+    "**AVLOS (Average Length of Stay)** mengukur rata-rata lama rawat inap pasien. "
     "Berdasarkan standar Kemenkes RI, nilai AVLOS ideal berkisar antara **3 s.d. 9 hari**. "
     "Nilai yang terlalu tinggi dapat mengindikasikan efisiensi pelayanan rendah atau perawatan kasus berat, "
     "sedangkan nilai terlalu rendah dapat mengindikasikan perawatan belum tuntas."
 )
+
+MONTH_MAP_ID = {
+    "01": "Bulan Januari", "1": "Bulan Januari",
+    "02": "Bulan Februari", "2": "Bulan Februari",
+    "03": "Bulan Maret", "3": "Bulan Maret",
+    "04": "Bulan April", "4": "Bulan April",
+    "05": "Bulan Mei", "5": "Bulan Mei",
+    "06": "Bulan Juni", "6": "Bulan Juni",
+    "07": "Bulan Juli", "7": "Bulan Juli",
+    "08": "Bulan Agustus", "8": "Bulan Agustus",
+    "09": "Bulan September", "9": "Bulan September",
+    "10": "Bulan Oktober",
+    "11": "Bulan November",
+    "12": "Bulan Desember"
+}
+
+def format_periode_detail(val) -> str:
+    s = str(val).strip()
+    if not s or s == "nan":
+        return "-"
+    if "-" in s:
+        parts = s.split("-")
+        if len(parts) == 2:
+            year, m = parts[0], parts[1]
+            if m in MONTH_MAP_ID:
+                return f"{MONTH_MAP_ID[m]} {year}"
+            elif m.upper() == "S1":
+                return f"Semester 1 {year}"
+            elif m.upper() == "S2":
+                return f"Semester 2 {year}"
+    return s
 
 from avlos_api import fetch_avlos_data
 
@@ -890,7 +921,7 @@ if not df_avlos.empty:
     col_av1, col_av2 = st.columns([2.2, 1])
     with col_av1:
         st.multiselect(
-            "🏥 Filter Rumah Sakit:",
+            "Filter Rumah Sakit:",
             options=["Semua RSUD"] + available_hospitals,
             key="avlos_rs_select",
             on_change=on_avlos_rs_change,
@@ -903,7 +934,7 @@ if not df_avlos.empty:
 
     with col_av2:
         st.multiselect(
-            "📅 Filter Tahun Periode:",
+            "Filter Tahun Periode:",
             options=["Semua Tahun"] + [str(y) for y in available_years],
             key="avlos_year_select",
             on_change=on_avlos_year_change,
@@ -920,6 +951,7 @@ if not df_avlos.empty:
     ].copy()
 
     if not filtered_avlos.empty:
+        filtered_avlos["periode_detail"] = filtered_avlos["periode_update"].apply(format_periode_detail)
         avg_v = filtered_avlos["avlos"].mean()
         max_row = filtered_avlos.loc[filtered_avlos["avlos"].idxmax()]
         min_row = filtered_avlos.loc[filtered_avlos["avlos"].idxmin()]
@@ -933,7 +965,7 @@ if not df_avlos.empty:
                 <div style="font-size:0.78rem; font-weight:700; color:#64748B; text-transform:uppercase; letter-spacing:0.05em;">Rata-Rata AVLOS (Terpilih)</div>
                 <div style="font-size:1.95rem; font-weight:800; color:#0F172A; margin:4px 0 6px; letter-spacing:-0.02em;">{avg_v:.2f} Hari</div>
                 </div>
-                <div style="font-size:0.78rem; font-weight:600; color:#2563EB;">📊 Total {len(filtered_avlos)} Data Sampel Terfilter</div>
+                <div style="font-size:0.78rem; font-weight:600; color:#2563EB;">Total {len(filtered_avlos)} Data Sampel Terfilter</div>
                 </div>""",
                 unsafe_allow_html=True,
             )
@@ -944,7 +976,7 @@ if not df_avlos.empty:
                 <div style="font-size:0.78rem; font-weight:700; color:#64748B; text-transform:uppercase; letter-spacing:0.05em;">AVLOS Tertinggi</div>
                 <div style="font-size:1.95rem; font-weight:800; color:#0F172A; margin:4px 0 6px; letter-spacing:-0.02em;">{max_row['avlos']} Hari</div>
                 </div>
-                <div style="font-size:0.78rem; font-weight:600; color:#DC2626;">{max_row['nama_rs']} ({max_row['periode_update']})</div>
+                <div style="font-size:0.78rem; font-weight:600; color:#DC2626;">{max_row['nama_rs']} ({format_periode_detail(max_row['periode_update'])})</div>
                 </div>""",
                 unsafe_allow_html=True,
             )
@@ -955,7 +987,7 @@ if not df_avlos.empty:
                 <div style="font-size:0.78rem; font-weight:700; color:#64748B; text-transform:uppercase; letter-spacing:0.05em;">AVLOS Terendah / Efisien</div>
                 <div style="font-size:1.95rem; font-weight:800; color:#0F172A; margin:4px 0 6px; letter-spacing:-0.02em;">{min_row['avlos']} Hari</div>
                 </div>
-                <div style="font-size:0.78rem; font-weight:600; color:#16A34A;">{min_row['nama_rs']} ({min_row['periode_update']})</div>
+                <div style="font-size:0.78rem; font-weight:600; color:#16A34A;">{min_row['nama_rs']} ({format_periode_detail(min_row['periode_update'])})</div>
                 </div>""",
                 unsafe_allow_html=True,
             )
@@ -969,7 +1001,7 @@ if not df_avlos.empty:
             .encode(
                 x=alt.X(
                     "periode_update:N",
-                    title="Periode Update (Bulan)",
+                    title="Periode Update",
                     axis=alt.Axis(
                         labelAngle=-45,
                         labelFontSize=10,
@@ -987,11 +1019,11 @@ if not df_avlos.empty:
                     legend=alt.Legend(orient="top", columns=3),
                 ),
                 tooltip=[
-                    alt.Tooltip("nama_rs:N", title="🏥 Rumah Sakit"),
-                    alt.Tooltip("periode_update:N", title="📅 Periode Update"),
-                    alt.Tooltip("avlos:Q", title="⏱️ Rata-Rata Lama Rawat (AVLOS)", format=".2f"),
-                    alt.Tooltip("satuan:N", title="📏 Satuan"),
-                    alt.Tooltip("tahun:N", title="📆 Tahun"),
+                    alt.Tooltip("nama_rs:N", title="Rumah Sakit"),
+                    alt.Tooltip("periode_detail:N", title="Periode Update"),
+                    alt.Tooltip("avlos:Q", title="Rata-Rata Lama Rawat (AVLOS)", format=".2f"),
+                    alt.Tooltip("satuan:N", title="Satuan"),
+                    alt.Tooltip("tahun:N", title="Tahun"),
                 ],
             )
             .properties(height=560)
@@ -1012,7 +1044,7 @@ else:
 st.markdown("")
 st.divider()
 render_section_heading(
-    "🏥 Direktori Profil & Biodata RSUD Pemprov Jatim",
+    "Direktori Profil & Biodata RSUD Pemprov Jatim",
     "Informasi lengkap kelas layanan, alamat presisi, kontak IGD 24 jam, dan link website resmi Rumah Sakit Pemerintah Provinsi Jawa Timur.",
 )
 

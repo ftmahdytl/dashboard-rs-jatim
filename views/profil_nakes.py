@@ -494,12 +494,12 @@ render_insights(
     [
         (
             f"{leader['nama_rs']} memiliki "
-            "total tertinggi: "
+            "total tenaga kesehatan tertinggi: "
             f"{fmt_number(float(leader['jumlah']))} "
             "orang."
         ),
         (
-            "Komposisi terbesar adalah "
+            "Komposisi profesi tenaga kesehatan terbanyak adalah "
             f"{largest_label.lower()}: "
             f"{fmt_number(float(group_totals.max()))} "
             "orang."
@@ -507,7 +507,7 @@ render_insights(
         rs_message,
         growth_message,
     ],
-    title="✦ Ringkasan Eksekutif",
+    title="Ringkasan Eksekutif",
 )
 
 

@@ -577,19 +577,18 @@ def get_occupancy_status(
 ) -> tuple[str, str]:
     """Mengembalikan (label, warna) berdasarkan BOR (persentase keterisian).
 
-    Arah ambang batasnya kebalikan dari ``get_availability_status``:
-    di sini semakin TINGGI persentase (semakin penuh bed-nya), semakin
-    kritis statusnya. Ambang mengikuti indikator BOR ideal Kemenkes
-    (60-85%): di atas 90% dianggap penuh/kritis, 75-90% mulai padat
-    (waspada), di bawah itu masih aman.
+    Mengikuti standar indikator BOR ideal Kemenkes RI (60-85%):
+    - > 85% : Kritis / Penuh (Melebihi ambang ideal)
+    - 60 - 85% : Ideal / Aman (Standar Optimal Kemenkes)
+    - < 60% : Rendah / Kurang (Penggunaan bed belum optimal)
     """
     if percentage is None or pd.isna(percentage):
         return STATUS_TANPA_DATA
-    if percentage > 90:
-        return STATUS_KRITIS
-    if percentage > 75:
-        return STATUS_WASPADA
-    return STATUS_AMAN
+    if percentage > 85.0:
+        return ("Kritis / Penuh (>85%)", "#dc2626")
+    if percentage >= 60.0:
+        return ("Ideal / Aman (60-85%)", "#16a34a")
+    return ("Rendah / Kurang (<60%)", "#3b82f6")
 
 
 def render_insight_card(

@@ -23,7 +23,6 @@ from theme import (
 
 inject_base_style()
 
-@st.cache_data
 def get_base64_logo(file_path: str) -> str | None:
     if file_path and os.path.exists(file_path):
         ext = file_path.split(".")[-1].lower()
@@ -40,48 +39,52 @@ pemprov_path = "assets/logos/logo_pemprov.png" if os.path.exists("assets/logos/l
 kominfo_path = "assets/logos/logo_kominfo.png" if os.path.exists("assets/logos/logo_kominfo.png") else ("assets/logos/logo_kominfo.jpg" if os.path.exists("assets/logos/logo_kominfo.jpg") else None)
 unair_path = "assets/logos/logo_unair.png" if os.path.exists("assets/logos/logo_unair.png") else ("assets/logos/logo_unair.jpg" if os.path.exists("assets/logos/logo_unair.jpg") else None)
 
+ftmm_path = "assets/logos/logo_ftmm.png" if os.path.exists("assets/logos/logo_ftmm.png") else ("assets/logos/logo_ftmm.jpg" if os.path.exists("assets/logos/logo_ftmm.jpg") else None)
+
 # Executive Hero Banner Container (dari Beranda)
 pemprov_b64 = get_base64_logo(pemprov_path)
 kominfo_b64 = get_base64_logo(kominfo_path)
 unair_b64 = get_base64_logo(unair_path)
+ftmm_b64 = get_base64_logo(ftmm_path)
 
 pemprov_img = f'<img src="{pemprov_b64}" style="height:44px; max-width:65px; object-fit:contain;" alt="Pemprov Jatim" />' if pemprov_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">PEMPROV JATIM</span>'
 kominfo_img = f'<img src="{kominfo_b64}" style="height:40px; max-width:65px; object-fit:contain;" alt="Kominfo" />' if kominfo_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">DISKOMINFO</span>'
 unair_img = f'<img src="{unair_b64}" style="height:40px; max-width:65px; object-fit:contain;" alt="UNAIR" />' if unair_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">UNAIR</span>'
+ftmm_img = f'<img src="{ftmm_b64}" style="height:36px; max-width:140px; object-fit:contain;" alt="FTMM UNAIR" />' if ftmm_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">FTMM UNAIR</span>'
+
+# Hospital Building Background Image
+bg_hero_path = "assets/hero_bg.png"
+if not os.path.exists(bg_hero_path):
+    artifact_bg = r"C:\Users\SASA\.gemini\antigravity\brain\6b68a326-9967-4cd3-a384-f06817f1b48a\.user_uploaded\media_1785934189833.png"
+    if os.path.exists(artifact_bg):
+        bg_hero_path = artifact_bg
+
+bg_hero_b64 = get_base64_logo(bg_hero_path)
+
+if bg_hero_b64:
+    bg_card_style = f"background: linear-gradient(90deg, rgba(15, 23, 42, 0.52) 0%, rgba(30, 58, 138, 0.22) 50%, rgba(15, 23, 42, 0.05) 100%), url('{bg_hero_b64}'); background-size: cover; background-position: center;"
+else:
+    bg_card_style = "background: linear-gradient(125deg, #102a66 0%, #1d4ed8 100%);"
 
 st.markdown(
     f'''
-    <div style="background: linear-gradient(125deg, #102a66 0%, #1d4ed8 100%); border-radius: 24px; padding: 28px 32px; color: white; margin-bottom: 24px; box-shadow: 0 16px 36px rgba(15, 47, 107, 0.28); border: 1px solid rgba(255, 255, 255, 0.15);">
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; color: #15803d; font-size: 0.78rem; font-weight: 800; padding: 6px 18px; border-radius: 999px; box-shadow: 0 2px 10px rgba(0,0,0,0.12);">
-                <span style="display: inline-block; width: 9px; height: 9px; background: #22c55e; border-radius: 50%;"></span>
-                LIVE SYSTEM STATUS: AKTIF
-            </div>
-            <div style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; padding: 6px 16px; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
+    <div style="{bg_card_style} border-radius: 24px; padding: 28px 32px; color: white; margin-bottom: 24px; box-shadow: 0 16px 36px rgba(15, 47, 107, 0.28); border: 1px solid rgba(255, 255, 255, 0.15);">
+        <div style="display: flex; justify-content: flex-end; align-items: center; width: 100%; margin-bottom: 18px;">
+            <div style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; padding: 6px 18px; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
                 {pemprov_img}
                 {kominfo_img}
                 {unair_img}
+                {ftmm_img}
             </div>
         </div>
-        <div style="margin: 16px 0 8px; color: #FFFFFF !important; font-size: 2.1rem; font-weight: 800; line-height: 1.22; letter-spacing: -0.5px;">
+        <div style="margin: 16px 0 8px; color: #FFFFFF !important; font-size: 2.1rem; font-weight: 800; line-height: 1.22; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.7);">
             SISTEM MONITORING LAYANAN RUMAH SAKIT PEMPROV JAWA TIMUR
         </div>
-        <div style="margin: 0 0 18px; color: #93c5fd !important; font-size: 1.08rem; font-weight: 700;">
+        <div style="margin: 0 0 18px; color: #BAE6FD !important; font-size: 1.08rem; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.7);">
             Berbasis Automated Web Scraping Real-Time
         </div>
-        <div style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 16px; padding: 18px 22px; color: #FFFFFF !important; font-size: 0.96rem; line-height: 1.65; margin-bottom: 20px;">
-            Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>14 Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;">
-            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
-                ⚡ Automated Scraping Real-Time
-            </div>
-            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
-                🗺️ GIS Pemetaan Geografis RSUD
-            </div>
-            <div style="background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 12px; padding: 12px 16px; text-align: center; color: #FFFFFF !important; font-size: 0.9rem; font-weight: 700;">
-                🏥 Informasi Rujukan & Kontak 24 Jam
-            </div>
+        <div style="background: rgba(15, 23, 42, 0.55); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 16px; padding: 18px 22px; color: #FFFFFF !important; font-size: 0.96rem; line-height: 1.65; margin-bottom: 8px; text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
+            Dashboard ini dirancang sebagai platform pusat informasi dan pemantauan terpadu untuk <b>Rumah Sakit Umum Daerah (RSUD) dan Rumah Sakit Khusus</b> milik Pemerintah Provinsi Jawa Timur. Melalui teknologi <b>Automated Web Scraping</b>, sistem ini secara berkala menyerap data langsung dari portal resmi masing-masing RSUD guna menyajikan transparansi ketersediaan tempat tidur, persebaran fasilitas rujukan medis, serta kontak layanan darurat 24 jam secara akurat dan terintegrasi.
         </div>
     </div>
     ''',
@@ -304,12 +307,12 @@ for r in summary.itertuples():
         bor_str = f"{r.bor:.1f}%"
         terisi_str = f"{int(r.terisi):,}".replace(",", ".")
         tersedia_str = f"{int(r.tersedia):,}".replace(",", ".")
-        if r.bor <= 75.0:
-            color_hex = "#22C55E"
-        elif r.bor <= 90.0:
-            color_hex = "#EAB308"
-        else:
+        if r.bor > 85.0:
             color_hex = "#EF4444"
+        elif r.bor >= 60.0:
+            color_hex = "#22C55E"
+        else:
+            color_hex = "#3B82F6"
     else:
         status_str = "Data Belum Tersedia"
         color_hex = "#94A3B8"
@@ -570,9 +573,9 @@ components.html(carousel_html, height=265)
 
 legend_html = (
     '<div class="legend-row" style="margin-top:6px; justify-content: flex-end;">'
-    '<span><span class="legend-dot" style="background:#16a34a;"></span>Aman (&le;75%)</span>'
-    '<span><span class="legend-dot" style="background:#f59e0b;"></span>Waspada (75-90%)</span>'
-    '<span><span class="legend-dot" style="background:#dc2626;"></span>Kritis (&gt;90%)</span>'
+    '<span><span class="legend-dot" style="background:#3b82f6;"></span>Rendah / Kurang (&lt;60%)</span>'
+    '<span><span class="legend-dot" style="background:#16a34a;"></span>Ideal / Aman (60-85%)</span>'
+    '<span><span class="legend-dot" style="background:#dc2626;"></span>Kritis / Penuh (&gt;85%)</span>'
     '<span><span class="legend-dot" style="background:#94a3b8;"></span>Kapasitas / Belum Ada Data</span>'
     "</div>"
 )
@@ -1081,7 +1084,7 @@ HOSPITAL_PROFILES = [
         "kode": "RSHJ",
         "tipe": "Kelas B (Rujukan Umum & Haji)",
         "kota": "Kota Surabaya",
-        "alamat": "Jl. ITENAS No. 12-14, Sukolilo, Surabaya",
+        "alamat": "Jl. Manyar Kertoadi No. 1, Sukolilo, Surabaya",
         "telepon": "(031) 5924000 / 5924001",
         "url": "https://rsuhaji.jatimprov.go.id/",
     },

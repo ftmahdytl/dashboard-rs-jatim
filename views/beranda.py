@@ -13,9 +13,7 @@ from theme import (
 
 inject_base_style()
 
-# ---------------------------------------------------------------------
-# Halaman Beranda (Fast Render)
-# ---------------------------------------------------------------------
+# Halaman Beranda 
 
 import base64
 import os
@@ -30,9 +28,8 @@ def get_base64_logo(file_path: str) -> str | None:
         return f"data:{mime};base64,{b64}"
     return None
 
-# ---------------------------------------------------------------------
-# Check 3 Logos (Pemprov Jatim -> Kominfo -> UNAIR)
-# ---------------------------------------------------------------------
+
+# Logo
 pemprov_path = "assets/logos/logo_pemprov.png" if os.path.exists("assets/logos/logo_pemprov.png") else ("assets/logos/logo_pemprov.jpg" if os.path.exists("assets/logos/logo_pemprov.jpg") else None)
 kominfo_path = "assets/logos/logo_kominfo.png" if os.path.exists("assets/logos/logo_kominfo.png") else ("assets/logos/logo_kominfo.jpg" if os.path.exists("assets/logos/logo_kominfo.jpg") else None)
 unair_path = "assets/logos/logo_unair.png" if os.path.exists("assets/logos/logo_unair.png") else ("assets/logos/logo_unair.jpg" if os.path.exists("assets/logos/logo_unair.jpg") else None)
@@ -85,9 +82,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------------------------------------------------------------------
-# Direktori Profil & Biodata RSUD Pemprov Jawa Timur (3 Kartu per Baris)
-# ---------------------------------------------------------------------
+
+# Direktori Profil & Biodata RSUD Pemprov Jawa Timur 
+
 st.markdown("")
 render_section_heading(
     "Direktori Profil & Biodata RSUD Pemprov Jatim",

@@ -32,9 +32,8 @@ def get_base64_logo(file_path: str) -> str | None:
         return f"data:{mime};base64,{b64}"
     return None
 
-# ---------------------------------------------------------------------
-# Check 3 Logos (Pemprov Jatim -> Kominfo -> UNAIR)
-# ---------------------------------------------------------------------
+
+# Logo
 pemprov_path = "assets/logos/logo_pemprov.png" if os.path.exists("assets/logos/logo_pemprov.png") else ("assets/logos/logo_pemprov.jpg" if os.path.exists("assets/logos/logo_pemprov.jpg") else None)
 kominfo_path = "assets/logos/logo_kominfo.png" if os.path.exists("assets/logos/logo_kominfo.png") else ("assets/logos/logo_kominfo.jpg" if os.path.exists("assets/logos/logo_kominfo.jpg") else None)
 unair_path = "assets/logos/logo_unair.png" if os.path.exists("assets/logos/logo_unair.png") else ("assets/logos/logo_unair.jpg" if os.path.exists("assets/logos/logo_unair.jpg") else None)
@@ -53,12 +52,7 @@ unair_img = f'<img src="{unair_b64}" style="height:40px; max-width:65px; object-
 ftmm_img = f'<img src="{ftmm_b64}" style="height:36px; max-width:140px; object-fit:contain;" alt="FTMM UNAIR" />' if ftmm_b64 else '<span style="font-size:0.75rem; font-weight:800; color:#0f2f6b;">FTMM UNAIR</span>'
 
 # Hospital Building Background Image
-bg_hero_path = "assets/hero_bg.png"
-if not os.path.exists(bg_hero_path):
-    artifact_bg = r"C:\Users\SASA\.gemini\antigravity\brain\6b68a326-9967-4cd3-a384-f06817f1b48a\.user_uploaded\media_1785934189833.png"
-    if os.path.exists(artifact_bg):
-        bg_hero_path = artifact_bg
-
+bg_hero_path = "assets/hero_bg.png" if os.path.exists("assets/hero_bg.png") else None
 bg_hero_b64 = get_base64_logo(bg_hero_path)
 
 if bg_hero_b64:
@@ -91,9 +85,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------------------------------------------------------------------
+
 # Ringkas snapshot terbaru tiap RS
-# ---------------------------------------------------------------------
+
 hospital_codes = {
     name: str(info["kode_rs"]) for name, info in HOSPITALS.items()
 }
@@ -148,9 +142,9 @@ summary = pd.DataFrame(rows)
 have_data = summary[summary["ada_data"]].copy()
 missing = summary[~summary["ada_data"]].copy()
 
-# ---------------------------------------------------------------------
+
 # Tombol Ambil / Perbarui Data
-# ---------------------------------------------------------------------
+
 st.markdown("")
 if not missing.empty:
     st.warning(
@@ -212,9 +206,9 @@ if have_data.empty:
     )
     st.stop()
 
-# ---------------------------------------------------------------------
+
 # KPI Provinsi
-# ---------------------------------------------------------------------
+
 total_capacity = int(have_data["kapasitas"].sum())
 total_occupied = int(have_data["terisi"].sum())
 total_available = int(have_data["tersedia"].sum())
@@ -265,9 +259,9 @@ kpi_html = (
 
 st.markdown(kpi_html, unsafe_allow_html=True)
 
-# ---------------------------------------------------------------------
-# Seksi 1: Peta Persebaran Geografis (Full Width Layout)
-# ---------------------------------------------------------------------
+
+# Peta Persebaran Geografis
+
 st.markdown("")
 render_section_heading(
     "Peta Persebaran Geografis RSUD Pemprov Jatim",
@@ -394,9 +388,9 @@ if map_rows:
     """
     components.html(leaflet_html, height=450)
 
-# ---------------------------------------------------------------------
-# Seksi 2: Status BOR 1 Baris Horizontal Carousel dengan Panah ❮ ❯
-# ---------------------------------------------------------------------
+
+# Status BOR (Bed Occupancy Rate)
+
 st.markdown("")
 st.divider()
 render_section_heading(
@@ -581,9 +575,9 @@ legend_html = (
 )
 st.markdown(legend_html, unsafe_allow_html=True)
 
-# ---------------------------------------------------------------------
-# Ketersediaan Tempat Tidur menurut Kelas (Pills & Distribution)
-# ---------------------------------------------------------------------
+
+# Ketersediaan Tempat Tidur menurut Kelas
+
 st.markdown("")
 available_classes_set = set()
 for hospital_name, kode_rs in hospital_codes.items():
@@ -731,9 +725,9 @@ render_bed_class_distribution(
     total_hospitals=len(hospital_codes),
 )
 
-# ---------------------------------------------------------------------
-# Bar Chart Berdiri: Perbandingan Kapasitas, Terisi, dan Tersedia per RSUD
-# ---------------------------------------------------------------------
+
+# Bar Chart Perbandingan Kapasitas, Terisi, dan Tersedia per RSUD
+
 st.markdown("")
 render_section_heading(
     "Perbandingan Kapasitas, Bed Terisi, dan Bed Tersedia per RSUD",
@@ -835,10 +829,10 @@ if not df_bar.empty:
     chart_bar = (bars + text).properties(height=480)
     st.altair_chart(chart_bar, use_container_width=True)
 
-# ---------------------------------------------------------------------
-# Direktori Profil & Biodata RSUD Pemprov Jawa Timur (Di Bagian Paling Bawah)
-# Seksi Visualisasi AVLOS (Average Length of Stay)
-# ---------------------------------------------------------------------
+
+# Direktori Profil & Biodata RSUD Pemprov Jawa Timur
+# Visualisasi AVLOS (Average Length of Stay)
+
 st.markdown("")
 st.divider()
 render_section_heading(
@@ -893,7 +887,7 @@ if not df_avlos.empty:
     available_hospitals = df_avlos["nama_rs"].unique().tolist()
     available_years = sorted(df_avlos["tahun"].dropna().unique().astype(int).tolist())
 
-    # State & Callback untuk Filter RSUD agar 'Semua RSUD' tidak muncul bersamaan dengan RS individu
+    # State & Callback untuk Filter RSUD 
     if "avlos_rs_select" not in st.session_state:
         st.session_state["avlos_rs_select"] = ["Semua RSUD"]
 
@@ -907,7 +901,7 @@ if not df_avlos.empty:
             elif len(sel) > 1:
                 st.session_state["avlos_rs_select"] = [x for x in sel if x != "Semua RSUD"]
 
-    # State & Callback untuk Filter Tahun agar 'Semua Tahun' tidak muncul bersamaan dengan Tahun individu
+    # State & Callback untuk Filter Tahun 
     if "avlos_year_select" not in st.session_state:
         st.session_state["avlos_year_select"] = ["Semua Tahun"]
 
@@ -959,7 +953,6 @@ if not df_avlos.empty:
         max_row = filtered_avlos.loc[filtered_avlos["avlos"].idxmax()]
         min_row = filtered_avlos.loc[filtered_avlos["avlos"].idxmin()]
 
-        # 3 Kartu Metrik Ukuran Presisi Sama (Equal Height Cards)
         k_av1, k_av2, k_av3 = st.columns(3)
         with k_av1:
             st.markdown(
@@ -1041,9 +1034,9 @@ if not df_avlos.empty:
 else:
     st.warning("Data AVLOS belum dapat dimuat dari Open Data Jatim.")
 
-# ---------------------------------------------------------------------
-# Direktori Profil & Biodata 14 RSUD Pemprov Jawa Timur (Di Bagian Paling Bawah)
-# ---------------------------------------------------------------------
+
+# Direktori Profil & Biodata 14 RSUD Pemprov Jawa Timur 
+
 st.markdown("")
 st.divider()
 render_section_heading(

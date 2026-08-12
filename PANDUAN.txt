@@ -1,8 +1,7 @@
 DASHBOARD KETERSEDIAAN BED RS PEMPROV JATIM
 ================================================
 
-CARA PALING MUDAH
-
+CARA :
 1. Ekstrak folder ZIP.
 2. Pastikan Python sudah terpasang.
    Gunakan Python 3.12 atau 3.13. Python 3.14 belum didukung.
@@ -15,7 +14,7 @@ CARA PALING MUDAH
 
    http://localhost:8501
 
-6. Dashboard sekarang memiliki dua halaman, dipilih lewat menu di
+6. Dashboard sekarang memiliki tiga halaman, dipilih lewat menu di
    sidebar sebelah kiri:
 
    a. "Overview" (halaman pertama yang terbuka)
@@ -38,6 +37,12 @@ CARA PALING MUDAH
         tombol "Ambil data sekarang", dan tombol "Buka sumber data".
       - Di bawahnya tampil KPI, tab Ringkasan, Detail Ruang, dan
         Riwayat seperti sebelumnya.
+
+   c.  "Profil Tenaga Kesehatan"
+      Menampilkan dataset komposisi Tenaga Kesehatan (Dokter Spesialis,
+      Dokter Umum, Dokter Gigi, Perawat, Bidan, Tenaga Kefarmasian, dll.) 
+      dari 14 RSUD Pemprov Jatim hasil integrasi langsung API Open Data 
+      Pemprov Jawa Timur.
 
 7. Selama jendela terminal masih terbuka, dashboard masih menyala.
    Untuk mematikan dashboard, tutup terminal atau tekan Ctrl + C.

@@ -28,10 +28,7 @@ render_hero(
     "Rumah Sakit Pemerintah Provinsi Jawa Timur · Data otomatis",
 )
 
-# ---------------------------------------------------------------------
-# Filter & kontrol scraping — ditampilkan di bagian atas halaman
-# (di atas grafik), bukan lagi di sidebar.
-# ---------------------------------------------------------------------
+# Filter & kontrol scraping
 with st.container(border=True):
     filter_col, toggle_col, interval_col, refresh_col, link_col = st.columns(
         [2.4, 1.3, 1.3, 1.3, 1.3]

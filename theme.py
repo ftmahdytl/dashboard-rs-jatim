@@ -651,9 +651,7 @@ def render_gauge_ring(
     )
 
 
-# ---------------------------------------------------------------------
-# Distribusi tempat tidur per kelas (kartu peringkat dengan filter pill)
-# ---------------------------------------------------------------------
+# Distribusi tempat tidur per kelas
 KELAS_FILTER_OPTIONS = [
     "Semua Kelas",
     "VVIP",
